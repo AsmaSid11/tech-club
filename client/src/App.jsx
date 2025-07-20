@@ -6,10 +6,11 @@ import Projects from './pages/Projects'
 import PastMembers from './pages/PastMembers'
 import Team from './pages/Team'
 import Gallery from './pages/Gallery'
+import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <>
       {/* Enhanced Techy Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Deep Gradient Layer */}
@@ -51,7 +52,8 @@ export default function App() {
             <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </main>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }
