@@ -23,9 +23,9 @@ export default function App() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(230,62,109,0.18),transparent_70%)] animate-pulse opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(121,40,202,0.18),transparent_70%)] animate-pulse opacity-60" />
         {/* Animated SVG Blobs */}
-        <svg className="absolute w-[500px] h-[500px] top-[-120px] left-[-120px] animate-float-slow opacity-40" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="200" ry="180" fill="#e63e6d" /></svg>
-        <svg className="absolute w-[350px] h-[350px] bottom-[-100px] right-[-100px] animate-float-medium opacity-30" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="170" ry="140" fill="#7928ca" /></svg>
-        <svg className="absolute w-[200px] h-[200px] top-[60%] left-[60%] animate-float-fast opacity-30" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="100" ry="90" fill="#e63e6d" /></svg>
+        <svg className="absolute w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] top-[-60px] sm:top-[-120px] left-[-60px] sm:left-[-120px] animate-float-slow opacity-40" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="200" ry="180" fill="#e63e6d" /></svg>
+        <svg className="absolute w-[180px] h-[180px] sm:w-[350px] sm:h-[350px] bottom-[-50px] sm:bottom-[-100px] right-[-50px] sm:right-[-100px] animate-float-medium opacity-30" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="170" ry="140" fill="#7928ca" /></svg>
+        <svg className="absolute w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] top-[60%] left-[60%] animate-float-fast opacity-30" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="100" ry="90" fill="#e63e6d" /></svg>
         {/* Custom Keyframes for Floating Animation */}
         <style>{`
           @keyframes float-slow { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(30px) scale(1.05); } 100% { transform: translateY(0) scale(1); } }
@@ -38,7 +38,7 @@ export default function App() {
       </div>
       <div className="relative z-10 min-h-screen bg-transparent">
         <Navbar />
-        <main className="max-w-5xl mx-auto bg-gray-900 bg-opacity-80 rounded-xl shadow-xl pt-20">
+        <main className="max-w-3xl sm:max-w-4xl md:max-w-5xl mx-auto bg-gray-900 bg-opacity-80 rounded-xl shadow-xl pt-16 sm:pt-24 px-2 sm:px-6 md:px-10 transition-all duration-300">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
