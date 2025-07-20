@@ -38,13 +38,22 @@ export default function Team() {
   return (
     <section className="py-16 text-white font-tech min-h-[80vh]">
       <motion.h2
-        className="text-4xl sm:text-5xl font-bold text-center text-fuchsia-400 mb-16 drop-shadow-lg"
+        className="text-4xl sm:text-5xl font-bold text-center text-fuchsia-400 mb-4 drop-shadow-lg"
         variants={headingVariants}
         initial="hidden"
         animate="visible"
       >
         Our Tech Team
       </motion.h2>
+      <motion.p
+        className="text-lg sm:text-xl text-center text-fuchsia-200 mb-10 font-medium"
+        variants={headingVariants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.15 }}
+      >
+        Academic Year 2024-2025
+      </motion.p>
       <div className="mb-12">
         <motion.h3
           className="text-2xl sm:text-3xl font-semibold text-center text-fuchsia-300 mb-8"
