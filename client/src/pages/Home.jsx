@@ -23,7 +23,7 @@ export default function Home() {
           <img src="/images/logo.png" alt="Technology Club Logo" className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-xl rounded-full bg-white/10 p-2 mb-8 animate-fade-in" />
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white font-tech drop-shadow mb-6 animate-fade-in-up delay-100">Technology Club</h1>
           <p className="text-xl sm:text-2xl md:text-3xl text-fuchsia-200 mb-10 font-medium animate-fade-in-up delay-200">Innovate. Create. Transform.</p>
-          <a href="#about" className="px-10 py-4 rounded-full bg-gradient-to-r from-pink-700 via-fuchsia-900 to-purple-900 text-white font-bold text-xl shadow-lg hover:scale-110 hover:shadow-pink-500/40 active:scale-95 transition-all duration-300 animate-fade-in-up delay-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/40 smooth-scroll">
+          <a href="#explore" className="px-10 py-4 rounded-full bg-gradient-to-r from-pink-700 via-fuchsia-900 to-purple-900 text-white font-bold text-xl shadow-lg hover:scale-110 hover:shadow-pink-500/40 active:scale-95 transition-all duration-300 animate-fade-in-up delay-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/40 smooth-scroll">
             Explore
           </a>
         </div>
@@ -74,7 +74,7 @@ export default function Home() {
       </section>
 
       {/* Explore the Club Section */}
-      <section className="relative w-full flex flex-col items-center justify-center py-24 px-4 sm:px-8 md:px-16 max-w-6xl mx-auto animate-fade-in-up">
+      <section id="explore" className="relative w-full flex flex-col items-center justify-center py-24 px-4 sm:px-8 md:px-16 max-w-6xl mx-auto animate-fade-in-up">
         <h2 className="text-2xl sm:text-3xl font-bold text-center bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-4 font-tech drop-shadow-lg tracking-wide uppercase animate-fade-in-up">
           Explore the Club
         </h2>

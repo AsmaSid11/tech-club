@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
+  { to: '/#about', label: 'About' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/events', label: 'Events' },
   { to: '/projects', label: 'Projects' },
@@ -42,6 +42,18 @@ export default function Navbar() {
       <div className="hidden sm:flex gap-4 md:gap-6">
         {navLinks.map(link => {
           const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
+          if (link.label === 'About') {
+            return (
+              <a
+                key={link.to}
+                href="/#about"
+                className={`relative text-white font-semibold uppercase tracking-wide font-tech px-2 py-1 transition-colors duration-200 ${isActive ? 'text-pink-400' : 'hover:text-pink-300'}`}
+              >
+                {link.label}
+                <span className={`absolute left-0 -bottom-1 w-full h-0.5 rounded bg-gradient-to-r from-pink-500 via-fuchsia-500 to-pink-500 transition-all duration-300 ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-60 group-hover:scale-x-100'}`}></span>
+              </a>
+            );
+          }
           return (
             <Link
               key={link.to}
@@ -66,6 +78,18 @@ export default function Navbar() {
         <nav className="flex flex-col items-center mt-20 gap-6">
           {navLinks.map(link => {
             const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
+            if (link.label === 'About') {
+              return (
+                <a
+                  key={link.to}
+                  href="/#about"
+                  className={`text-lg font-semibold uppercase tracking-wide font-tech px-2 py-1 transition-colors duration-200 ${isActive ? 'text-pink-400' : 'hover:text-pink-300'}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              );
+            }
             return (
               <Link
                 key={link.to}

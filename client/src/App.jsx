@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
-import About from './pages/About'
 import Events from './pages/Events'
 import Projects from './pages/Projects'
 import PastMembers from './pages/PastMembers'
@@ -45,7 +44,6 @@ export default function App() {
         <main className="pt-24 px-2 sm:px-6 md:px-10 transition-all duration-300 max-w-7xl mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/events" element={<Events />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/past-members" element={<PastMembers />} />
