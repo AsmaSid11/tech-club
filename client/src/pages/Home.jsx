@@ -59,9 +59,14 @@ export default function Home() {
             <rect x="20" y="20" width="60" height="60" rx="12" stroke="currentColor" strokeWidth="8" />
           </svg>
         </div>
-        <div className="relative z-10 w-full">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-fuchsia-300 mb-10 font-tech drop-shadow">About Us</h2>
-          <div className="max-w-2xl text-center text-white/90 text-lg sm:text-xl md:text-2xl space-y-6">
+        <div className="relative z-10 w-full flex flex-col items-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-4 font-tech drop-shadow-lg tracking-wide uppercase animate-fade-in-up">
+            About Us
+          </h2>
+          <div className="flex justify-center mb-8">
+            <div className="h-1 w-24 bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 rounded-full animate-pulse"></div>
+          </div>
+          <div className="max-w-2xl text-center text-white/90 text-lg sm:text-xl md:text-2xl space-y-6 flex flex-col items-center mx-auto">
             <p>The Technology Club at NIT Srinagar is a community of tech enthusiasts dedicated to fostering innovation and technological advancement. We provide a platform for students to explore cutting-edge technologies, develop practical skills, and collaborate on exciting projects.</p>
             <p>Our mission is to create a vibrant tech ecosystem within the campus, organizing workshops, hackathons, and technical discussions that encourage learning and creativity. We believe in the power of technology to transform the world and aim to equip students with the knowledge and experience they need to be part of that transformation.</p>
           </div>
@@ -70,25 +75,36 @@ export default function Home() {
 
       {/* Explore the Club Section */}
       <section className="relative w-full flex flex-col items-center justify-center py-24 px-4 sm:px-8 md:px-16 max-w-6xl mx-auto animate-fade-in-up">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-fuchsia-300 mb-12 font-tech drop-shadow">Explore the Club</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-center bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-4 font-tech drop-shadow-lg tracking-wide uppercase animate-fade-in-up">
+          Explore the Club
+        </h2>
+        <div className="flex justify-center mb-10">
+          <div className="h-1 w-20 bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 rounded-full animate-pulse"></div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 w-full">
           {/* Events */}
-          <Link to="/events" className="group bg-gradient-to-br from-gray-900/80 via-fuchsia-950/80 to-purple-900/80 rounded-2xl shadow-lg p-10 flex flex-col items-center hover:scale-105 hover:shadow-pink-500/30 hover:border-fuchsia-400 transition-all duration-300 border border-fuchsia-900/30 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/30">
-            <span className="mb-5 text-5xl text-pink-400 group-hover:text-fuchsia-400 transition-colors">📅</span>
-            <h3 className="text-2xl font-semibold text-white mb-3 font-tech">Events</h3>
+          <Link to="/events" className="group bg-white/5 backdrop-blur-md bg-gradient-to-br from-gray-900/80 via-fuchsia-950/80 to-purple-900/80 rounded-2xl shadow-2xl p-10 flex flex-col items-center border border-fuchsia-900/30 hover:border-transparent hover:bg-gradient-to-tr hover:from-fuchsia-900/60 hover:to-pink-800/60 hover:shadow-pink-500/40 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/30 relative overflow-hidden">
+            <span className="mb-5 text-5xl text-pink-400 group-hover:text-fuchsia-400 transition-colors group-hover:animate-bounce">📅</span>
+            <div className="w-12 h-1 bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
+            <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Events</h3>
             <p className="text-fuchsia-200 text-center text-base">Check out our upcoming and past events, workshops, and hackathons.</p>
+            <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-fuchsia-400 group-hover:shadow-[0_0_40px_0_rgba(232,62,140,0.3)] transition-all duration-300"></div>
           </Link>
           {/* Gallery */}
-          <Link to="/gallery" className="group bg-gradient-to-br from-gray-900/80 via-fuchsia-950/80 to-purple-900/80 rounded-2xl shadow-lg p-10 flex flex-col items-center hover:scale-105 hover:shadow-pink-500/30 hover:border-fuchsia-400 transition-all duration-300 border border-fuchsia-900/30 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/30">
-            <span className="mb-5 text-5xl text-pink-400 group-hover:text-fuchsia-400 transition-colors">🖼️</span>
-            <h3 className="text-2xl font-semibold text-white mb-3 font-tech">Gallery</h3>
+          <Link to="/gallery" className="group bg-white/5 backdrop-blur-md bg-gradient-to-br from-gray-900/80 via-fuchsia-950/80 to-purple-900/80 rounded-2xl shadow-2xl p-10 flex flex-col items-center border border-fuchsia-900/30 hover:border-transparent hover:bg-gradient-to-tr hover:from-fuchsia-900/60 hover:to-pink-800/60 hover:shadow-pink-500/40 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/30 relative overflow-hidden">
+            <span className="mb-5 text-5xl text-pink-400 group-hover:text-fuchsia-400 transition-colors group-hover:animate-pulse">🖼️</span>
+            <div className="w-12 h-1 bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
+            <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Gallery</h3>
             <p className="text-fuchsia-200 text-center text-base">See memorable moments and highlights from our club activities.</p>
+            <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-fuchsia-400 group-hover:shadow-[0_0_40px_0_rgba(232,62,140,0.3)] transition-all duration-300"></div>
           </Link>
           {/* Projects */}
-          <Link to="/projects" className="group bg-gradient-to-br from-gray-900/80 via-fuchsia-950/80 to-purple-900/80 rounded-2xl shadow-lg p-10 flex flex-col items-center hover:scale-105 hover:shadow-pink-500/30 hover:border-fuchsia-400 transition-all duration-300 border border-fuchsia-900/30 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/30">
-            <span className="mb-5 text-5xl text-pink-400 group-hover:text-fuchsia-400 transition-colors">💡</span>
-            <h3 className="text-2xl font-semibold text-white mb-3 font-tech">Projects</h3>
+          <Link to="/projects" className="group bg-white/5 backdrop-blur-md bg-gradient-to-br from-gray-900/80 via-fuchsia-950/80 to-purple-900/80 rounded-2xl shadow-2xl p-10 flex flex-col items-center border border-fuchsia-900/30 hover:border-transparent hover:bg-gradient-to-tr hover:from-fuchsia-900/60 hover:to-pink-800/60 hover:shadow-pink-500/40 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-700/30 relative overflow-hidden">
+            <span className="mb-5 text-5xl text-pink-400 group-hover:text-fuchsia-400 transition-colors group-hover:animate-spin">💡</span>
+            <div className="w-12 h-1 bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
+            <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Projects</h3>
             <p className="text-fuchsia-200 text-center text-base">Explore innovative projects and collaborations by our members.</p>
+            <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-fuchsia-400 group-hover:shadow-[0_0_40px_0_rgba(232,62,140,0.3)] transition-all duration-300"></div>
           </Link>
         </div>
       </section>
