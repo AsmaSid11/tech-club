@@ -11,7 +11,7 @@ import Gallery from './pages/Gallery'
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* Enhanced Techy Animated Background */}
+      {/* Techy Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Gradient Layer */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-fuchsia-950 to-pink-900" />
@@ -38,7 +38,7 @@ export default function App() {
       </div>
       <div className="relative z-10 min-h-screen bg-transparent">
         <Navbar />
-        <main className="max-w-3xl sm:max-w-4xl md:max-w-5xl mx-auto bg-gray-900 bg-opacity-80 rounded-xl shadow-xl pt-16 sm:pt-24 px-2 sm:px-6 md:px-10 transition-all duration-300">
+        <main className="pt-24 px-2 sm:px-6 md:px-10 transition-all duration-300 max-w-7xl mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -51,5 +51,5 @@ export default function App() {
         </main>
       </div>
     </div>
-  )
+  );
 }
