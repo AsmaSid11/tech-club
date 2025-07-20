@@ -1,4 +1,5 @@
 import { FaLinkedinIn, FaGithub, FaTwitter } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const teamMembers = [
   { initials: 'FM', name: 'Fahad Makdoomi', role: '4th Year BTech | Core Member' },
@@ -15,41 +16,135 @@ const teamMembers = [
   { initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer' },
 ];
 
+const coreTeam = teamMembers.filter(member => member.role.includes('Core Member'));
+const supportTeam = teamMembers.filter(member => !member.role.includes('Core Member'));
+
+// Animation variants
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.08, type: 'spring', stiffness: 60 },
+  }),
+};
+
+const headingVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, type: 'spring' } },
+};
+
 export default function Team() {
   return (
-    <section className="py-16  text-white font-tech min-h-[80vh]">
-      <h2 className="text-4xl sm:text-5xl font-bold text-center text-fuchsia-400 mb-16 drop-shadow-lg">
+    <section className="py-16 text-white font-tech min-h-[80vh]">
+      <motion.h2
+        className="text-4xl sm:text-5xl font-bold text-center text-fuchsia-400 mb-16 drop-shadow-lg"
+        variants={headingVariants}
+        initial="hidden"
+        animate="visible"
+      >
         Our Tech Team
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
-        {teamMembers.map((member, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0"
-          >
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4">
-              {member.initials}
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-fuchsia-100 mb-1 truncate">
-              {member.name}
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
-              {member.role}
-            </p>
-            <div className="flex gap-4 text-fuchsia-300 text-lg">
-              <a href="#" aria-label="LinkedIn" className="hover:text-fuchsia-400 transition-colors">
-                <FaLinkedinIn />
-              </a>
-              <a href="#" aria-label="GitHub" className="hover:text-fuchsia-400 transition-colors">
-                <FaGithub />
-              </a>
-              <a href="#" aria-label="Twitter" className="hover:text-fuchsia-400 transition-colors">
-                <FaTwitter />
-              </a>
-            </div>
-          </div>
-        ))}
+      </motion.h2>
+      <div className="mb-12">
+        <motion.h3
+          className="text-2xl sm:text-3xl font-semibold text-center text-fuchsia-300 mb-8"
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.7 }}
+        >
+          Core Team
+        </motion.h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
+          {coreTeam.map((member, idx) => (
+            <motion.div
+              key={idx}
+              className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-fuchsia-500/30 hover:scale-[1.04]"
+              custom={idx}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <motion.div
+                className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                whileHover={{ scale: 1.13, rotate: 8 }}
+                transition={{ type: 'spring', stiffness: 200 }}
+              >
+                {member.initials}
+              </motion.div>
+              <h3 className="text-lg sm:text-xl font-semibold text-fuchsia-100 mb-1 truncate">
+                {member.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
+                {member.role}
+              </p>
+              <div className="flex gap-4 text-fuchsia-300 text-lg">
+                <a href="#" aria-label="LinkedIn" className="hover:text-fuchsia-400 transition-colors">
+                  <FaLinkedinIn />
+                </a>
+                <a href="#" aria-label="GitHub" className="hover:text-fuchsia-400 transition-colors">
+                  <FaGithub />
+                </a>
+                <a href="#" aria-label="Twitter" className="hover:text-fuchsia-400 transition-colors">
+                  <FaTwitter />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
+      {supportTeam.length > 0 && (
+        <div>
+          <motion.h3
+            className="text-2xl sm:text-3xl font-semibold text-center text-fuchsia-300 mb-8"
+            variants={headingVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.7 }}
+          >
+            Creative Team
+          </motion.h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
+            {supportTeam.map((member, idx) => (
+              <motion.div
+                key={idx}
+                className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-fuchsia-500/30 hover:scale-[1.04]"
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <motion.div
+                  className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                  whileHover={{ scale: 1.13, rotate: 8 }}
+                  transition={{ type: 'spring', stiffness: 200 }}
+                >
+                  {member.initials}
+                </motion.div>
+                <h3 className="text-lg sm:text-xl font-semibold text-fuchsia-100 mb-1 truncate">
+                  {member.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
+                  {member.role}
+                </p>
+                <div className="flex gap-4 text-fuchsia-300 text-lg">
+                  <a href="#" aria-label="LinkedIn" className="hover:text-fuchsia-400 transition-colors">
+                    <FaLinkedinIn />
+                  </a>
+                  <a href="#" aria-label="GitHub" className="hover:text-fuchsia-400 transition-colors">
+                    <FaGithub />
+                  </a>
+                  <a href="#" aria-label="Twitter" className="hover:text-fuchsia-400 transition-colors">
+                    <FaTwitter />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
