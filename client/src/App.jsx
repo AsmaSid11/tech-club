@@ -11,29 +11,33 @@ import Gallery from './pages/Gallery'
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* Techy Animated Background */}
+      {/* Enhanced Techy Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {/* Gradient Layer */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-fuchsia-950 to-pink-900" />
-        {/* Noise Layer */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.5\'/%3E%3C/svg%3E')] opacity-20" />
-        {/* Grid Layer */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-40" />
-        {/* Animated Glow Layer */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(230,62,109,0.18),transparent_70%)] animate-pulse opacity-60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(121,40,202,0.18),transparent_70%)] animate-pulse opacity-60" />
-        {/* Animated SVG Blobs */}
-        <svg className="absolute w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] top-[-60px] sm:top-[-120px] left-[-60px] sm:left-[-120px] animate-float-slow opacity-40" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="200" ry="180" fill="#e63e6d" /></svg>
-        <svg className="absolute w-[180px] h-[180px] sm:w-[350px] sm:h-[350px] bottom-[-50px] sm:bottom-[-100px] right-[-50px] sm:right-[-100px] animate-float-medium opacity-30" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="170" ry="140" fill="#7928ca" /></svg>
-        <svg className="absolute w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] top-[60%] left-[60%] animate-float-fast opacity-30" viewBox="0 0 500 500" fill="none"><ellipse cx="250" cy="250" rx="100" ry="90" fill="#e63e6d" /></svg>
-        {/* Custom Keyframes for Floating Animation */}
+        {/* Deep Gradient Layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-fuchsia-950 to-purple-900" />
+        {/* Subtle Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30" />
+        {/* Animated Techy Circles */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
+          <div className="absolute w-[32rem] h-[32rem] bg-[radial-gradient(circle,rgba(121,40,202,0.22)_0%,transparent_70%)] rounded-full blur-2xl animate-pulse-slow" />
+          <div className="absolute w-96 h-96 bg-[radial-gradient(circle,rgba(230,62,109,0.18)_0%,transparent_70%)] rounded-full blur-xl animate-pulse-medium" />
+          <div className="absolute w-60 h-60 bg-[radial-gradient(circle,rgba(121,40,202,0.18)_0%,transparent_70%)] rounded-full blur-lg animate-pulse-fast" />
+          {/* Techy ring */}
+          <div className="absolute w-80 h-80 border-2 border-fuchsia-900/40 rounded-full animate-spin-slow" style={{borderStyle:'dashed'}} />
+          <div className="absolute w-48 h-48 border border-pink-900/30 rounded-full animate-spin-reverse" style={{borderStyle:'dotted'}} />
+        </div>
+        {/* Custom Keyframes for Circles and Rings */}
         <style>{`
-          @keyframes float-slow { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(30px) scale(1.05); } 100% { transform: translateY(0) scale(1); } }
-          .animate-float-slow { animation: float-slow 18s ease-in-out infinite; }
-          @keyframes float-medium { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(-25px) scale(1.04); } 100% { transform: translateY(0) scale(1); } }
-          .animate-float-medium { animation: float-medium 13s ease-in-out infinite; }
-          @keyframes float-fast { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(18px) scale(1.03); } 100% { transform: translateY(0) scale(1); } }
-          .animate-float-fast { animation: float-fast 9s ease-in-out infinite; }
+          @keyframes pulse-slow { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+          .animate-pulse-slow { animation: pulse-slow 6s ease-in-out infinite; }
+          @keyframes pulse-medium { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.12); } }
+          .animate-pulse-medium { animation: pulse-medium 4s ease-in-out infinite; }
+          @keyframes pulse-fast { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.16); } }
+          .animate-pulse-fast { animation: pulse-fast 2.5s ease-in-out infinite; }
+          @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+          .animate-spin-slow { animation: spin-slow 18s linear infinite; }
+          @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+          .animate-spin-reverse { animation: spin-reverse 24s linear infinite; }
         `}</style>
       </div>
       <div className="relative z-10 min-h-screen bg-transparent">
