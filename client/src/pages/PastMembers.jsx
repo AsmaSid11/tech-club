@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 
 const pastMembers = Array.from({ length: 18 }, (_, i) => ({
-  initials: 'AA',
-  name: 'Aarav Anand',
+  initials: 'JD',
+  name: 'John Doe',
   role: 'President',
   year: '2022-2023',
 }));

@@ -7,7 +7,7 @@ const teamMembers = [
   { initials: 'TK', name: 'Tejal Kumari', role: '3rd Year BTech | Core Member' },
   { initials: 'A', name: 'Ashvick', role: '3rd Year BTech | Core Member' },
   { initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member' },
-  { initials: 'AS', name: 'Asma Siddique', role: '2nd Year BTech | Core Member' },
+  { initials: 'AS', name: 'Asma Siddiqui', role: '2nd Year BTech | Core Member' },
   { initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member' },
   { initials: 'SM', name: 'Saeed Abdul Muizz', role: '1st Year BTech | Core Member' },
   { initials: 'BQ', name: 'Basar Qari', role: '1st Year MTech | Core Member' },
