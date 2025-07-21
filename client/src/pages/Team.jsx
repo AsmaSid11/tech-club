@@ -21,7 +21,7 @@ const supportTeam = teamMembers.filter(member => !member.role.includes('Core Mem
 
 const facultyCoordinator = {
   initials: 'IA',
-  name: 'Dr. Iqra Altag Gillani',
+  name: 'Dr. Iqra Altaf Gillani',
   role: 'Faculty Coordinator',
 };
 

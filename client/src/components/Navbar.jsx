@@ -26,7 +26,7 @@ export default function Navbar() {
             style={{ boxShadow: '0 0 24px 4px #6A1E55, 0 0 8px 2px #3B1C32' }}
           />
         </div>
-        <span className="text-xl sm:text-2xl font-extrabold text-white tracking-widest font-tech drop-shadow-[0_0_8px_#6A1E55]">Tech Club</span>
+        <span className="text-xl sm:text-2xl font-extrabold text-white tracking-widest font-tech drop-shadow-[0_0_8px_#6A1E55]">Technology Club</span>
       </div>
       {/* Hamburger for mobile */}
       <button
