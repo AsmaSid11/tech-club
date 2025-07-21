@@ -14,17 +14,17 @@ export default function App() {
       {/* Enhanced Techy Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Deep Gradient Layer */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-fuchsia-950 to-purple-900" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#3B1C32] to-[#6A1E55]" />
         {/* Subtle Grid Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30" />
         {/* Animated Techy Circles */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
-          <div className="absolute w-[32rem] h-[32rem] bg-[radial-gradient(circle,rgba(121,40,202,0.22)_0%,transparent_70%)] rounded-full blur-2xl animate-pulse-slow" />
-          <div className="absolute w-96 h-96 bg-[radial-gradient(circle,rgba(230,62,109,0.18)_0%,transparent_70%)] rounded-full blur-xl animate-pulse-medium" />
-          <div className="absolute w-60 h-60 bg-[radial-gradient(circle,rgba(121,40,202,0.18)_0%,transparent_70%)] rounded-full blur-lg animate-pulse-fast" />
+          <div className="absolute w-[32rem] h-[32rem] bg-[radial-gradient(circle,rgba(59,28,50,0.15)_0%,transparent_70%)] rounded-full blur-2xl animate-pulse-slow" />
+          <div className="absolute w-96 h-96 bg-[radial-gradient(circle,rgba(106,30,85,0.12)_0%,transparent_70%)] rounded-full blur-xl animate-pulse-medium" />
+          <div className="absolute w-60 h-60 bg-[radial-gradient(circle,rgba(59,28,50,0.12)_0%,transparent_70%)] rounded-full blur-lg animate-pulse-fast" />
           {/* Techy ring */}
-          <div className="absolute w-80 h-80 border-2 border-fuchsia-900/40 rounded-full animate-spin-slow" style={{borderStyle:'dashed'}} />
-          <div className="absolute w-48 h-48 border border-pink-900/30 rounded-full animate-spin-reverse" style={{borderStyle:'dotted'}} />
+          <div className="absolute w-80 h-80 border-2 border-[#6A1E55]/40 rounded-full animate-spin-slow" style={{borderStyle:'dashed'}} />
+          <div className="absolute w-48 h-48 border border-[#3B1C32]/30 rounded-full animate-spin-reverse" style={{borderStyle:'dotted'}} />
         </div>
         {/* Custom Keyframes for Circles and Rings */}
         <style>{`
