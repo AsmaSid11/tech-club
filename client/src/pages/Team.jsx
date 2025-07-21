@@ -19,6 +19,12 @@ const teamMembers = [
 const coreTeam = teamMembers.filter(member => member.role.includes('Core Member'));
 const supportTeam = teamMembers.filter(member => !member.role.includes('Core Member'));
 
+const facultyCoordinator = {
+  initials: 'IA',
+  name: 'Dr. Iqra Altag Gillani',
+  role: 'Faculty Coordinator',
+};
+
 // Animation variants
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -54,6 +60,45 @@ export default function Team() {
       >
         Academic Year 2024-2025
       </motion.p>
+      
+      {/* Faculty Coordinator Section */}
+      <div className="mb-16">
+        <motion.h3
+          className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.7 }}
+        >
+          Faculty Coordinator
+        </motion.h3>
+        <motion.div
+          className="max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-violet-dark/40"
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+        >
+          <motion.div
+            className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-3xl font-bold text-white shadow-xl mb-5"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+          >
+            {facultyCoordinator.initials}
+          </motion.div>
+          <h3 className="text-xl sm:text-2xl font-bold text-violet-100 mb-1">
+            {facultyCoordinator.name}
+          </h3>
+          <p className="text-sm sm:text-base text-gray-200 mb-4">
+            {facultyCoordinator.role}
+          </p>
+          <div className="flex gap-5 text-violet-300 text-xl">
+            <a href="#" aria-label="LinkedIn" className="hover:text-violet-200 transition-colors"><FaLinkedinIn /></a>
+            <a href="#" aria-label="GitHub" className="hover:text-violet-200 transition-colors"><FaGithub /></a>
+            <a href="#" aria-label="Twitter" className="hover:text-violet-200 transition-colors"><FaTwitter /></a>
+          </div>
+        </motion.div>
+      </div>
+
       <div className="mb-12">
         <motion.h3
           className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
