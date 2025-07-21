@@ -38,7 +38,7 @@ export default function Team() {
   return (
     <section className="py-16 text-white font-tech min-h-[80vh]">
       <motion.h2
-        className="text-4xl sm:text-5xl font-bold text-center text-fuchsia-400 mb-4 drop-shadow-lg"
+        className="text-4xl sm:text-5xl font-bold text-center text-violet-300 mb-4 drop-shadow-lg"
         variants={headingVariants}
         initial="hidden"
         animate="visible"
@@ -46,7 +46,7 @@ export default function Team() {
         Our Tech Team
       </motion.h2>
       <motion.p
-        className="text-lg sm:text-xl text-center text-fuchsia-200 mb-10 font-medium"
+        className="text-lg sm:text-xl text-center text-violet-200 mb-10 font-medium"
         variants={headingVariants}
         initial="hidden"
         animate="visible"
@@ -56,7 +56,7 @@ export default function Team() {
       </motion.p>
       <div className="mb-12">
         <motion.h3
-          className="text-2xl sm:text-3xl font-semibold text-center text-fuchsia-300 mb-8"
+          className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
           variants={headingVariants}
           initial="hidden"
           whileInView="visible"
@@ -68,7 +68,7 @@ export default function Team() {
           {coreTeam.map((member, idx) => (
             <motion.div
               key={idx}
-              className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-fuchsia-500/30 hover:scale-[1.04]"
+              className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-violet-dark/40 hover:scale-[1.04]"
               custom={idx}
               variants={cardVariants}
               initial="hidden"
@@ -76,26 +76,26 @@ export default function Team() {
               viewport={{ once: true, amount: 0.2 }}
             >
               <motion.div
-                className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
                 whileHover={{ scale: 1.13, rotate: 8 }}
                 transition={{ type: 'spring', stiffness: 200 }}
               >
                 {member.initials}
               </motion.div>
-              <h3 className="text-lg sm:text-xl font-semibold text-fuchsia-100 mb-1 truncate">
+              <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
                 {member.name}
               </h3>
               <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
                 {member.role}
               </p>
-              <div className="flex gap-4 text-fuchsia-300 text-lg">
-                <a href="#" aria-label="LinkedIn" className="hover:text-fuchsia-400 transition-colors">
+              <div className="flex gap-4 text-violet-300 text-lg">
+                <a href="#" aria-label="LinkedIn" className="hover:text-violet-200 transition-colors">
                   <FaLinkedinIn />
                 </a>
-                <a href="#" aria-label="GitHub" className="hover:text-fuchsia-400 transition-colors">
+                <a href="#" aria-label="GitHub" className="hover:text-violet-200 transition-colors">
                   <FaGithub />
                 </a>
-                <a href="#" aria-label="Twitter" className="hover:text-fuchsia-400 transition-colors">
+                <a href="#" aria-label="Twitter" className="hover:text-violet-200 transition-colors">
                   <FaTwitter />
                 </a>
               </div>
@@ -106,7 +106,7 @@ export default function Team() {
       {supportTeam.length > 0 && (
         <div>
           <motion.h3
-            className="text-2xl sm:text-3xl font-semibold text-center text-fuchsia-300 mb-8"
+            className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
             variants={headingVariants}
             initial="hidden"
             whileInView="visible"
@@ -118,7 +118,7 @@ export default function Team() {
             {supportTeam.map((member, idx) => (
               <motion.div
                 key={idx}
-                className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-fuchsia-500/30 hover:scale-[1.04]"
+                className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-violet-dark/40 hover:scale-[1.04]"
                 custom={idx}
                 variants={cardVariants}
                 initial="hidden"
@@ -126,26 +126,26 @@ export default function Team() {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <motion.div
-                  className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                  className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
                   whileHover={{ scale: 1.13, rotate: 8 }}
                   transition={{ type: 'spring', stiffness: 200 }}
                 >
                   {member.initials}
                 </motion.div>
-                <h3 className="text-lg sm:text-xl font-semibold text-fuchsia-100 mb-1 truncate">
+                <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
                   {member.name}
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
                   {member.role}
                 </p>
-                <div className="flex gap-4 text-fuchsia-300 text-lg">
-                  <a href="#" aria-label="LinkedIn" className="hover:text-fuchsia-400 transition-colors">
+                <div className="flex gap-4 text-violet-300 text-lg">
+                  <a href="#" aria-label="LinkedIn" className="hover:text-violet-200 transition-colors">
                     <FaLinkedinIn />
                   </a>
-                  <a href="#" aria-label="GitHub" className="hover:text-fuchsia-400 transition-colors">
+                  <a href="#" aria-label="GitHub" className="hover:text-violet-200 transition-colors">
                     <FaGithub />
                   </a>
-                  <a href="#" aria-label="Twitter" className="hover:text-fuchsia-400 transition-colors">
+                  <a href="#" aria-label="Twitter" className="hover:text-violet-200 transition-colors">
                     <FaTwitter />
                   </a>
                 </div>

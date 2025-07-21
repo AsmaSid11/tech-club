@@ -9,6 +9,8 @@ export default {
       colors: {
         'fuchsia-950': '#4a044e', // dark purple
         'pink-900': '#831843',    // dark pink
+        'violet-deep': '#3B1C32',
+        'violet-dark': '#6A1E55',
       },
       fontFamily: {
         tech: ["'Share Tech Mono'", 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
