@@ -6,6 +6,7 @@ import Projects from './pages/Projects'
 import PastMembers from './pages/PastMembers'
 import Team from './pages/Team'
 import Gallery from './pages/Gallery'
+import TechFusion25 from './pages/TechFusion25';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -50,6 +51,7 @@ export default function App() {
             <Route path="/past-members" element={<PastMembers />} />
             <Route path="/team" element={<Team />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/techfusion25" element={<TechFusion25 />} />
           </Routes>
         </main>
         <Footer />
