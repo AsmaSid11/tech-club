@@ -7,6 +7,7 @@ import PastMembers from './pages/PastMembers'
 import Team from './pages/Team'
 import Gallery from './pages/Gallery'
 import TechFusion25 from './pages/TechFusion25';
+import TechFusionEvents from './pages/TechFusionEvents';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -52,6 +53,7 @@ export default function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/techfusion25" element={<TechFusion25 />} />
+            <Route path="/techfusion25/events" element={<TechFusionEvents />} />
           </Routes>
         </main>
         <Footer />
