@@ -122,7 +122,7 @@ export default function PastMembers() {
         variants={headingVariants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: 0.15 }}
+        transition={{ delay: 0.16 }}
       >
         Honoring our alumni and contributors
       </motion.p>
