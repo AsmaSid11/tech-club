@@ -130,7 +130,7 @@ export default function PastMembers() {
         {pastMembers.map((member, idx) => (
           <motion.div
             key={idx}
-            className="relative flex flex-col items-center text-center bg-neutral-900 border border-neutral-800 rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg min-w-0 group overflow-hidden"
+            className="relative flex flex-col items-center text-center bg-slate-900 border border-slate-800 rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-1 transition-shadow duration-300 hover:shadow-purple-neon min-w-0 group overflow-hidden"
             custom={idx}
             variants={cardVariants}
             initial="hidden"
@@ -138,7 +138,7 @@ export default function PastMembers() {
             viewport={{ once: true, amount: 0.2 }}
           >
             <div
-              className="w-14 h-14 rounded-full bg-neutral-800 flex items-center justify-center text-lg font-bold text-fuchsia-400 shadow mb-3 border border-fuchsia-900/20"
+              className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-lg font-bold text-purple-400 shadow mb-3 border border-purple-900/20"
             >
               {member.src ? (
                 <motion.img
@@ -155,7 +155,7 @@ export default function PastMembers() {
                 member.initials
               )}
             </div>
-            <h3 className="text-base font-semibold text-gray-100 mb-1 truncate group-hover:text-fuchsia-400 transition-colors">{member.name}</h3>
+            <h3 className="text-base font-semibold text-gray-100 mb-1 truncate group-hover:text-purple-400 transition-colors">{member.name}</h3>
             <p className="text-xs text-gray-300 mb-1">{member.role}</p>
             <p className="text-xs text-gray-500">{member.year}</p>
           </motion.div>
