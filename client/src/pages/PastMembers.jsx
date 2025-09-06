@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 import Ayush from '../assets/PastPhotos/PastPhotos/Ayush.png';
 import Hurmat from '../assets/PastPhotos/PastPhotos/Hurmat.png';
-import Md from '../assets/PastPhotos/PastPhotos/Md.png';
+import Md from '../assets/PastPhotos/PastPhotos/MD.png';
 import Tushar from '../assets/PastPhotos/PastPhotos/Tushar.png';
 import Samarvir from '../assets/PastPhotos/PastPhotos/Samarvir.png';
 import Hafsa from '../assets/PastPhotos/PastPhotos/Hafsa.png';
