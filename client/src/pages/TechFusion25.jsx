@@ -169,15 +169,7 @@ const cardVariants = {
 >
 
       <div className="text-lg font-lg text-white/70 ">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque,
-        expedita enim perspiciatis nobis voluptate placeat delectus soluta
-        accusantium. Enim nisi labore assumenda doloribus odit dolores, modi
-        delectus quasi rem quod provident officiis, vitae ipsa, eum mollitia
-        voluptatibus. Eligendi unde explicabo placeat perspiciatis nesciunt
-        excepturi fuga! Animi, illum. Minus, adipisci quo?Lorem ipsum, dolor sit
-        amet consectetur adipisicing elit. Accusamus saepe fuga nemo qui culpa,
-        nisi harum quis ipsa repellendus illum molestiae necessitatibus? Ullam
-        ad optio aliquam. Exercitationem dicta recusandae quia!
+        Our flagship two-day intra-college tech fest brought together a diverse mix of workshops, hackathons, coding competitions, and interactive sessions under one banner. It served as a platform for students to showcase their talents, gain hands-on experience, and collaborate across disciplines, while fostering creativity, problem-solving, and innovation. With its blend of learning, competition, and teamwork, the fest created an energetic space where students explored new technologies, built connections, and experienced the true spirit of tech-driven growth on campus.
       </div>
     </motion.div>
 
@@ -262,12 +254,20 @@ const cardVariants = {
      </div>
 </div> </div>
       {/* view more events button */}
-      <div className="text-center pt-9"> <a
-        href=""
-        className=" text-2xl sm:text-3xl font-semibold inline-block mt-auto px-4 py-2 rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200 shadow-fuchsia-900/20 shadow-sm"
-      >
-        View More Events...
-      </a></div>
+      <div className="text-center pt-9">
+        <a
+          href="/techfusion25/events"
+          onClick={(e) => {
+            // allow ctrl/cmd or middle-click to open in new tab
+            if (e.ctrlKey || e.metaKey || e.button === 1) return;
+            e.preventDefault();
+            navigate('/techfusion25/events');
+          }}
+          className=" text-2xl sm:text-3xl font-semibold inline-block mt-auto px-4 py-2 rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200 shadow-fuchsia-900/20 shadow-sm"
+        >
+          View More Events...
+        </a>
+      </div>
     </div>
               {/* highlights */}
 <div className="py-20">
