@@ -1,4 +1,3 @@
-import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Events from './pages/Events'
@@ -9,9 +8,11 @@ import Gallery from './pages/Gallery'
 import TechFusion25 from './pages/TechFusion25';
 import TechFusionEvents from './pages/TechFusionEvents';
 import Footer from './components/Footer';
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 export default function App() {
-  return (
+  const location = useLocation(); 
+   return (
     <>
       {/* Enhanced Techy Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -44,8 +45,13 @@ export default function App() {
       </div>
       <div className="relative z-10 min-h-screen bg-transparent">
         <Navbar />
-        <main className="pt-24 px-2 sm:px-6 md:px-10 transition-all duration-300 max-w-7xl mx-auto">
-          <Routes>
+<main
+  className={`pt-24 transition-all duration-300 ${
+    location.pathname.startsWith("/techfusion25")
+      ? "w-full"
+      : "px-2 sm:px-6 md:px-10 max-w-7xl mx-auto"
+  }`}
+>          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
             <Route path="/projects" element={<Projects />} />
@@ -53,7 +59,8 @@ export default function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/techfusion25" element={<TechFusion25 />} />
-            <Route path="/techfusion25/events" element={<TechFusionEvents />} />
+            <Route path="/techfusion25/events" element={<TechFusionEvents />}
+             />
           </Routes>
         </main>
         <Footer />
