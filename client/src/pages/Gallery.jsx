@@ -1,42 +1,49 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiChevronLeft, FiChevronRight, FiCircle } from 'react-icons/fi';
-
-const allImages = [
-  // Your actual images
-  { src: '/images/gallery/1.jpeg', alt: 'Tech event with students collaborating on a project.' },
-  { src: '/images/gallery/2.jpeg', alt: 'Group photo of the tech club members at an award ceremony.' },
-  // Placeholder images - replace with your actual images
-  { src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Students participating in a coding workshop.' },
-  { src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Close-up of a robotics project being built.' },
-  { src: 'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Speaker presenting at a tech conference.' },
-  { src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Team members celebrating a successful hackathon.' },
-  { src: 'https://images.unsplash.com/photo-1605647540924-852290f6b0d5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'A panel discussion at a tech club event.' },
-];
-
-const carouselImages = allImages.slice(0, 4);
-const gridImages = allImages.slice(4);
-const INITIAL_LOAD = 4;
+import { getValidGalleryImages } from '../utils/galleryImages';
 
 export default function Gallery() {
+  const [allImages, setAllImages] = useState([]);
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  
+  const INITIAL_LOAD = 6;
 
   useEffect(() => {
-    setImages(gridImages.slice(0, INITIAL_LOAD));
+    const loadImages = async () => {
+      setLoading(true);
+      try {
+        const validImages = await getValidGalleryImages();
+        setAllImages(validImages);
+        setImages(validImages.slice(0, INITIAL_LOAD));
+      } catch (error) {
+        console.error('Error loading gallery images:', error);
+        // Fallback to empty array if loading fails
+        setAllImages([]);
+        setImages([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadImages();
   }, []);
   
   useEffect(() => {
-    const timer = setTimeout(() => {
-        setCarouselIndex((prevIndex) => (prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1));
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [carouselIndex]);
+    if (allImages.length > 0) {
+      const timer = setTimeout(() => {
+        setCarouselIndex((prevIndex) => (prevIndex === Math.min(allImages.length - 1, 3) ? 0 : prevIndex + 1));
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [carouselIndex, allImages.length]);
 
   const loadMoreImages = () => {
     const currentLength = images.length;
-    const newImages = gridImages.slice(currentLength, currentLength + INITIAL_LOAD);
+    const newImages = allImages.slice(currentLength, currentLength + INITIAL_LOAD);
     setImages([...images, ...newImages]);
   };
 
@@ -50,8 +57,9 @@ export default function Gallery() {
   const goToPrev = () => setSelectedImage((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
 
   const handleCarouselNav = (newIndex) => {
-    if (newIndex < 0) newIndex = carouselImages.length - 1;
-    else if (newIndex >= carouselImages.length) newIndex = 0;
+    const maxIndex = Math.min(allImages.length - 1, 3);
+    if (newIndex < 0) newIndex = maxIndex;
+    else if (newIndex > maxIndex) newIndex = 0;
     setCarouselIndex(newIndex);
   };
 
@@ -66,29 +74,39 @@ export default function Gallery() {
         </motion.p>
         
         {/* Carousel */}
-        <div className="relative h-64 sm:h-80 md:h-96 w-full mb-16 rounded-2xl overflow-hidden shadow-2xl shadow-violet-dark/20">
+        {loading ? (
+          <div className="flex justify-center items-center h-64 sm:h-80 md:h-96 w-full mb-16 rounded-2xl bg-gray-800/50">
+            <div className="text-violet-300 text-xl">Loading gallery...</div>
+          </div>
+        ) : allImages.length > 0 ? (
+          <div className="relative h-64 sm:h-80 md:h-96 w-full mb-16 rounded-2xl overflow-hidden shadow-2xl shadow-violet-dark/20">
             <AnimatePresence initial={false}>
-                <motion.img
-                    key={carouselIndex}
-                    src={carouselImages[carouselIndex].src}
-                    alt={carouselImages[carouselIndex].alt}
-                    className="absolute w-full h-full object-cover cursor-pointer"
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -100 }}
-                    transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-                    onClick={() => openLightbox(carouselIndex, carouselImages)}
-                />
+              <motion.img
+                key={carouselIndex}
+                src={allImages[carouselIndex]?.src}
+                alt={allImages[carouselIndex]?.alt}
+                className="absolute w-full h-full object-cover cursor-pointer"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                onClick={() => openLightbox(carouselIndex, allImages.slice(0, 4))}
+              />
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <button onClick={() => handleCarouselNav(carouselIndex - 1)} className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl hover:text-violet-300 transition-colors z-10 p-2 bg-black/30 rounded-full"><FiChevronLeft /></button>
             <button onClick={() => handleCarouselNav(carouselIndex + 1)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl hover:text-violet-300 transition-colors z-10 p-2 bg-black/30 rounded-full"><FiChevronRight /></button>
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {carouselImages.map((_, i) => (
-                    <button key={i} onClick={() => setCarouselIndex(i)} className={`w-3 h-3 rounded-full transition-colors ${i === carouselIndex ? 'bg-violet-300' : 'bg-white/50 hover:bg-white'}`}></button>
-                ))}
+              {allImages.slice(0, 4).map((_, i) => (
+                <button key={i} onClick={() => setCarouselIndex(i)} className={`w-3 h-3 rounded-full transition-colors ${i === carouselIndex ? 'bg-violet-300' : 'bg-white/50 hover:bg-white'}`}></button>
+              ))}
             </div>
-        </div>
+          </div>
+        ) : (
+          <div className="flex justify-center items-center h-64 sm:h-80 md:h-96 w-full mb-16 rounded-2xl bg-gray-800/50">
+            <div className="text-violet-300 text-xl">No images found in gallery</div>
+          </div>
+        )}
 
         <motion.h3 className="text-3xl sm:text-4xl font-bold text-center text-violet-300 mt-20 mb-4 drop-shadow-lg" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
           Explore Our Moments
@@ -114,7 +132,7 @@ export default function Gallery() {
           ))}
         </div>
 
-        {images.length < gridImages.length && (
+        {images.length < allImages.length && !loading && (
           <div className="text-center mt-12">
             <motion.button onClick={loadMoreImages} className="px-8 py-3 rounded-full bg-gradient-to-r from-violet-dark to-violet-deep text-white font-bold text-lg shadow-lg hover:scale-105 hover:shadow-violet-dark/50 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-violet-dark/40" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               Load More
