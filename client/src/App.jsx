@@ -44,10 +44,10 @@ export default function App() {
           .animate-spin-reverse { animation: spin-reverse 24s linear infinite; }
         `}</style>
       </div>
-      <div className="relative z-10 min-h-screen bg-transparent">
+  <div className="relative z-10 min-h-screen bg-transparent flex flex-col">
         <Navbar />
 <main
-  className={`pt-24 transition-all duration-300 ${
+  className={`flex-1 pt-24 transition-all duration-300 ${
     location.pathname.startsWith("/techfusion25")
       ? "w-full"
       : "px-2 sm:px-6 md:px-10 max-w-7xl mx-auto"

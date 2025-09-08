@@ -12,7 +12,7 @@
     "lead": "Nitin",
     "co_leads": ["Sharma", "Aditlya"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 2,
@@ -27,7 +27,7 @@
     "lead": "Asma",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 3,
@@ -42,7 +42,7 @@
     "lead": "Riza",
     "co_leads": ["Muizz", "Asma"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 4,
@@ -57,7 +57,7 @@
     "lead": "Lokesh",
     "co_leads": ["Ajay"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 5,
@@ -72,7 +72,7 @@
     "lead": "Ajay",
     "co_leads": ["Lokesh"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 6,
@@ -87,7 +87,7 @@
     "lead": "Asma",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 7,
@@ -102,7 +102,7 @@
     "lead": "Divyanshu",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 8,
@@ -117,7 +117,7 @@
     "lead": "Aman Kumar",
     "co_leads": ["Ashutosh"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 9,
@@ -132,7 +132,7 @@
     "lead": "Tejal",
     "co_leads": ["Mehak"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 10,
@@ -147,7 +147,7 @@
     "lead": "Ashvick",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 11,
@@ -162,7 +162,7 @@
     "lead": "Tushar Kumar",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 12,
@@ -177,7 +177,7 @@
     "lead": "Shivma Kumar",
     "co_leads": ["kamal"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 13,
@@ -192,7 +192,7 @@
     "lead": "Divyanshu",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 14,
@@ -207,7 +207,7 @@
     "lead": "Tushar Kumar",
     "co_leads": ["Ashvick"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 15,
@@ -222,7 +222,7 @@
     "lead": "Aman Kumar",
     "co_leads": [],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 16,
@@ -237,6 +237,6 @@
     "lead": "Ashutosh",
     "co_leads": ["Harshita"],
     "google_link": "",
-    "image": "../images/event.png"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   }
 ]

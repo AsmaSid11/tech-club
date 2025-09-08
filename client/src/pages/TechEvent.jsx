@@ -16,81 +16,92 @@ const icons = {
 
 
 const TechEvent = () => {
-  
-    const { id } = useParams();
-    const event=data[parseInt(id)-1]
-    console.log(id)
-  
-    return (
-        <div className="flex flex-col min-h-screen bg-gray-950 text-white font-sans antialiased">
-      <main className="container mx-auto px-4 sm:px-8 py-12 lg:py-20">
+
+  const { id } = useParams();
+  const event = data[parseInt(id) - 1] || {};
+
+  // Normalize image path coming from public/json/events.json
+  // Use shared techfusion poster as the default/fallback image for events
+  const imgSrc = event.image ? event.image.replace(/^\.\.[\/\\]/, '/') : '/images/techfusion25/Techfusionposter-main.jpg';
+
+  return (
+  <div className="flex flex-col min-h-screen bg-gray-950 text-white font-sans antialiased overflow-hidden">
+      <main className="flex-1 max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12">
         <div className="flex flex-col lg:flex-row lg:gap-12 items-start">
           <div className="lg:w-2/3 w-full mb-8 lg:mb-0">
-            {/* Event Header */}
-            <img
-              className="w-full h-auto rounded-3xl shadow-2xl mb-8 border-4 border-fuchsia-900"
-              src="tech-club\client\public\images\event.png"
-              alt={event.name}
-            />
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 text-fuchsia-400 leading-tight tracking-tight">
-              {event.name}
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-400 mb-8">
-              {event.description}
-            </p>
+            {/* Event Header - responsive for portrait posters */}
+            <div className="lg:flex lg:items-start lg:gap-8">
+              <div className="flex-shrink-0 w-full lg:w-64 xl:w-80">
+                <img
+                  className="w-full h-auto max-h-[70vh] object-contain rounded-3xl shadow-2xl mb-4 border-4 border-fuchsia-900 bg-gray-950"
+                  src={imgSrc}
+                  alt={event.name || 'Event image'}
+                />
+              </div>
 
-            <a
-                href={event.google_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-4 mb-8 rounded-lg text-lg font-bold text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition-colors duration-200 shadow-md shadow-fuchsia-500/50"
-              >
-                Register
-              </a>
+              <div className="mt-4 lg:mt-0 flex-1">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-3 text-fuchsia-400 leading-tight tracking-tight">
+                  {event.name}
+                </h1>
 
-            {/* Event Image */}
-            
+                <p className="text-base sm:text-lg text-gray-400 mb-6">
+                  {event.description}
+                </p>
+
+                <a
+                  href={event.google_link || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block sm:inline-block w-full sm:w-auto px-5 sm:px-6 py-2.5 mb-6 rounded-lg text-base font-bold text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition-colors duration-200 shadow-md shadow-fuchsia-500/40 text-center"
+                >
+                  Register
+                </a>
+
+                {/* Additional content placeholder (speakers, schedule, description sections) */}
+                <section className="prose prose-invert max-w-none">
+                  {/* ...existing content could be added here... */}
+                </section>
+              </div>
+            </div>
           </div>
 
-          <div className="lg:w-1/3 w-full sticky top-8">
+          <div className="lg:w-1/3 w-full lg:sticky lg:top-8">
             {/* Key Details Card */}
-            <div className="bg-gray-900 rounded-3xl shadow-lg p-6 sm:p-8 border border-fuchsia-900/50 backdrop-blur-sm">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-fuchsia-300">
+            <div className="bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 border border-fuchsia-900/40 backdrop-blur-sm">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 text-fuchsia-300">
                 Key Details
               </h2>
-              <ul className="space-y-4">
-                <li className="flex items-center space-x-4">
-                  <icons.Calendar className="w-6 h-6 text-fuchsia-400" />
-                  <span className="text-lg text-gray-300">{event.day}, {event.date}</span>
+              <ul className="space-y-3">
+                <li className="flex items-center space-x-3">
+                  {icons.Calendar({ className: 'w-5 h-5 text-fuchsia-400' })}
+                  <span className="text-sm sm:text-base text-gray-300">{event.day}, {event.date}</span>
                 </li>
-                <li className="flex items-center space-x-4">
-                  <icons.Clock className="w-6 h-6 text-fuchsia-400" />
-                  <span className="text-lg text-gray-300">{event.start_time} - {event.end_time}</span>
+                <li className="flex items-center space-x-3">
+                  {icons.Clock({ className: 'w-5 h-5 text-fuchsia-400' })}
+                  <span className="text-sm sm:text-base text-gray-300">{event.start_time} - {event.end_time}</span>
                 </li>
-                <li className="flex items-center space-x-4">
-                  <icons.MapPin className="w-6 h-6 text-fuchsia-400" />
-                  <span className="text-lg text-gray-300">{event.venue}</span>
+                <li className="flex items-center space-x-3">
+                  {icons.MapPin({ className: 'w-5 h-5 text-fuchsia-400' })}
+                  <span className="text-sm sm:text-base text-gray-300">{event.venue}</span>
                 </li>
-                <li className="flex items-center space-x-4">
-                  <icons.Users className="w-6 h-6 text-fuchsia-400" />
-                  <span className="text-lg text-gray-300">{event.event_type}</span>
+                <li className="flex items-center space-x-3">
+                  {icons.Users({ className: 'w-5 h-5 text-fuchsia-400' })}
+                  <span className="text-sm sm:text-base text-gray-300">{event.event_type}</span>
                 </li>
-
-
               </ul>
             </div>
 
             {/* Event Leads */}
-            <div className="bg-gray-900 rounded-3xl shadow-lg p-6 sm:p-8 mt-8 border border-fuchsia-900/50 backdrop-blur-sm">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-fuchsia-300">
+            <div className="bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 mt-6 border border-fuchsia-900/40 backdrop-blur-sm">
+              <h2 className="text-xl sm:text-2xl font-bold mb-3 text-fuchsia-300">
                 Leads
               </h2>
               <div className="space-y-2">
-                <p className="text-lg text-gray-300">
+                <p className="text-sm sm:text-base text-gray-300">
                   <span className="font-semibold text-fuchsia-400">Event Lead:</span> {event.lead}
                 </p>
                 {event.co_leads && event.co_leads.length > 0 && (
-                  <p className="text-lg text-gray-300">
+                  <p className="text-sm sm:text-base text-gray-300">
                     <span className="font-semibold text-fuchsia-400">Co-Leads:</span> {event.co_leads.join(', ')}
                   </p>
                 )}
