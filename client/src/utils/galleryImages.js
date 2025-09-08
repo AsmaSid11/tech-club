@@ -1,0 +1,104 @@
+// Utility to automatically load all gallery images
+export const loadGalleryImages = () => {
+  const images = [];
+  
+  // Define the image extensions you want to support
+  const supportedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+  
+  // Since we can't dynamically read directory contents in the browser,
+  // we'll generate a list based on common naming patterns
+  // You can extend this list as you add more images
+  
+  const imageFiles = [
+    '1.png', '2.png', '3.png', '4.png', '5.png', 
+    '6.png', '7.png', '8.png', '9.png', '10.png',
+    '11.png', '12.png', '13.png', '14.png', '15.png', '16.png',
+    // Add more as needed, or we can create a dynamic approach
+  ];
+  
+  imageFiles.forEach((filename, index) => {
+    images.push({
+      src: `/images/gallery/${filename}`,
+      alt: `Tech Club Gallery Image ${index + 1}`,
+      id: index + 1
+    });
+  });
+  
+  return images;
+};
+
+// Alternative approach: Generate based on a range
+export const generateGalleryImages = (startNum = 1, endNum = 16, extension = 'png') => {
+  const images = [];
+  
+  for (let i = startNum; i <= endNum; i++) {
+    images.push({
+      src: `/images/gallery/${i}.${extension}`,
+      alt: `Tech Club Gallery Image ${i}`,
+      id: i
+    });
+  }
+  
+  return images;
+};
+
+// Function to validate if an image exists
+export const validateImage = (src) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src;
+  });
+};
+
+// Function to automatically detect and load all available gallery images
+export const getValidGalleryImages = async () => {
+  const images = [];
+  const maxImages = 50; // Maximum number to check (adjust as needed)
+  const extensions = ['png', 'jpg', 'jpeg', 'webp'];
+  
+  // Check for numbered images (1.png, 2.png, etc.)
+  for (let i = 1; i <= maxImages; i++) {
+    for (const ext of extensions) {
+      const imagePath = `/images/gallery/${i}.${ext}`;
+      const isValid = await validateImage(imagePath);
+      if (isValid) {
+        images.push({
+          src: imagePath,
+          alt: `Tech Club Gallery Image ${i}`,
+          id: i
+        });
+        break; // Found a valid extension for this number, move to next number
+      }
+    }
+  }
+  
+  // Also check for common named images
+  const commonNames = [
+    'event', 'workshop', 'hackathon', 'meeting', 'presentation',
+    'team', 'project', 'demo', 'conference', 'celebration'
+  ];
+  
+  for (const name of commonNames) {
+    for (const ext of extensions) {
+      const imagePath = `/images/gallery/${name}.${ext}`;
+      const isValid = await validateImage(imagePath);
+      if (isValid) {
+        images.push({
+          src: imagePath,
+          alt: `Tech Club ${name.charAt(0).toUpperCase() + name.slice(1)}`,
+          id: `${name}-${ext}`
+        });
+        break;
+      }
+    }
+  }
+  
+  // Sort images to ensure numbered ones come first
+  return images.sort((a, b) => {
+    const aNum = typeof a.id === 'number' ? a.id : 999;
+    const bNum = typeof b.id === 'number' ? b.id : 999;
+    return aNum - bNum;
+  });
+};

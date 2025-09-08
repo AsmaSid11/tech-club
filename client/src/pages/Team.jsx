@@ -3,49 +3,18 @@ import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  // add an `image` field pointing to the public path (e.g. '/team/ashvick.jpg') if you put files in client/public/team
-  {
-    initials: "FM",
-    name: "Fahad Makdoomi",
-    role: "2021 | Core Member",
-    image: "",
-  },
-  //{ initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member' },
-  {
-    initials: "TK",
-    name: "Tejal Kumari",
-    role: "2022 | Core Member",
-    image: "",
-  },
-  {
-    initials: "A",
-    name: "Ashvick",
-    role: "2022 | Core Member",
-    image: "/images/team/ashvick.jpg",
-  },
-  //{ initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member' },
-  {
-    initials: "AS",
-    name: "Asma Siddiqui",
-    role: "2023 | Core Member",
-    image: "/images/team/asma.png",
-  },
-  //{ initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member' },
-  {
-    initials: "SM",
-    name: "Saeed Abdul Muizz",
-    role: "2024 | Core Member",
-    image: "/images/team/Muizz.png",
-  },
-  {
-    initials: "BQ",
-    name: "Basar Qari",
-    role: "MTech | Core Member",
-    image: "",
-  },
-  //{ initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member' },
-  //{ initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head' },
-  //{ initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer' },
+  { initials: 'FM', name: 'Fahad Makdoomi', role: '4th Year BTech | Core Member', image: '/images/team/Fahad.jpg' },
+  { initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member', image: '/images/team/aliza.jpg' },
+  { initials: 'TK', name: 'Tejal Kumari', role: '3rd Year BTech | Core Member', image: '/images/team/tejal.jpg' },
+  { initials: 'A', name: 'Ashvick', role: '3rd Year BTech | Core Member', image: '/images/team/ashvick.jpg' },
+  { initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member', image: '/images/team/harkirat.jpg' },
+  { initials: 'AS', name: 'Asma Siddiqui', role: '2nd Year BTech | Core Member', image: '/images/team/Asma.jpg' },
+  { initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member', image: '/images/team/kritigya.jpg' },
+  { initials: 'SM', name: 'Saeed Abdul Muizz', role: '1st Year BTech | Core Member', image: '/images/team/Muizz.png' },
+  { initials: 'BQ', name: 'Basar Qari', role: '1st Year MTech | Core Member', image: '/images/team/basar.jpg' },
+  { initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member', image: '/images/team/rishabh.jpg' },
+  { initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head', image: '/images/team/Isa.jpg' },
+  { initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer', image: '/images/team/Ankita.jpg' },
 ];
 
 const coreTeam = teamMembers.filter((member) =>
@@ -56,10 +25,10 @@ const supportTeam = teamMembers.filter(
 );
 
 const facultyCoordinator = {
-  initials: "IA",
-  name: "Dr. Iqra Altaf Gillani",
-  role: "Faculty Coordinator",
-  image: "/images/team/Iqra.png",
+  initials: 'IA',
+  name: 'Dr. Iqra Altaf Gillani',
+  role: 'Faculty Coordinator',
+  image: '/images/team/Iqra.png',
 };
 
 function Avatar({ src, initials, alt, textSize = "text-2xl" }) {
@@ -140,16 +109,28 @@ export default function Team() {
           transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
         >
           <motion.div
-            className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 overflow-hidden shadow-xl mb-5"
+
+            className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-3xl font-bold text-white shadow-xl mb-5 overflow-hidden"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ type: "spring", stiffness: 200 }}
           >
-            <Avatar
-              src={facultyCoordinator.image}
-              initials={facultyCoordinator.initials}
-              alt={facultyCoordinator.name}
-              textSize="text-3xl"
-            />
+            {facultyCoordinator.image ? (
+              <img 
+                src={facultyCoordinator.image} 
+                alt={facultyCoordinator.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+            ) : null}
+            <div 
+              className={`w-full h-full flex items-center justify-center text-3xl font-bold ${facultyCoordinator.image ? 'hidden' : 'flex'}`}
+              style={{ display: facultyCoordinator.image ? 'none' : 'flex' }}
+            >
+              {facultyCoordinator.initials}
+            </div>
           </motion.div>
           <h3 className="text-xl sm:text-2xl font-bold text-violet-100 mb-1">
             {facultyCoordinator.name}
@@ -205,15 +186,28 @@ export default function Team() {
               viewport={{ once: true, amount: 0.2 }}
             >
               <motion.div
-                className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 overflow-hidden shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+
+                className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 overflow-hidden"
                 whileHover={{ scale: 1.13, rotate: 8 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <Avatar
-                  src={member.image}
-                  initials={member.initials}
-                  alt={member.name}
-                />
+                {member.image ? (
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                <div 
+                  className={`w-full h-full flex items-center justify-center text-2xl font-bold ${member.image ? 'hidden' : 'flex'}`}
+                  style={{ display: member.image ? 'none' : 'flex' }}
+                >
+                  {member.initials}
+                </div>
               </motion.div>
               <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
                 {member.name}
@@ -271,15 +265,28 @@ export default function Team() {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <motion.div
-                  className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 overflow-hidden shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                  className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 overflow-hidden"
+
                   whileHover={{ scale: 1.13, rotate: 8 }}
                   transition={{ type: "spring", stiffness: 200 }}
                 >
-                  <Avatar
-                    src={member.image}
-                    initials={member.initials}
-                    alt={member.name}
-                  />
+                  {member.image ? (
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <div 
+                    className={`w-full h-full flex items-center justify-center text-2xl font-bold ${member.image ? 'hidden' : 'flex'}`}
+                    style={{ display: member.image ? 'none' : 'flex' }}
+                  >
+                    {member.initials}
+                  </div>
                 </motion.div>
                 <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
                   {member.name}
