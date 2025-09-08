@@ -5,44 +5,26 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTechFusionHighlights } from '../utils/techfusionImages';
 
+import data from "../../public/json/events.json";
+
 const EVENT_DATE = new Date("2025-09-12T09:00:00"); // Example date
 
+const eventsJson = data;
+
+const events = Array.from({ length: 2 }, (_, i) => ({
+  id: eventsJson[i].id,
+  name: eventsJson[i].name,
+  start_time: eventsJson[i].start_time ,
+  end_time: eventsJson[i].end_time,
+  venue:eventsJson[i].venue,
+  image:eventsJson[i].image
+}));
 const TechFusion25 = () => {
   
   const navigate = useNavigate();
   const [highlightImages, setHighlightImages] = useState([]);
   const [highlightsLoading, setHighlightsLoading] = useState(true);
   const [index, setIndex] = useState(0);
-const events = [
-  {
-    name: "Hackathon",
-    startTime: "10:00 AM",
-    endTime: "04:00 PM",
-    venue: "TechFusion Hall, Main Campus",
-    img: "/images/events/hackathon.jpg",
-  },
-  {
-    name: "AI Workshop",
-    startTime: "09:00 AM",
-    endTime: "01:00 PM",
-    venue: "Innovation Center, Tech Campus",
-    img: "/images/events/ai-workshop.jpg",
-  },
-  {
-    name: "Panel Discussion: Future of AI",
-    startTime: "11:00 AM",
-    endTime: "01:00 PM",
-    venue: "Conference Room 1, TechFusion Center",
-    img: "/images/events/panel-discussion.jpg",
-  },
-  {
-    name: "Networking Dinner",
-    startTime: "07:00 PM",
-    endTime: "10:00 PM",
-    venue: "Sky Lounge, City Hotel",
-    img: "/images/events/networking-dinner.jpg",
-  },
-];
 
  const next = () => {
    if (index < events.length - 3) setIndex(index + 1);
@@ -240,24 +222,32 @@ const cardVariants = {
            {events.map((ev) => (
              <motion.div
                key={ev.id}
-               className="w-80 sm:w-80 md:w-96 flex-shrink-0 relative event-card flex flex-col bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:-translate-y-2 hover:shadow-fuchsia-500/40 border border-fuchsia-900/30 min-h-[260px] overflow-hidden group"
-               variants={cardVariants}
-               initial="hidden"
-               whileInView="visible"
+               className="w-[20rem] sm:w-[36rem] md:w-[20rem] flex-shrink-0 relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[260px] overflow-hidden group mb-4 mr-30"
                viewport={{ once: true, amount: 0.8 }}
              >
-               <img className="pb-4 rounded-lg" src={ev.img} alt={ev.name} />
-             <h3 className="text-2xl text-center font-semibold text-fuchsia-100 mb-2 group-hover:text-fuchsia-300 transition-colors">
-                 {ev.name}
-               </h3>
-              <div className="flex gap-6 "> <p className=" text-gray-200 text-lg font-semibold mb-2">Start : {ev.startTime}   </p>
-               <p className="text-lg font-semibold text-gray-200 mb-2">End: {ev.endTime}</p></div>
-               <p className="text-lg font-semibold text-gray-200 mb-4 line-clamp-4">Venue :{ev.venue}</p>
+               <div className="flex-grow">
+                 <img className="w-full h-48 object-cover rounded-lg mb-4" src={ev.image} alt={ev.name} />
+                 <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-fuchsia-200 transition-colors">
+                   {ev.name}
+                 </h3>
+                 <div className="flex flex-col gap-2">
+                   <p className="text-gray-200 text-sm font-medium">
+                     <span className="font-semibold text-fuchsia-300">Time:</span> {ev.start_time} - {ev.end_time}
+                   </p>
+                   <p className="text-gray-200 text-sm font-medium">
+                     <span className="font-semibold text-fuchsia-300">Venue:</span> {ev.venue}
+                   </p>
+                 </div>
+               </div>
                <a
                  href="/techfusion25/events"
-                 className="inline-block mt-auto px-4 py-2 rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium !bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200 shadow-fuchsia-900/20 shadow-sm"
+                 className="inline-block w-full mt-6 px-4 py-2 text-center rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200"
+                 onClick={(e) => {
+                   e.preventDefault();
+                   navigate(`/techfusion25/events/${ev.id}`);
+                 }}
                >
-                 View More
+                 View Details
                </a>
              </motion.div>
            ))}
