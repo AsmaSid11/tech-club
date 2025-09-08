@@ -1,29 +1,90 @@
-import { FaLinkedinIn, FaGithub, FaTwitter } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const teamMembers = [
-  { initials: 'FM', name: 'Fahad Makdoomi', role: '4th Year BTech | Core Member' },
-  { initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member' },
-  { initials: 'TK', name: 'Tejal Kumari', role: '3rd Year BTech | Core Member' },
-  { initials: 'A', name: 'Ashvick', role: '3rd Year BTech | Core Member' },
-  { initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member' },
-  { initials: 'AS', name: 'Asma Siddiqui', role: '2nd Year BTech | Core Member' },
-  { initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member' },
-  { initials: 'SM', name: 'Saeed Abdul Muizz', role: '1st Year BTech | Core Member' },
-  { initials: 'BQ', name: 'Basar Qari', role: '1st Year MTech | Core Member' },
-  { initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member' },
-  { initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head' },
-  { initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer' },
+  // add an `image` field pointing to the public path (e.g. '/team/ashvick.jpg') if you put files in client/public/team
+  {
+    initials: "FM",
+    name: "Fahad Makdoomi",
+    role: "2021 | Core Member",
+    image: "",
+  },
+  //{ initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member' },
+  {
+    initials: "TK",
+    name: "Tejal Kumari",
+    role: "2022 | Core Member",
+    image: "",
+  },
+  {
+    initials: "A",
+    name: "Ashvick",
+    role: "2022 | Core Member",
+    image: "/images/team/ashvick.jpg",
+  },
+  //{ initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member' },
+  {
+    initials: "AS",
+    name: "Asma Siddiqui",
+    role: "2023 | Core Member",
+    image: "/images/team/asma.png",
+  },
+  //{ initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member' },
+  {
+    initials: "SM",
+    name: "Saeed Abdul Muizz",
+    role: "2024 | Core Member",
+    image: "/images/team/Muizz.png",
+  },
+  {
+    initials: "BQ",
+    name: "Basar Qari",
+    role: "MTech | Core Member",
+    image: "",
+  },
+  //{ initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member' },
+  //{ initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head' },
+  //{ initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer' },
 ];
 
-const coreTeam = teamMembers.filter(member => member.role.includes('Core Member'));
-const supportTeam = teamMembers.filter(member => !member.role.includes('Core Member'));
+const coreTeam = teamMembers.filter((member) =>
+  member.role.includes("Core Member")
+);
+const supportTeam = teamMembers.filter(
+  (member) => !member.role.includes("Core Member")
+);
 
 const facultyCoordinator = {
-  initials: 'IA',
-  name: 'Dr. Iqra Altaf Gillani',
-  role: 'Faculty Coordinator',
+  initials: "IA",
+  name: "Dr. Iqra Altaf Gillani",
+  role: "Faculty Coordinator",
+  image: "/images/team/Iqra.png",
 };
+
+function Avatar({ src, initials, alt, textSize = "text-2xl" }) {
+  const [imgError, setImgError] = useState(false);
+  const hasSrc = src && src.length > 0;
+
+  if (hasSrc && !imgError) {
+    return (
+      <img
+        src={src}
+        alt={alt || initials}
+        onError={() => setImgError(true)}
+        className="w-full h-full object-cover rounded-full"
+      />
+    );
+  }
+
+  return (
+    <div
+      className={`w-full h-full flex items-center justify-center font-bold text-white ${textSize}`}
+    >
+      {initials}
+    </div>
+  );
+}
 
 // Animation variants
 const cardVariants = {
@@ -31,13 +92,13 @@ const cardVariants = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, type: 'spring', stiffness: 60 },
+    transition: { delay: i * 0.08, type: "spring", stiffness: 60 },
   }),
 };
 
 const headingVariants = {
   hidden: { opacity: 0, y: -30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, type: 'spring' } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, type: "spring" } },
 };
 
 export default function Team() {
@@ -60,7 +121,7 @@ export default function Team() {
       >
         Academic Year 2024-2025
       </motion.p>
-      
+
       {/* Faculty Coordinator Section */}
       <div className="mb-16">
         <motion.h3
@@ -76,14 +137,19 @@ export default function Team() {
           className="max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-violet-dark/40"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
         >
           <motion.div
-            className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-3xl font-bold text-white shadow-xl mb-5"
+            className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 overflow-hidden shadow-xl mb-5"
             whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: 'spring', stiffness: 200 }}
+            transition={{ type: "spring", stiffness: 200 }}
           >
-            {facultyCoordinator.initials}
+            <Avatar
+              src={facultyCoordinator.image}
+              initials={facultyCoordinator.initials}
+              alt={facultyCoordinator.name}
+              textSize="text-3xl"
+            />
           </motion.div>
           <h3 className="text-xl sm:text-2xl font-bold text-violet-100 mb-1">
             {facultyCoordinator.name}
@@ -92,9 +158,27 @@ export default function Team() {
             {facultyCoordinator.role}
           </p>
           <div className="flex gap-5 text-violet-300 text-xl">
-            <a href="#" aria-label="LinkedIn" className="hover:text-violet-200 transition-colors"><FaLinkedinIn /></a>
-            <a href="#" aria-label="GitHub" className="hover:text-violet-200 transition-colors"><FaGithub /></a>
-            <a href="#" aria-label="Twitter" className="hover:text-violet-200 transition-colors"><FaTwitter /></a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="hover:text-violet-200 transition-colors"
+            >
+              <FaLinkedinIn />
+            </a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              className="hover:text-violet-200 transition-colors"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="#"
+              aria-label="Twitter"
+              className="hover:text-violet-200 transition-colors"
+            >
+              <FaTwitter />
+            </a>
           </div>
         </motion.div>
       </div>
@@ -109,7 +193,7 @@ export default function Team() {
         >
           Core Team
         </motion.h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
           {coreTeam.map((member, idx) => (
             <motion.div
               key={idx}
@@ -121,11 +205,15 @@ export default function Team() {
               viewport={{ once: true, amount: 0.2 }}
             >
               <motion.div
-                className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 overflow-hidden shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
                 whileHover={{ scale: 1.13, rotate: 8 }}
-                transition={{ type: 'spring', stiffness: 200 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
-                {member.initials}
+                <Avatar
+                  src={member.image}
+                  initials={member.initials}
+                  alt={member.name}
+                />
               </motion.div>
               <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
                 {member.name}
@@ -134,13 +222,25 @@ export default function Team() {
                 {member.role}
               </p>
               <div className="flex gap-4 text-violet-300 text-lg">
-                <a href="#" aria-label="LinkedIn" className="hover:text-violet-200 transition-colors">
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="hover:text-violet-200 transition-colors"
+                >
                   <FaLinkedinIn />
                 </a>
-                <a href="#" aria-label="GitHub" className="hover:text-violet-200 transition-colors">
+                <a
+                  href="#"
+                  aria-label="GitHub"
+                  className="hover:text-violet-200 transition-colors"
+                >
                   <FaGithub />
                 </a>
-                <a href="#" aria-label="Twitter" className="hover:text-violet-200 transition-colors">
+                <a
+                  href="#"
+                  aria-label="Twitter"
+                  className="hover:text-violet-200 transition-colors"
+                >
                   <FaTwitter />
                 </a>
               </div>
@@ -159,7 +259,7 @@ export default function Team() {
           >
             Creative Team
           </motion.h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
             {supportTeam.map((member, idx) => (
               <motion.div
                 key={idx}
@@ -171,11 +271,15 @@ export default function Team() {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <motion.div
-                  className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
+                  className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 overflow-hidden shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
                   whileHover={{ scale: 1.13, rotate: 8 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
+                  transition={{ type: "spring", stiffness: 200 }}
                 >
-                  {member.initials}
+                  <Avatar
+                    src={member.image}
+                    initials={member.initials}
+                    alt={member.name}
+                  />
                 </motion.div>
                 <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
                   {member.name}
@@ -184,13 +288,25 @@ export default function Team() {
                   {member.role}
                 </p>
                 <div className="flex gap-4 text-violet-300 text-lg">
-                  <a href="#" aria-label="LinkedIn" className="hover:text-violet-200 transition-colors">
+                  <a
+                    href="#"
+                    aria-label="LinkedIn"
+                    className="hover:text-violet-200 transition-colors"
+                  >
                     <FaLinkedinIn />
                   </a>
-                  <a href="#" aria-label="GitHub" className="hover:text-violet-200 transition-colors">
+                  <a
+                    href="#"
+                    aria-label="GitHub"
+                    className="hover:text-violet-200 transition-colors"
+                  >
                     <FaGithub />
                   </a>
-                  <a href="#" aria-label="Twitter" className="hover:text-violet-200 transition-colors">
+                  <a
+                    href="#"
+                    aria-label="Twitter"
+                    className="hover:text-violet-200 transition-colors"
+                  >
                     <FaTwitter />
                   </a>
                 </div>
