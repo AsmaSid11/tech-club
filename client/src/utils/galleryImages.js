@@ -56,9 +56,9 @@ export const validateImage = (src) => {
 export const getValidGalleryImages = async () => {
   const images = [];
   const maxImages = 50; // Maximum number to check (adjust as needed)
-  const extensions = ['png', 'jpg', 'jpeg', 'webp'];
+  const extensions = ['png', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG', 'JPEG', 'WEBP'];
   
-  // Check for numbered images (1.png, 2.png, etc.)
+  // Check for numbered images (1.png, 2.png, etc.) - including new ones like 17.png
   for (let i = 1; i <= maxImages; i++) {
     for (const ext of extensions) {
       const imagePath = `/images/gallery/${i}.${ext}`;
@@ -70,6 +70,43 @@ export const getValidGalleryImages = async () => {
           id: i
         });
         break; // Found a valid extension for this number, move to next number
+      }
+    }
+  }
+  
+  // Check for IMG_* pattern files (like IMG_0664.JPG)
+  const imgNumbers = [
+    '0664', '0674', '0684', '0686', '0699', '0703', 
+    '0709', '0714', '0724', '0725', '0729', '0730'
+  ];
+  
+  for (const num of imgNumbers) {
+    for (const ext of extensions) {
+      const imagePath = `/images/gallery/IMG_${num}.${ext}`;
+      const isValid = await validateImage(imagePath);
+      if (isValid) {
+        images.push({
+          src: imagePath,
+          alt: `Tech Club Event Photo IMG_${num}`,
+          id: `IMG_${num}`
+        });
+        break;
+      }
+    }
+  }
+  
+  // Check for additional IMG_* pattern with 4-digit numbers (dynamic approach)
+  for (let i = 4700; i <= 4900; i++) {
+    for (const ext of extensions) {
+      const imagePath = `/images/gallery/IMG_${i}.${ext}`;
+      const isValid = await validateImage(imagePath);
+      if (isValid) {
+        images.push({
+          src: imagePath,
+          alt: `Tech Club Event Photo IMG_${i}`,
+          id: `IMG_${i}`
+        });
+        break;
       }
     }
   }
@@ -95,10 +132,10 @@ export const getValidGalleryImages = async () => {
     }
   }
   
-  // Sort images to ensure numbered ones come first
+  // Sort images to ensure numbered ones come first, then IMG_ files
   return images.sort((a, b) => {
-    const aNum = typeof a.id === 'number' ? a.id : 999;
-    const bNum = typeof b.id === 'number' ? b.id : 999;
+    const aNum = typeof a.id === 'number' ? a.id : (a.id.toString().startsWith('IMG_') ? 1000 : 2000);
+    const bNum = typeof b.id === 'number' ? b.id : (b.id.toString().startsWith('IMG_') ? 1000 : 2000);
     return aNum - bNum;
   });
 };
