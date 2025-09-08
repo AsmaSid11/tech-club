@@ -88,6 +88,7 @@ export default function Navbar() {
             const activeClasses = "bg-violet-dark/40 text-violet-200 border-violet-400/50 shadow-lg shadow-violet-dark/20";
             const inactiveClasses = "text-white hover:bg-violet-dark/30 hover:text-violet-200 hover:border-violet-400/30 active:bg-violet-dark/50";
 
+
             if (link.label === 'About') {
               return (
                 <a
@@ -114,7 +115,9 @@ export default function Navbar() {
         </nav>
       </div>
       {/* Overlay for mobile menu */}
+
       {menuOpen && <div className="sm:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-20" onClick={() => setMenuOpen(false)}></div>}
+
       <style>{`
         @keyframes navbar-flicker {
           0%, 100% { 
