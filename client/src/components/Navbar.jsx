@@ -16,7 +16,7 @@ export default function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className="flex items-center justify-between px-4 sm:px-8 py-3 sm:py-4 fixed top-0 left-0 w-full z-20 bg-gradient-to-r from-gray-900/80 via-violet-deep/80 to-violet-dark/80 backdrop-blur-lg border-b border-violet-dark/50 shadow-[0_4px_32px_0_rgba(106,30,85,0.15)] animate-navbar-flicker">
+  <nav className="flex items-center justify-between px-4 sm:px-8 py-3 sm:py-4 fixed top-0 left-0 w-full z-20 bg-gradient-to-r from-gray-900 via-violet-deep to-violet-dark border-b border-violet-dark shadow-[0_4px_32px_0_rgba(106,30,85,0.15)] animate-navbar-flicker">
       <div className="flex items-center gap-3">
         <div className="relative">
           <img
@@ -71,19 +71,26 @@ export default function Navbar() {
         })}
       </div>
       {/* Mobile Nav */}
-      <div className={`sm:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-gradient-to-br from-gray-900 via-violet-deep to-violet-dark shadow-2xl z-30 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <button
-          className="absolute top-4 right-4 text-white text-3xl focus:outline-none"
-          aria-label="Close menu"
-          onClick={() => setMenuOpen(false)}
-        >
-          &times;
-        </button>
-        <nav className="flex flex-col items-center mt-20 gap-6">
+      <div className={`sm:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-gradient-to-br from-gray-900 via-violet-deep to-violet-dark border-l border-violet-dark shadow-2xl z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex items-center justify-between p-4 border-b border-violet-dark/20">
+          <div className="flex items-center gap-3">
+            <img src="/images/logo.png" alt="Tech Club" className="h-10 w-10 rounded-full border-2 border-violet-dark bg-white p-1" />
+            <span className="text-white font-semibold uppercase tracking-wide">Menu</span>
+          </div>
+          <button
+            className="text-white text-2xl focus:outline-none bg-violet-deep hover:bg-violet-deep/95 rounded-full w-10 h-10 flex items-center justify-center shadow-md"
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+          >
+            &times;
+          </button>
+        </div>
+
+        <nav className="flex flex-col items-stretch gap-4 p-6 overflow-y-auto" style={{ maxHeight: '100vh' }}>
           {navLinks.map(link => {
             const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
-            const baseClasses = "text-lg font-semibold uppercase tracking-wide font-tech px-4 py-3 transition-all duration-300 rounded-lg";
-            const activeClasses = "bg-white/10 text-violet-300";
+            const baseClasses = "text-lg font-semibold uppercase tracking-wide font-tech px-6 py-3 transition-all duration-200 rounded-md text-center w-full";
+            const activeClasses = "bg-white/10 text-violet-300 scale-105";
             const inactiveClasses = "text-white hover:bg-white/10 hover:text-violet-300";
 
             if (link.label === 'About') {
@@ -112,7 +119,7 @@ export default function Navbar() {
         </nav>
       </div>
       {/* Overlay for mobile menu */}
-      {menuOpen && <div className="sm:hidden fixed inset-0 bg-black bg-opacity-40 z-20" onClick={() => setMenuOpen(false)}></div>}
+  {menuOpen && <div className="sm:hidden fixed inset-0 bg-black bg-opacity-50 z-30" onClick={() => setMenuOpen(false)}></div>}
       <style>{`
         @keyframes navbar-flicker {
           0%, 100% { box-shadow: 0 4px 32px 0 rgba(106,30,85,0.15), 0 0 8px 2px #3B1C32; }
