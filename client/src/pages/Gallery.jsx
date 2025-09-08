@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiChevronLeft, FiChevronRight, FiCircle } from 'react-icons/fi';
-import { getValidGalleryImages } from '../utils/galleryImages';
+import { getAllGalleryImages } from '../utils/enhancedGalleryImages';
 
 export default function Gallery() {
   const [allImages, setAllImages] = useState([]);
@@ -16,7 +16,9 @@ export default function Gallery() {
     const loadImages = async () => {
       setLoading(true);
       try {
-        const validImages = await getValidGalleryImages();
+        console.log('Loading gallery images...');
+        const validImages = await getAllGalleryImages();
+        console.log('Found images:', validImages.length, validImages.map(img => img.filename));
         setAllImages(validImages);
         setImages(validImages.slice(0, INITIAL_LOAD));
       } catch (error) {

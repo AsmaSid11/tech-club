@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from 'framer-motion';
- import { ChevronLeft, ChevronRight } from "lucide-react";
-  import { useNavigate } from "react-router-dom";
-
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getTechFusionHighlights } from '../utils/techfusionImages';
 
 import data from "../../public/json/events.json";
 
@@ -22,19 +22,9 @@ const events = Array.from({ length: 2 }, (_, i) => ({
 const TechFusion25 = () => {
   
   const navigate = useNavigate();
-  const logos = [
-"/images/gallery/1.jpeg",
-"/images/gallery/1.jpeg",
-"/images/gallery/1.jpeg",
-"/images/gallery/1.jpeg",
-"/images/gallery/1.jpeg",
-"/images/gallery/1.jpeg",
-"/images/gallery/1.jpeg",
-
-  "/images/gallery/1.jpeg", // previous image 1
-  "/images/gallery/2.jpeg", // previous image 2
-];
-   const [index, setIndex] = useState(0);
+  const [highlightImages, setHighlightImages] = useState([]);
+  const [highlightsLoading, setHighlightsLoading] = useState(true);
+  const [index, setIndex] = useState(0);
 
  const next = () => {
    if (index < events.length - 3) setIndex(index + 1);
@@ -67,6 +57,28 @@ const cardVariants = {
       }
     }, 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Load highlight images
+  useEffect(() => {
+    const loadHighlights = async () => {
+      setHighlightsLoading(true);
+      try {
+        const highlights = await getTechFusionHighlights();
+        setHighlightImages(highlights);
+      } catch (error) {
+        console.error('Error loading highlight images:', error);
+        // Fallback to some default images if loading fails
+        setHighlightImages([
+          { src: '/images/gallery/1.png', alt: 'TechFusion Highlight 1', id: 1 },
+          { src: '/images/gallery/2.png', alt: 'TechFusion Highlight 2', id: 2 },
+        ]);
+      } finally {
+        setHighlightsLoading(false);
+      }
+    };
+    
+    loadHighlights();
   }, []);
 
   return (
@@ -262,26 +274,44 @@ const cardVariants = {
               {/* highlights */}
 <div className="py-20">
   <div className="text-center py-10 text-5xl font-bold text-white/70">Highlights</div>
-  <div className="overflow-hidden w-full py-4 rounded-xl">
-     <motion.div
-  className="flex gap-12 [&input]:!rounded-xl"
-  animate={{ x: ["0%", "-50%"] }} // -50% for seamless loop
-  transition={{
-    x: {
-      repeat: Infinity,
-      duration: 25, // adjust speed
-      ease: "linear",
-    },
-  }}
->
-  {logos.concat(logos).map((src, i) => (
-    <div key={i} className="flex-shrink-0 ">
-      <img src={src} alt="" className="h-72 w-96 object-contain " />
+  
+  {highlightsLoading ? (
+    <div className="flex justify-center items-center py-16">
+      <div className="text-white/70 text-xl">Loading highlights...</div>
     </div>
-  ))}
-</motion.div>
+  ) : highlightImages.length > 0 ? (
+    <div className="overflow-hidden w-full py-4 rounded-xl">
+      <motion.div
+        className="flex gap-12 [&input]:!rounded-xl"
+        animate={{ x: ["0%", "-50%"] }} // -50% for seamless loop
+        transition={{
+          x: {
+            repeat: Infinity,
+            duration: 25, // adjust speed
+            ease: "linear",
+          },
+        }}
+      >
+        {highlightImages.concat(highlightImages).map((image, i) => (
+          <div key={i} className="flex-shrink-0">
+            <img 
+              src={image.src} 
+              alt={image.alt} 
+              className="h-72 w-96 object-cover rounded-lg shadow-lg" 
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
+          </div>
+        ))}
+      </motion.div>
     </div>
-  </div>
+  ) : (
+    <div className="flex justify-center items-center py-16">
+      <div className="text-white/70 text-xl">No highlight images found. Add images to /images/techfusion25/highlights/ folder.</div>
+    </div>
+  )}
+</div>
  
    </div>
 
