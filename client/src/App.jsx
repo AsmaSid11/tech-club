@@ -6,6 +6,7 @@ import PastMembers from './pages/PastMembers'
 import Team from './pages/Team'
 import Gallery from './pages/Gallery'
 import TechFusion25 from './pages/TechFusion25';
+import TechEvent from './pages/TechEvent'
 import TechFusionEvents from './pages/TechFusionEvents';
 import Footer from './components/Footer';
 import { Routes, Route, useLocation } from 'react-router-dom'
@@ -61,6 +62,7 @@ export default function App() {
             <Route path="/techfusion25" element={<TechFusion25 />} />
             <Route path="/techfusion25/events" element={<TechFusionEvents />}
              />
+             <Route path="/techfusion25/events/:id" element={<TechEvent/>}></Route>
           </Routes>
         </main>
         <Footer />
