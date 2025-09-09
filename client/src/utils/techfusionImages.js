@@ -14,7 +14,7 @@ export const getTechFusionHighlights = async () => {
   const maxImages = 20; // Maximum number to check
   const extensions = ['png', 'jpg', 'jpeg', 'webp'];
   
-  // Check for numbered highlight images (highlight1.png, highlight2.png, etc.)
+  // Check for numbered highlight images (highlight1.webp, highlight2.webp, etc.)
   for (let i = 1; i <= maxImages; i++) {
     for (const ext of extensions) {
       const imagePath = `/images/techfusion25/highlights/highlight${i}.${ext}`;
@@ -30,7 +30,7 @@ export const getTechFusionHighlights = async () => {
     }
   }
   
-  // Also check for numbered images without prefix (1.png, 2.png, etc.)
+  // Also check for numbered images without prefix (1.webp, 2.webp, etc.)
   for (let i = 1; i <= maxImages; i++) {
     for (const ext of extensions) {
       const imagePath = `/images/techfusion25/highlights/${i}.${ext}`;

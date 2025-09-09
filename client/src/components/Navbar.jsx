@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="flex items-center gap-3">
         <div className="relative">
           <img
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="Tech Club Logo"
             className="h-10 w-10 sm:h-12 sm:w-12 rounded-full border-2 border-violet-dark shadow-[0_0_16px_4px_rgba(106,30,85,0.5)] hover:scale-110 hover:shadow-[0_0_32px_8px_rgba(59,28,50,0.7)] transition-transform duration-300 bg-white p-1"
             style={{ boxShadow: '0 0 24px 4px #6A1E55, 0 0 8px 2px #3B1C32' }}
@@ -74,7 +74,7 @@ export default function Navbar() {
       <div className={`sm:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-gradient-to-br from-gray-900 via-violet-deep to-violet-dark border-l border-violet-dark shadow-2xl z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between p-4 border-b border-violet-dark/20">
           <div className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="Tech Club" className="h-10 w-10 rounded-full border-2 border-violet-dark bg-white p-1" />
+            <img src="/images/logo.webp" alt="Tech Club" className="h-10 w-10 rounded-full border-2 border-violet-dark bg-white p-1" />
             <span className="text-white font-semibold uppercase tracking-wide">Menu</span>
           </div>
           <button

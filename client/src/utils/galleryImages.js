@@ -10,9 +10,9 @@ export const loadGalleryImages = () => {
   // You can extend this list as you add more images
   
   const imageFiles = [
-    '1.png', '2.png', '3.png', '4.png', '5.png', 
-    '6.png', '7.png', '8.png', '9.png', '10.png',
-    '11.png', '12.png', '13.png', '14.png', '15.png', '16.png',
+    '1.webp', '2.webp', '3.webp', '4.webp', '5.webp', 
+    '6.webp', '7.webp', '8.webp', '9.webp', '10.webp',
+    '11.webp', '12.webp', '13.webp', '14.webp', '15.webp', '16.webp',
     // Add more as needed, or we can create a dynamic approach
   ];
   
@@ -58,7 +58,7 @@ export const getValidGalleryImages = async () => {
   const maxImages = 50; // Maximum number to check (adjust as needed)
   const extensions = ['png', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG', 'JPEG', 'WEBP'];
   
-  // Check for numbered images (1.png, 2.png, etc.) - including new ones like 17.png
+  // Check for numbered images (1.webp, 2.webp, etc.) - including new ones like 17.webp
   for (let i = 1; i <= maxImages; i++) {
     for (const ext of extensions) {
       const imagePath = `/images/gallery/${i}.${ext}`;
@@ -74,7 +74,7 @@ export const getValidGalleryImages = async () => {
     }
   }
   
-  // Check for IMG_* pattern files (like IMG_0664.JPG)
+  // Check for IMG_* pattern files (like IMG_0664.webp)
   const imgNumbers = [
     '0664', '0674', '0684', '0686', '0699', '0703', 
     '0709', '0714', '0724', '0725', '0729', '0730'

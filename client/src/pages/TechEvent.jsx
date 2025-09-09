@@ -22,7 +22,7 @@ const TechEvent = () => {
 
   // Normalize image path coming from public/json/events.json
   // Use shared techfusion poster as the default/fallback image for events
-  const imgSrc = event.image ? event.image.replace(/^\.\.[\/\\]/, '/') : '/images/techfusion25/Techfusionposter-main.jpg';
+  const imgSrc = event.image ? event.image.replace(/^\.\.[\/\\]/, '/') : '/images/techfusion25/Techfusionposter-main.webp';
 
   return (
   <div className="flex flex-col min-h-screen bg-gray-950 text-white font-sans antialiased overflow-hidden">

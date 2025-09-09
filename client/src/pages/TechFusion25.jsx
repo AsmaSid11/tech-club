@@ -70,8 +70,8 @@ const cardVariants = {
         console.error('Error loading highlight images:', error);
         // Fallback to some default images if loading fails
         setHighlightImages([
-          { src: '/images/gallery/1.png', alt: 'TechFusion Highlight 1', id: 1 },
-          { src: '/images/gallery/2.png', alt: 'TechFusion Highlight 2', id: 2 },
+          { src: '/images/gallery/1.webp', alt: 'TechFusion Highlight 1', id: 1 },
+          { src: '/images/gallery/2.webp', alt: 'TechFusion Highlight 2', id: 2 },
         ]);
       } finally {
         setHighlightsLoading(false);
@@ -179,14 +179,14 @@ const cardVariants = {
 
       {/* Big Image */}
       <img
-        src="./images/gallery/1.jpeg"
+        src="./images/gallery/1.webp"
         alt="Main"
         className="w-full h-full object-cover rounded-lg shadow-lg"
       />
 
       {/* Small Image overlapping */}
       <img
-        src="./images/gallery/2.jpeg"
+        src="./images/gallery/2.webp"
         alt="Overlay"
   className="absolute md:bottom-[-40px] md:left-[-40px] bottom-[-20px] left-4 w-[120px] md:w-[150px] h-[120px] md:h-[150px] object-cover rounded-lg shadow-xl border-4 border-white"
       />
