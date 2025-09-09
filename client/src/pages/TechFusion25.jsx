@@ -28,9 +28,15 @@ const TechFusion25 = () => {
   const scrollByAmount = (direction = "next") => {
     const el = listRef.current;
     if (!el) return;
-    // Scroll by 80% of the container width for good UX across sizes
-    const amount = Math.floor(el.clientWidth * 0.8) * (direction === "next" ? 1 : -1);
-    el.scrollBy({ left: amount, behavior: "smooth" });
+    // Try to scroll by one card width if possible, fallback to 80% container width
+    const firstCard = el.querySelector('[data-card]');
+    let amount = Math.floor(el.clientWidth * 0.8);
+    if (firstCard) {
+      // include gap / margin by using bounding rect
+      const cardRect = firstCard.getBoundingClientRect();
+      amount = Math.floor(cardRect.width + 24); // 24px compensates for gap
+    }
+    el.scrollBy({ left: amount * (direction === "next" ? 1 : -1), behavior: "smooth" });
   };
 
   const next = () => scrollByAmount("next");
@@ -233,14 +239,14 @@ const TechFusion25 = () => {
             <button
               onClick={prev}
               aria-label="previous"
-              className="absolute md:-left-12 left-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20 md:hidden"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={next}
               aria-label="next"
-              className="absolute md:-right-12 right-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20 md:hidden"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -248,18 +254,19 @@ const TechFusion25 = () => {
             {/* Scrollable container with snap */}
             <div
               ref={listRef}
-              className="overflow-x-auto no-scrollbar scroll-pl-6 scroll-smooth -mx-4 px-4"
+              className="overflow-x-auto no-scrollbar scroll-pl-6 scroll-smooth px-4"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               <div className="flex gap-6 items-stretch w-max snap-x snap-mandatory">
                 {events.map((ev) => (
                   <div
                     key={ev.id}
-                    className="snap-start flex-shrink-0 w-[68%] sm:w-[45%] md:w-[28%] lg:w-[22%] relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-3 sm:p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[240px] overflow-hidden"
+            data-card
+              className="snap-center flex-shrink-0 w-[86%] sm:w-[52%] md:w-[44%] lg:w-[36%] xl:w-[30%] 2xl:w-[26%] relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-3 sm:p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[320px] overflow-hidden"
                   >
                     <div className="flex-grow">
                       <img
-                        className="w-full h-36 sm:h-44 object-cover rounded-lg mb-4"
+                        className="w-full h-44 sm:h-52 md:h-48 lg:h-56 object-cover rounded-lg mb-4"
                         src={ev.image}
                         alt={ev.name}
                       />

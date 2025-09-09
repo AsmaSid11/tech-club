@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import data from "../../public/json/events.json";
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,11 @@ const eventsJson = data;
 const events = Array.from({ length: 16 }, (_, i) => ({
   id: eventsJson[i].id,
   name: eventsJson[i].name,
-  start_time: eventsJson[i].start_time ,
+  day: eventsJson[i].day,
+  start_time: eventsJson[i].start_time,
   end_time: eventsJson[i].end_time,
-  venue:eventsJson[i].venue,
-  image:eventsJson[i].image
+  venue: eventsJson[i].venue,
+  image: eventsJson[i].image,
 }));
 
 const cardVariants = {
@@ -27,8 +28,15 @@ const cardVariants = {
 
 
 const TechFusionEvents = () => {
-  
-  const navigate=useNavigate()
+  const [dayFilter, setDayFilter] = useState("all");
+
+  const navigate = useNavigate();
+
+  // visibleEvents: filtered by selected day (all / 1 / 2)
+  const visibleEvents = events.filter((ev) => {
+    if (dayFilter === "all") return true;
+    return Number(ev.day) === Number(dayFilter);
+  });
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -37,9 +45,31 @@ const TechFusionEvents = () => {
         <p className="mb-4">Explore all the exciting events happening at TechFusion '25!</p>
         {/* List your events here */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="w-full flex flex-col items-center mb-4">
+          <div className="flex gap-3 mb-6">
+            <button
+              className={`px-4 py-2 rounded ${dayFilter === "all" ? "bg-fuchsia-500 text-white" : "bg-white/10 text-white"}`}
+              onClick={() => setDayFilter("all")}
+            >
+              All
+            </button>
+            <button
+              className={`px-4 py-2 rounded ${dayFilter === 1 ? "bg-fuchsia-500 text-white" : "bg-white/10 text-white"}`}
+              onClick={() => setDayFilter(1)}
+            >
+              Day 1
+            </button>
+            <button
+              className={`px-4 py-2 rounded ${dayFilter === 2 ? "bg-fuchsia-500 text-white" : "bg-white/10 text-white"}`}
+              onClick={() => setDayFilter(2)}
+            >
+              Day 2
+            </button>
+          </div>
 
-{events.map((ev) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+
+{visibleEvents.map((ev) => (
   <motion.div
     key={ev.id}
     className="w-[20rem] sm:w-[36rem] md:w-[20rem] flex-shrink-0 relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[260px] overflow-hidden group mb-4 mr-30"
@@ -74,6 +104,7 @@ const TechFusionEvents = () => {
 
 
           </div>
+        </div>
       </main>
     </div>
   );
