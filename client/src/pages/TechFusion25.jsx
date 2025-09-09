@@ -257,7 +257,7 @@ const TechFusion25 = () => {
               className="overflow-x-auto no-scrollbar scroll-pl-6 scroll-smooth px-4"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
-              <div className="flex gap-6 items-stretch w-max snap-x snap-mandatory">
+              <div className="flex gap-6 items-stretch w-max snap-x snap-mandatory md:w-full md:justify-center">
                 {events.map((ev) => (
                   <div
                     key={ev.id}
