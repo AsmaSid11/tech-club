@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import { useEffect } from 'react'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import Projects from './pages/Projects'
@@ -13,6 +14,10 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 
 export default function App() {
   const location = useLocation(); 
+  useEffect(() => {
+    // Scroll to top on route change (good UX for SPA navigation)
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
    return (
     <>
       {/* Enhanced Techy Animated Background */}
