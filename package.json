@@ -1,7 +1,28 @@
 {
   "dependencies": {
     "framer-motion": "^12.23.6",
+    "glob": "^11.0.3",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.7.0"
-  }
+    "react-router-dom": "^7.7.0",
+    "sharp": "^0.34.3"
+  },
+  "name": "tech-club",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsmaSid11/tech-club.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AsmaSid11/tech-club/issues"
+  },
+  "homepage": "https://github.com/AsmaSid11/tech-club#readme"
 }
