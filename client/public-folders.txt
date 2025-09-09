@@ -1,0 +1,8 @@
+./public
+./public/images
+./public/images/gallery
+./public/images/team
+./public/images/techfusion25
+./public/images/techfusion25/About section transition_files
+./public/images/techfusion25/highlights
+./public/json

@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 
-import Ayush from '../assets/PastPhotos/PastPhotos/Ayush.png';
-import Hurmat from '../assets/PastPhotos/PastPhotos/Hurmat.png';
-import Md from '../assets/PastPhotos/PastPhotos/MD.png';
-import Tushar from '../assets/PastPhotos/PastPhotos/Tushar.png';
-import Samarvir from '../assets/PastPhotos/PastPhotos/Samarvir.png';
-import Hafsa from '../assets/PastPhotos/PastPhotos/Hafsa.png';
-import pinak from '../assets/PastPhotos/PastPhotos/Pinak.png'
-import syed from '../assets/PastPhotos/PastPhotos/Syed.png'
+import Ayush from '../assets/PastPhotos/PastPhotos/Ayush.webp';
+import Hurmat from '../assets/PastPhotos/PastPhotos/Hurmat.webp';
+import Md from '../assets/PastPhotos/PastPhotos/MD.webp';
+import Tushar from '../assets/PastPhotos/PastPhotos/Tushar.webp';
+import Samarvir from '../assets/PastPhotos/PastPhotos/Samarvir.webp';
+import Hafsa from '../assets/PastPhotos/PastPhotos/Hafsa.webp';
+import pinak from '../assets/PastPhotos/PastPhotos/Pinak.webp'
+import syed from '../assets/PastPhotos/PastPhotos/Syed.webp'
 
 let hard_coded_data = [
   {

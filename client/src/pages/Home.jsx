@@ -9,7 +9,7 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-8 animate-fade-in-up vh-100 vw-100">
-          <img src="/images/logo.png" alt="Technology Club Logo" className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-xl rounded-full bg-white/10 p-2 mb-8 animate-fade-in" />
+          <img src="/images/logo.webp" alt="Technology Club Logo" className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-xl rounded-full bg-white/10 p-2 mb-8 animate-fade-in" />
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white font-tech drop-shadow mb-6 animate-fade-in-up delay-100">Technology Club</h1>
           <p className="text-xl sm:text-2xl md:text-3xl text-violet-200 mb-10 font-medium animate-fade-in-up delay-200">Innovate. Create. Transform.</p>
           <a href="#explore" className="px-10 py-4 rounded-full bg-gradient-to-r from-violet-dark via-violet-deep to-purple-900 text-white font-bold text-xl shadow-lg hover:scale-110 hover:shadow-violet-dark/40 active:scale-95 transition-all duration-300 animate-fade-in-up delay-300 focus:outline-none focus:ring-4 focus:ring-violet-dark/40 smooth-scroll">

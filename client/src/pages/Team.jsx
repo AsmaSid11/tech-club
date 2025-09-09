@@ -3,18 +3,18 @@ import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  { initials: 'FM', name: 'Fahad Makdoomi', role: '2021 | Core Member', image: '/images/team/Fahad.jpg' },
-  // { initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member', image: '/images/team/aliza.jpg' },
-  { initials: 'TK', name: 'Tejal Kumari', role: '2022 | Core Member', image: '/images/team/tejal.jpg' },
-  { initials: 'A', name: 'Ashvick', role: '2022 | Core Member', image: '/images/team/ashvick.jpg' },
-  // { initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member', image: '/images/team/harkirat.jpg' },
-  { initials: 'AS', name: 'Asma Siddiqui', role: '2023 | Core Member', image: '/images/team/asma.png' },
-  // { initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member', image: '/images/team/kritigya.jpg' },
-  { initials: 'SM', name: 'Saeed Abdul Muizz', role: '2024 | Core Member', image: '/images/team/Muizz.png' },
-  { initials: 'BQ', name: 'Basar Qari', role: '1st Year MTech | Core Member', image: '/images/team/basar.jpg' },
-  // { initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member', image: '/images/team/rishabh.jpg' },
-  // { initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head', image: '/images/team/Isa.jpg' },
-  // { initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer', image: '/images/team/Ankita.jpg' },
+  { initials: 'FM', name: 'Fahad Makdoomi', role: '2021 | Core Member', image: '/images/team/Fahad.webp' },
+  // { initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member', image: '/images/team/aliza.webp' },
+  { initials: 'TK', name: 'Tejal Kumari', role: '2022 | Core Member', image: '/images/team/tejal.webp' },
+  { initials: 'A', name: 'Ashvick', role: '2022 | Core Member', image: '/images/team/ashvick.webp' },
+  // { initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member', image: '/images/team/harkirat.webp' },
+  { initials: 'AS', name: 'Asma Siddiqui', role: '2023 | Core Member', image: '/images/team/asma.webp' },
+  // { initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member', image: '/images/team/kritigya.webp' },
+  { initials: 'SM', name: 'Saeed Abdul Muizz', role: '2024 | Core Member', image: '/images/team/Muizz.webp' },
+  { initials: 'BQ', name: 'Basar Qari', role: '1st Year MTech | Core Member', image: '/images/team/basar.webp' },
+  // { initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member', image: '/images/team/rishabh.webp' },
+  // { initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head', image: '/images/team/Isa.webp' },
+  // { initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer', image: '/images/team/Ankita.webp' },
 ];
 
 const coreTeam = teamMembers.filter((member) =>
@@ -28,7 +28,7 @@ const facultyCoordinator = {
   initials: 'IA',
   name: 'Dr. Iqra Altaf Gillani',
   role: 'Faculty Coordinator',
-  image: '/images/team/Iqra.png',
+  image: '/images/team/Iqra.webp',
 };
 
 function Avatar({ src, initials, alt, textSize = "text-2xl" }) {
