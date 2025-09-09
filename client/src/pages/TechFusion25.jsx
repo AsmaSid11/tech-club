@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getTechFusionHighlights } from "../utils/techfusionImages";
 
 import data from "../../public/json/events.json";
@@ -23,14 +23,18 @@ const TechFusion25 = () => {
   const navigate = useNavigate();
   const [highlightImages, setHighlightImages] = useState([]);
   const [highlightsLoading, setHighlightsLoading] = useState(true);
-  const [index, setIndex] = useState(0);
+  const listRef = useRef(null);
 
-  const next = () => {
-    if (index < events.length - 3) setIndex(index + 1);
+  const scrollByAmount = (direction = "next") => {
+    const el = listRef.current;
+    if (!el) return;
+    // Scroll by 80% of the container width for good UX across sizes
+    const amount = Math.floor(el.clientWidth * 0.8) * (direction === "next" ? 1 : -1);
+    el.scrollBy({ left: amount, behavior: "smooth" });
   };
-  const prev = () => {
-    if (index > 0) setIndex(index - 1);
-  };
+
+  const next = () => scrollByAmount("next");
+  const prev = () => scrollByAmount("prev");
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -225,72 +229,69 @@ const TechFusion25 = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className=" flex gap-10  ">
-            <div className="relative w-full">
-              <button
-                onClick={prev}
-                className="absolute md:-left-12 left-4 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={next}
-                className="absolute md:-right-12 right-4 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-              <div className="overflow-hidden">
-                <motion.div
-                  className="flex gap-10"
-                  animate={{ x: `-${index * (320 + 40)}px` }} // 320 = w-80, 40 = gap-10
-                  transition={{ type: "spring", stiffness: 90 }}
-                >
-                  {events.map((ev) => (
-                    <motion.div
-                      key={ev.id}
-                      className="w-[20rem] sm:w-[36rem] md:w-[20rem] flex-shrink-0 relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[260px] overflow-hidden group mb-4 mr-30"
-                      viewport={{ once: true, amount: 0.8 }}
-                    >
-                      <div className="flex-grow">
-                        <img
-                          className="w-full h-48 object-cover rounded-lg mb-4"
-                          src={ev.image}
-                          alt={ev.name}
-                        />
-                        <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-fuchsia-200 transition-colors">
-                          {ev.name}
-                        </h3>
-                        <div className="flex flex-col gap-2">
-                          <p className="text-gray-200 text-sm font-medium">
-                            <span className="font-semibold text-fuchsia-300">
-                              Time:
-                            </span>{" "}
-                            {ev.start_time} - {ev.end_time}
-                          </p>
-                          <p className="text-gray-200 text-sm font-medium">
-                            <span className="font-semibold text-fuchsia-300">
-                              Venue:
-                            </span>{" "}
-                            {ev.venue}
-                          </p>
-                        </div>
+          <div className="relative w-full max-w-6xl">
+            <button
+              onClick={prev}
+              aria-label="previous"
+              className="absolute md:-left-12 left-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={next}
+              aria-label="next"
+              className="absolute md:-right-12 right-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Scrollable container with snap */}
+            <div
+              ref={listRef}
+              className="overflow-x-auto no-scrollbar scroll-pl-6 scroll-smooth -mx-4 px-4"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              <div className="flex gap-6 items-stretch w-max snap-x snap-mandatory">
+                {events.map((ev) => (
+                  <div
+                    key={ev.id}
+                    className="snap-start flex-shrink-0 w-[68%] sm:w-[45%] md:w-[28%] lg:w-[22%] relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-3 sm:p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[240px] overflow-hidden"
+                  >
+                    <div className="flex-grow">
+                      <img
+                        className="w-full h-36 sm:h-44 object-cover rounded-lg mb-4"
+                        src={ev.image}
+                        alt={ev.name}
+                      />
+                      <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
+                        {ev.name}
+                      </h3>
+                      <div className="flex flex-col gap-2">
+                        <p className="text-gray-200 text-sm font-medium">
+                          <span className="font-semibold text-fuchsia-300">
+                            Time:
+                          </span>{" "}
+                          {ev.start_time} - {ev.end_time}
+                        </p>
+                        <p className="text-gray-200 text-sm font-medium">
+                          <span className="font-semibold text-fuchsia-300">
+                            Venue:
+                          </span>{" "}
+                          {ev.venue}
+                        </p>
                       </div>
-                      <a
-                        href="/techfusion25/events"
-                        className="inline-block w-full mt-6 px-4 py-2 text-center rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          navigate(`/techfusion25/events/${ev.id}`);
-                        }}
-                      >
-                        View Details
-                      </a>
-                    </motion.div>
-                  ))}
-                </motion.div>
+                    </div>
+                    <button
+                      onClick={() => navigate(`/techfusion25/events/${ev.id}`)}
+                      className="inline-block w-full mt-4 px-4 py-2 text-center rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>{" "}
+          </div>
         </div>
         {/* view more events button */}
         <div className="text-center pt-9">
