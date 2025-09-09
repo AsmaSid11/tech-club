@@ -74,7 +74,7 @@ const TechEvent = () => {
               <ul className="space-y-3">
                 <li className="flex items-center space-x-3">
                   {icons.Calendar({ className: 'w-5 h-5 text-fuchsia-400' })}
-                  <span className="text-sm sm:text-base text-gray-300">{event.day}, {event.date}</span>
+                  <span className="text-sm sm:text-base text-gray-300">Day {event.day}, {event.date}</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   {icons.Clock({ className: 'w-5 h-5 text-fuchsia-400' })}
@@ -102,7 +102,7 @@ const TechEvent = () => {
                 </p>
                 {event.co_leads && event.co_leads.length > 0 && (
                   <p className="text-sm sm:text-base text-gray-300">
-                    <span className="font-semibold text-fuchsia-400">Co-Leads:</span> {event.co_leads.join(', ')}
+                    <span className="font-semibold text-fuchsia-400">Co-Lead(s):</span> {event.co_leads.join(', ')}
                   </p>
                 )}
               </div>
