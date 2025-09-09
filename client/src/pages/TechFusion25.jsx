@@ -216,6 +216,7 @@ const TechFusion25 = () => {
             <img
               src="./images/techfusion25/Techfusionposter-main.webp"
               alt="Main"
+              loading="eager"
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
 
@@ -223,6 +224,7 @@ const TechFusion25 = () => {
             <img
               src="./images/gallery/2.webp"
               alt="Overlay"
+              loading="eager"
               className="absolute md:bottom-[-40px] md:left-[-40px] bottom-[-20px] left-4 w-[120px] md:w-[150px] h-[120px] md:h-[150px] object-cover rounded-lg shadow-xl border-4 border-white"
             />
           </motion.div>
@@ -269,6 +271,7 @@ const TechFusion25 = () => {
                         className="w-full h-44 sm:h-52 md:h-48 lg:h-56 object-cover rounded-lg mb-4"
                         src={ev.image}
                         alt={ev.name}
+                        loading="eager"
                       />
                       <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
                         {ev.name}
@@ -344,6 +347,7 @@ const TechFusion25 = () => {
                   <img
                     src={image.src}
                     alt={image.alt}
+                    loading="eager"
                     className="h-72 w-96 object-cover rounded-lg shadow-lg"
                     onError={(e) => {
                       e.target.style.display = "none";

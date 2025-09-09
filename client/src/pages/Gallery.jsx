@@ -134,6 +134,7 @@ export default function Gallery() {
                 key={carouselIndex}
                 src={carouselImages[carouselIndex]?.src}
                 alt={carouselImages[carouselIndex]?.alt}
+                loading="eager"
                 className="absolute w-full h-full object-cover object-center cursor-pointer"
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -176,7 +177,7 @@ export default function Gallery() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: (idx % INITIAL_LOAD) * 0.15 }}
             >
-              <img src={image.src} alt={image.alt} className="w-full h-80 sm:h-96 md:h-[28rem] object-cover object-top transition-transform duration-300 ease-in-out group-hover:scale-105" />
+              <img src={image.src} alt={image.alt} loading="eager" className="w-full h-80 sm:h-96 md:h-[28rem] object-cover object-top transition-transform duration-300 ease-in-out group-hover:scale-105" />
             </motion.div>
           ))}
         </div>
@@ -196,7 +197,7 @@ export default function Gallery() {
             <button className="absolute top-4 right-4 text-white text-4xl hover:text-violet-300 transition-colors" onClick={closeLightbox}><FiX /></button>
             <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-violet-300 transition-colors" onClick={goToPrev}><FiChevronLeft /></button>
             <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-violet-300 transition-colors" onClick={goToNext}><FiChevronRight /></button>
-            <motion.img key={selectedImage} src={allImages[selectedImage].src} alt={allImages[selectedImage].alt} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 25 }} />
+            <motion.img key={selectedImage} src={allImages[selectedImage].src} alt={allImages[selectedImage].alt} loading="eager" className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 25 }} />
           </motion.div>
         )}
       </AnimatePresence>
