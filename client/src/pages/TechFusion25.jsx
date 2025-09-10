@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { getTechFusionHighlights } from "../utils/techfusionImages";
 
 import data from "../../public/json/events.json";
 
-const EVENT_DATE = new Date("2025-09-12T09:00:00"); // Example date
+const EVENT_DATE = new Date("2025-09-12T09:00:00");
 
 const eventsJson = data;
 
@@ -28,13 +27,11 @@ const TechFusion25 = () => {
   const scrollByAmount = (direction = "next") => {
     const el = listRef.current;
     if (!el) return;
-    // Try to scroll by one card width if possible, fallback to 80% container width
     const firstCard = el.querySelector('[data-card]');
     let amount = Math.floor(el.clientWidth * 0.8);
     if (firstCard) {
-      // include gap / margin by using bounding rect
       const cardRect = firstCard.getBoundingClientRect();
-      amount = Math.floor(cardRect.width + 24); // 24px compensates for gap
+      amount = Math.floor(cardRect.width + 24);
     }
     el.scrollBy({ left: amount * (direction === "next" ? 1 : -1), behavior: "smooth" });
   };
@@ -73,34 +70,28 @@ const TechFusion25 = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Load highlight images
   useEffect(() => {
-    const loadHighlights = async () => {
-      setHighlightsLoading(true);
-      try {
-        const highlights = await getTechFusionHighlights();
-        setHighlightImages(highlights);
-      } catch (error) {
-        console.error("Error loading highlight images:", error);
-        // Fallback to some default images if loading fails
-        setHighlightImages([
-          {
-            src: "/images/gallery/1.webp",
-            alt: "TechFusion Highlight 1",
-            id: 1,
-          },
-          {
-            src: "/images/gallery/2.webp",
-            alt: "TechFusion Highlight 2",
-            id: 2,
-          },
-        ]);
-      } finally {
-        setHighlightsLoading(false);
-      }
-    };
-
-    loadHighlights();
+    setHighlightsLoading(true);
+    const highlights = [
+      { src: "/images/techfusion25/highlights/1.webp", alt: "Highlight 1", id: 1 },
+      { src: "/images/techfusion25/highlights/2.webp", alt: "Highlight 2", id: 2 },
+      { src: "/images/techfusion25/highlights/3.webp", alt: "Highlight 3", id: 3 },
+      { src: "/images/techfusion25/highlights/4.webp", alt: "Highlight 4", id: 4 },
+      { src: "/images/techfusion25/highlights/5.webp", alt: "Highlight 5", id: 5 },
+      { src: "/images/techfusion25/highlights/6.webp", alt: "Highlight 6", id: 6 },
+      { src: "/images/techfusion25/highlights/7.webp", alt: "Highlight 7", id: 7 },
+      { src: "/images/techfusion25/highlights/8.webp", alt: "Highlight 8", id: 8 },
+      { src: "/images/techfusion25/highlights/9.webp", alt: "Highlight 9", id: 9 },
+      { src: "/images/techfusion25/highlights/10.webp", alt: "Highlight 10", id: 10 },
+      { src: "/images/techfusion25/highlights/11.webp", alt: "Highlight 11", id: 11 },
+      { src: "/images/techfusion25/highlights/12.webp", alt: "Highlight 12", id: 12 },
+      { src: "/images/techfusion25/highlights/13.webp", alt: "Highlight 13", id: 13 },
+      { src: "/images/techfusion25/highlights/14.webp", alt: "Highlight 14", id: 14 },
+      { src: "/images/techfusion25/highlights/15.webp", alt: "Highlight 15", id: 15 },
+      { src: "/images/techfusion25/highlights/16.webp", alt: "Highlight 16", id: 16 },
+    ];
+    setHighlightImages(highlights);
+    setHighlightsLoading(false);
   }, []);
 
   return (
@@ -308,7 +299,6 @@ const TechFusion25 = () => {
           <a
             href="/techfusion25/events"
             onClick={(e) => {
-              // allow ctrl/cmd or middle-click to open in new tab
               if (e.ctrlKey || e.metaKey || e.button === 1) return;
               e.preventDefault();
               navigate("/techfusion25/events");
@@ -333,11 +323,11 @@ const TechFusion25 = () => {
           <div className="overflow-hidden w-full py-4 rounded-xl">
             <motion.div
               className="flex gap-12 [&input]:!rounded-xl"
-              animate={{ x: ["0%", "-50%"] }} // -50% for seamless loop
+              animate={{ x: ["0%", "-50%"] }}
               transition={{
                 x: {
                   repeat: Infinity,
-                  duration: 25, // adjust speed
+                  duration: 25,
                   ease: "linear",
                 },
               }}
