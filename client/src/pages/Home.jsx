@@ -1,8 +1,180 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [hasShownPopup, setHasShownPopup] = useState(false);
+
+  useEffect(() => {
+    // Check if popup has been shown in this session
+    const popupShown = sessionStorage.getItem('techfusion-popup-shown');
+    
+    if (!popupShown && !hasShownPopup) {
+      // Show popup after 1.5 seconds
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+        setHasShownPopup(true);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [hasShownPopup]);
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    // Remember that popup was shown in this session
+    sessionStorage.setItem('techfusion-popup-shown', 'true');
+  };
+
+  const handlePopupClick = () => {
+    handleClosePopup();
+  };
   return (
     <div className="flex flex-col items-center w-full">
+      {/* TechFusion Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={handleClosePopup}
+            >
+              {/* Popup Container */}
+              <motion.div
+                className="relative bg-gradient-to-br from-gray-900/95 via-violet-deep/90 to-violet-dark/95 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-violet-400/30 max-w-md w-full mx-4 overflow-hidden"
+                initial={{ scale: 0.7, opacity: 0, y: 50 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.7, opacity: 0, y: 50 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 25,
+                  duration: 0.5 
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <motion.div
+                    className="absolute -top-10 -right-10 w-20 h-20 bg-violet-400/20 rounded-full"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 180, 360] 
+                    }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut" 
+                    }}
+                  />
+                  <motion.div
+                    className="absolute -bottom-8 -left-8 w-16 h-16 bg-purple-400/15 rounded-full"
+                    animate={{ 
+                      scale: [1.2, 1, 1.2],
+                      rotate: [360, 180, 0] 
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut" 
+                    }}
+                  />
+                </div>
+
+                {/* Close Button */}
+                <button
+                  onClick={handleClosePopup}
+                  className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-200"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                {/* Content */}
+                <div className="relative z-10 p-8 text-center">
+                  {/* Icon */}
+                  <motion.div
+                    className="mb-6"
+                    initial={{ rotate: -10, scale: 0.8 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  >
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-violet-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <span className="text-3xl">🚀</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Title */}
+                  <motion.h3
+                    className="text-2xl font-bold text-white mb-3 font-tech"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    TechFusion'25 is Here!
+                  </motion.h3>
+
+                  {/* Description */}
+                  <motion.p
+                    className="text-violet-200 mb-6 leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    Don't miss out on our flagship tech festival! Exciting competitions, workshops, and innovation await you.
+                  </motion.p>
+
+                  {/* Buttons */}
+                  <motion.div
+                    className="flex flex-col sm:flex-row gap-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <Link
+                      to="/techfusion25/events"
+                      onClick={handlePopupClick}
+                      className="flex-1 px-6 py-3 bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold rounded-xl hover:from-violet-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-violet-500/25"
+                    >
+                      Explore Events
+                    </Link>
+                    <button
+                      onClick={handleClosePopup}
+                      className="flex-1 px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transform hover:scale-105 transition-all duration-200 border border-white/20"
+                    >
+                      Maybe Later
+                    </button>
+                  </motion.div>
+                </div>
+
+                {/* Animated Border */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl border-2 border-transparent"
+                  style={{
+                    background: "linear-gradient(45deg, rgba(139, 69, 255, 0.3), rgba(168, 85, 247, 0.3), rgba(139, 69, 255, 0.3))",
+                    backgroundSize: "200% 200%",
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
       {/* Hero Section */}
       <section className="relative w-screen flex flex-col items-center justify-center min-h-screen pt-16 pb-24 overflow-hidden text-center animate-fade-in-up">
         {/* Background layers removed to use App-level background */}
