@@ -1,4 +1,11 @@
-  // Simple FlipDigit for calendar-style flip
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+import data from "../../public/json/events.json";
+
+// Simple FlipDigit for calendar-style flip
   const FlipDigit = ({ value }) => {
     const [prev, setPrev] = useState(value);
     const [flipping, setFlipping] = useState(false);
@@ -30,13 +37,7 @@
       </span>
     );
   };
-import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
 
-import data from "../../public/json/events.json";
 
 const EVENT_DATE = new Date("2025-09-12T09:00:00");
 
