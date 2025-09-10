@@ -27,7 +27,7 @@
     "lead": "Asma",
     "co_leads": ["Aqsa"],
     "google_link": "https://forms.gle/bJrxbWPVtXMCWqSK8",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/TypingContest_page-0001.webp"
   },
   {
     "id": 3,
@@ -42,7 +42,7 @@
     "lead": "Riza",
     "co_leads": ["Muizz", "Asma"],
     "google_link": "https://forms.gle/4x1zzjwXL3Z196V36",
-  "image": "../images/posters/5hourforge.webp"
+    "image": "../images/posters/5hourforge.webp"
   },
   {
     "id": 4,
@@ -72,7 +72,7 @@
     "lead": "Ashutosh",
     "co_leads": [],
     "google_link": "https://forms.gle/dsMW27BrVz1pZoiV7",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/BridgeBuild_page-0001.webp"
   },
   {
     "id": 6,
@@ -102,7 +102,7 @@
     "lead": "Mehak",
     "co_leads": [],
     "google_link": "https://forms.gle/oiKB8UTNY8Pok7ZH9",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/Who am i_page-0001.webp"
   },
   {
     "id": 8,
@@ -147,7 +147,7 @@
     "lead": "Ashvick",
     "co_leads": [],
     "google_link": "https://forms.gle/heKTJ6zD3KrtcKAR6",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/Drone(workshop)_page-0001.webp"
   },
   {
     "id": 11,
@@ -177,7 +177,7 @@
     "lead": "Teja",
     "co_leads": ["Abhay"],
     "google_link": "https://forms.gle/QU9s5MUXqkye7k197",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/CodeMania_page-0001.webp"
   },
   {
     "id": 13,
@@ -207,7 +207,7 @@
     "lead": "Tushar Kumar",
     "co_leads": ["Ashvick"],
     "google_link": "https://forms.gle/4eZrhc4LCTCU9A2dA",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/Drone-Sim_page-0001.webp"
   },
   {
     "id": 15,
@@ -222,7 +222,7 @@
     "lead": "Aman Kumar",
     "co_leads": [],
     "google_link": "https://forms.gle/Gpg56uHvzo3SBRT99",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/ObjAvoidance_page-0001.webp"
   },
   {
     "id": 16,
@@ -237,6 +237,6 @@
     "lead": "Ashutosh",
     "co_leads": ["Harshita"],
     "google_link": "https://forms.gle/6CW5yArpHbKEGw7u5",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/posters/CODECLash_page-0001.webp"
   }
 ]

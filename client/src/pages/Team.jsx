@@ -3,18 +3,61 @@ import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  { initials: 'FM', name: 'Fahad Makdoomi', role: '2021 | Core Member', image: '/images/team/Fahad.webp' },
-  // { initials: 'AM', name: 'Aliza Mushtaq', role: '4th Year BTech | Core Member', image: '/images/team/aliza.webp' },
-  { initials: 'TK', name: 'Tejal Kumari', role: '2022 | Core Member', image: '/images/team/tejal.webp' },
-  { initials: 'A', name: 'Ashvick', role: '2022 | Core Member', image: '/images/team/ashvick.webp' },
-  // { initials: 'HS', name: 'Harkirat Singh', role: '2nd Year BTech | Core Member', image: '/images/team/harkirat.webp' },
-  { initials: 'AS', name: 'Asma Siddiqui', role: '2023 | Core Member', image: '/images/team/asma.webp' },
-  // { initials: 'K', name: 'Kritigya', role: '1st Year BTech | Core Member', image: '/images/team/kritigya.webp' },
-  { initials: 'SM', name: 'Saeed Abdul Muizz', role: '2024 | Core Member', image: '/images/team/Muizz.webp' },
-  { initials: 'BQ', name: 'Basar Qari', role: '1st Year MTech | Core Member', image: '/images/team/basar.webp' },
-  // { initials: 'RS', name: 'Rishabh Shukla', role: 'MSc 2nd Year | Core Member', image: '/images/team/rishabh.webp' },
-  // { initials: 'IR', name: 'Isa Reshi', role: '2nd Year BTech | Creative Head', image: '/images/team/Isa.webp' },
-  // { initials: 'A', name: 'Ankita', role: '2nd Year BTech | Designer', image: '/images/team/Ankita.webp' },
+  { 
+    initials: 'FM', 
+    name: 'Fahad Makdoomi', 
+    role: '2021 | Core Member', 
+    image: '/images/team/Fahad.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/fahad-makhdoomi/',
+      // github: '',
+      // twitter: ''
+    }
+  },
+  { 
+    initials: 'TK', 
+    name: 'Tejal Kumari', 
+    role: '2022 | Core Member', 
+    image: '/images/team/tejal.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/tejal-kumari-3b652725b/',
+      // github: '',
+      // twitter: ''
+    }
+  },
+  { 
+    initials: 'A', 
+    name: 'Ashvick', 
+    role: '2022 | Core Member', 
+    image: '/images/team/ashvick.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/ashvick-bandral-7605872a8/',
+      // github: '',
+      // twitter: ''
+    }
+  },
+  { 
+    initials: 'AS', 
+    name: 'Asma Siddiqui', 
+    role: '2023 | Core Member', 
+    image: '/images/team/asma.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/asmasid11',
+      github: 'https://github.com/AsmaSid11',
+      // twitter: ''
+    }
+  },
+  { 
+    initials: 'SM', 
+    name: 'Saeed Abdul Muizz', 
+    role: '2024 | Core Member', 
+    image: '/images/team/Muizz.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/abdulmuizz0903',
+      github: 'https://github.com/abdulmuizz0903',
+      // twitter: ''
+    }
+  }
 ];
 
 const coreTeam = teamMembers.filter((member) =>
@@ -29,7 +72,82 @@ const facultyCoordinator = {
   name: 'Dr. Iqra Altaf Gillani',
   role: 'Faculty Coordinator',
   image: '/images/team/Iqra.webp',
+  socialLinks: {
+    // linkedin: '',
+    // github: '',
+    // twitter: ''
+  }
 };
+
+// Helper function to render social media icons
+function SocialMediaLinks({ socialLinks, member }) {
+  return (
+    <div className="flex gap-4 text-violet-300 text-lg">
+      {socialLinks?.linkedin ? (
+        <a
+          href={socialLinks.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${member?.name || 'Member'} LinkedIn`}
+          className="hover:text-violet-200 transition-colors"
+        >
+          <FaLinkedinIn />
+        </a>
+      ) : (
+        /* <a
+          href="#"
+          aria-label="LinkedIn"
+          className="hover:text-violet-200 transition-colors opacity-30 cursor-not-allowed"
+        >
+          <FaLinkedinIn />
+        </a> */
+        null
+      )}
+      
+      {socialLinks?.github ? (
+        <a
+          href={socialLinks.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${member?.name || 'Member'} GitHub`}
+          className="hover:text-violet-200 transition-colors"
+        >
+          <FaGithub />
+        </a>
+      ) : (
+        /* <a
+          href="#"
+          aria-label="GitHub"
+          className="hover:text-violet-200 transition-colors opacity-30 cursor-not-allowed"
+        >
+          <FaGithub />
+        </a> */
+        null
+      )}
+      
+      {socialLinks?.twitter ? (
+        <a
+          href={socialLinks.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${member?.name || 'Member'} Twitter`}
+          className="hover:text-violet-200 transition-colors"
+        >
+          <FaTwitter />
+        </a>
+      ) : (
+        /* <a
+          href="#"
+          aria-label="Twitter"
+          className="hover:text-violet-200 transition-colors opacity-30 cursor-not-allowed"
+        >
+          <FaTwitter />
+        </a> */
+        null
+      )}
+    </div>
+  );
+}
 
 function Avatar({ src, initials, alt, textSize = "text-2xl" }) {
   const [imgError, setImgError] = useState(false);
@@ -138,29 +256,10 @@ export default function Team() {
           <p className="text-sm sm:text-base text-gray-200 mb-4">
             {facultyCoordinator.role}
           </p>
-          <div className="flex gap-5 text-violet-300 text-xl">
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              className="hover:text-violet-200 transition-colors"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
-              href="#"
-              aria-label="GitHub"
-              className="hover:text-violet-200 transition-colors"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="#"
-              aria-label="Twitter"
-              className="hover:text-violet-200 transition-colors"
-            >
-              <FaTwitter />
-            </a>
-          </div>
+          <SocialMediaLinks 
+            socialLinks={facultyCoordinator.socialLinks} 
+            member={facultyCoordinator} 
+          />
         </motion.div>
       </div>
 
@@ -215,29 +314,10 @@ export default function Team() {
               <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
                 {member.role}
               </p>
-              <div className="flex gap-4 text-violet-300 text-lg">
-                <a
-                  href="#"
-                  aria-label="LinkedIn"
-                  className="hover:text-violet-200 transition-colors"
-                >
-                  <FaLinkedinIn />
-                </a>
-                <a
-                  href="#"
-                  aria-label="GitHub"
-                  className="hover:text-violet-200 transition-colors"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href="#"
-                  aria-label="Twitter"
-                  className="hover:text-violet-200 transition-colors"
-                >
-                  <FaTwitter />
-                </a>
-              </div>
+              <SocialMediaLinks 
+                socialLinks={member.socialLinks} 
+                member={member} 
+              />
             </motion.div>
           ))}
         </div>
@@ -294,29 +374,10 @@ export default function Team() {
                 <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
                   {member.role}
                 </p>
-                <div className="flex gap-4 text-violet-300 text-lg">
-                  <a
-                    href="#"
-                    aria-label="LinkedIn"
-                    className="hover:text-violet-200 transition-colors"
-                  >
-                    <FaLinkedinIn />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="GitHub"
-                    className="hover:text-violet-200 transition-colors"
-                  >
-                    <FaGithub />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="Twitter"
-                    className="hover:text-violet-200 transition-colors"
-                  >
-                    <FaTwitter />
-                  </a>
-                </div>
+                <SocialMediaLinks 
+                  socialLinks={member.socialLinks} 
+                  member={member} 
+                />
               </motion.div>
             ))}
           </div>
