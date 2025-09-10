@@ -1,8 +1,39 @@
-import React from "react";
+  // Simple FlipDigit for calendar-style flip
+  const FlipDigit = ({ value }) => {
+    const [prev, setPrev] = useState(value);
+    const [flipping, setFlipping] = useState(false);
+    useEffect(() => {
+      if (value !== prev) {
+        setFlipping(true);
+        const timeout = setTimeout(() => {
+          setFlipping(false);
+          setPrev(value);
+        }, 700);
+        return () => clearTimeout(timeout);
+      }
+    }, [value, prev]);
+    return (
+      <span className="inline-block relative w-[2em] h-[1.4em] align-middle select-none" style={{ perspective: 1800 }}>
+        <motion.span
+          key={value}
+          initial={{ rotateX: 180, opacity: 0.15, scale: 0.88, boxShadow: '0 16px 40px #fff', background: '#fff8' }}
+          animate={{ rotateX: 0, opacity: 1, scale: 1.08, boxShadow: '0 2px 16px #fff6', background: 'transparent' }}
+          transition={{ duration: 0.7, type: 'spring', stiffness: 120, damping: 14 }}
+          className="absolute inset-0 flex items-center justify-center w-full h-full text-inherit rounded shadow-2xl"
+          style={{ willChange: 'transform,opacity,box-shadow' }}
+        >
+          {value}
+        </motion.span>
+        {!flipping && (
+          <span className="opacity-0 absolute inset-0 flex items-center justify-center w-full h-full">{prev}</span>
+        )}
+      </span>
+    );
+  };
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
 import { getTechFusionHighlights } from "../utils/techfusionImages";
 
 import data from "../../public/json/events.json";
@@ -103,24 +134,107 @@ const TechFusion25 = () => {
     loadHighlights();
   }, []);
 
+  // --- STARLIGHT ANIMATION CONFIG ---
+  const starlights = [
+    { top: '10%', delay: 0.2, duration: 2.1, scale: 1.0 },
+    { top: '16%', delay: 0.6, duration: 2.4, scale: 1.1 },
+    { top: '22%', delay: 1.0, duration: 2.6, scale: 1.2 },
+    { top: '28%', delay: 0.3, duration: 2.2, scale: 1.1 },
+    { top: '34%', delay: 0.7, duration: 2.2, scale: 1.1 },
+    { top: '40%', delay: 1.5, duration: 2.8, scale: 1.0 },
+    { top: '46%', delay: 0.2, duration: 2.6, scale: 1.2 },
+    { top: '52%', delay: 1.3, duration: 2.5, scale: 1.4 },
+    { top: '58%', delay: 0.6, duration: 2.0, scale: 1.0 },
+    { top: '64%', delay: 1.1, duration: 3.1, scale: 1.3 },
+    { top: '70%', delay: 0.4, duration: 2.4, scale: 1.1 },
+    { top: '76%', delay: 1.0, duration: 2.9, scale: 1.2 },
+    { top: '82%', delay: 0.8, duration: 2.7, scale: 1.3 },
+    { top: '88%', delay: 1.6, duration: 2.2, scale: 1.0 },
+  ];
+
+  // Scrambled Text Animation for Heading
+  const scrambleText = (target, scrambleChars, progress) => {
+    // progress: 0 (all scrambled) to 1 (all revealed)
+    const revealCount = Math.floor(target.length * progress);
+    let scrambled = '';
+    for (let i = 0; i < target.length; i++) {
+      if (target[i] === ' ' || target[i] === "'") {
+        scrambled += target[i];
+      } else if (i < revealCount) {
+        scrambled += target[i];
+      } else {
+        scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+      }
+    }
+    return scrambled;
+  };
+
+  const heading = "TechFusion'25";
+  const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  const [scrambled, setScrambled] = useState(heading);
+  const [scrambleTrigger, setScrambleTrigger] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const totalFrames = 30 + heading.length * 3;
+    let interval = setInterval(() => {
+      frame++;
+      const progress = Math.min(1, frame / totalFrames);
+      setScrambled(scrambleText(heading, scrambleChars, progress));
+      if (progress === 1) {
+        clearInterval(interval);
+        setTimeout(() => setScrambleTrigger(t => t + 1), 2000); // restart after 2s
+      }
+    }, 32);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line
+  }, [scrambleTrigger]);
+
   return (
     <div className="overflow-x-hidden">
       <div className="relative w-full flex flex-col items-center justify-center min-h-screen pt-16 pb-24 overflow-hidden text-center">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="./images/techfusion25/video2.mp4" type="video/mp4" />
-          </video>
+        {/* --- Animated Starlight Background (now only in hero section) --- */}
+        <div className="pointer-events-none absolute inset-0 w-full h-full z-0">
+          {starlights.map((star, i) => (
+            <motion.div
+              key={i}
+              initial={{ x: '-5vw', width: 8, opacity: 0, boxShadow: '0 0 16px 4px #fff8' }}
+              animate={{
+                x: '105vw',
+                width: 64 * star.scale,
+                opacity: [0, 1, 0.7, 0],
+                boxShadow: [
+                  '0 0 16px 4px #fff8',
+                  '0 0 32px 8px #fff',
+                  '0 0 24px 6px #fff8',
+                  '0 0 0px 0px #fff0',
+                ],
+              }}
+              transition={{
+                repeat: Infinity,
+                repeatType: 'loop',
+                duration: star.duration,
+                delay: star.delay,
+                ease: 'easeInOut',
+              }}
+              style={{
+                top: star.top,
+                left: 0,
+                height: 6 * star.scale,
+                borderRadius: 9999,
+                background: 'white',
+                position: 'absolute',
+                filter: 'blur(0.5px)',
+                zIndex: 1,
+              }}
+            />
+          ))}
         </div>
+        {/* --- End Animated Starlight --- */}
+    {/* Background video removed as requested */}
 
         <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-8 animate-fade-in-up w-full">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white font-tech drop-shadow mb-4">
-            TechFusion'25
+            {scrambled}
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white opacity-70 mt-2">
             The Festival Of Next Generation Thinkers
@@ -133,7 +247,7 @@ const TechFusion25 = () => {
                 {/* Days */}
                 <div className="flex flex-col items-center">
                   <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    {timeLeft.days}
+                    <FlipDigit value={String(timeLeft.days).padStart(2, '0')} />
                   </div>
                   <span className="mt-2 text-xs md:text-sm tracking-widest">
                     DAYS
@@ -143,7 +257,7 @@ const TechFusion25 = () => {
                 {/* Hours */}
                 <div className="flex flex-col items-center">
                   <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    {timeLeft.hours}
+                    <FlipDigit value={String(timeLeft.hours).padStart(2, '0')} />
                   </div>
                   <span className="mt-2 text-xs md:text-sm tracking-widest">
                     HRS
@@ -153,7 +267,7 @@ const TechFusion25 = () => {
                 {/* Minutes */}
                 <div className="flex flex-col items-center">
                   <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    {timeLeft.minutes}
+                    <FlipDigit value={String(timeLeft.minutes).padStart(2, '0')} />
                   </div>
                   <span className="mt-2 text-xs md:text-sm tracking-widest">
                     MIN
@@ -163,7 +277,7 @@ const TechFusion25 = () => {
                 {/* Seconds */}
                 <div className="flex flex-col items-center">
                   <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    {timeLeft.seconds}
+                    <FlipDigit value={String(timeLeft.seconds).padStart(2, '0')} />
                   </div>
                   <span className="mt-2 text-xs md:text-sm tracking-widest">
                     SEC
