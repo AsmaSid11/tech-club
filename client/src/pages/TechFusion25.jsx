@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import data from "../../public/json/events.json";
@@ -55,22 +54,8 @@ const TechFusion25 = () => {
   const navigate = useNavigate();
   const [highlightImages, setHighlightImages] = useState([]);
   const [highlightsLoading, setHighlightsLoading] = useState(true);
-  const listRef = useRef(null);
 
-  const scrollByAmount = (direction = "next") => {
-    const el = listRef.current;
-    if (!el) return;
-    const firstCard = el.querySelector('[data-card]');
-    let amount = Math.floor(el.clientWidth * 0.8);
-    if (firstCard) {
-      const cardRect = firstCard.getBoundingClientRect();
-      amount = Math.floor(cardRect.width + 24);
-    }
-    el.scrollBy({ left: amount * (direction === "next" ? 1 : -1), behavior: "smooth" });
-  };
-
-  const next = () => scrollByAmount("next");
-  const prev = () => scrollByAmount("prev");
+  // carousel helpers removed — events are displayed in a responsive grid
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -344,67 +329,60 @@ const TechFusion25 = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="relative w-full max-w-6xl">
-            <button
-              onClick={prev}
-              aria-label="previous"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20 md:hidden"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="next"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-fuchsia-500/70 hover:bg-fuchsia-500 text-white p-2 rounded-full z-20 md:hidden"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+          <div className="relative w-full">
+            {/* arrows hidden because events are displayed in a responsive grid */}
+            <button className="hidden" aria-hidden="true" />
 
-            {/* Scrollable container with snap */}
-            <div
-              ref={listRef}
-              className="overflow-x-auto no-scrollbar scroll-pl-6 scroll-smooth px-4"
-              style={{ WebkitOverflowScrolling: "touch" }}
-            >
-              <div className="flex gap-6 items-stretch w-max snap-x snap-mandatory md:w-full md:justify-center">
-                {events.map((ev) => (
-                  <div
+            {/* Events: horizontal snap on small, 2-up grid on md+ */}
+            <div className="w-full px-4">
+              <div className="flex gap-6 items-stretch snap-x snap-mandatory overflow-x-auto no-scrollbar md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:snap-none">
+                {events.map((ev, idx) => (
+                  <motion.div
                     key={ev.id}
-            data-card
-              className="snap-center flex-shrink-0 w-[86%] sm:w-[52%] md:w-[44%] lg:w-[36%] xl:w-[30%] 2xl:w-[26%] relative event-card flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-3 sm:p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 min-h-[320px] overflow-hidden"
+                    data-card
+                    variants={cardVariants}
+                    custom={idx}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.6 }}
+                    className="snap-center flex-shrink-0 w-[86%] sm:w-[52%] md:w-full relative event-card flex flex-col md:flex-row bg-white/10 backdrop-blur-sm rounded-xl shadow-xl p-3 sm:p-6 border border-fuchsia-300 transition-all duration-300 hover:shadow-fuchsia-500/40 overflow-hidden"
                   >
-                    <div className="flex-grow">
+                    {/* Image column */}
+                    <div className="flex-shrink-0 w-full md:w-1/2 lg:w-2/5">
                       <img
-                        className="w-full h-44 sm:h-52 md:h-48 lg:h-56 object-cover rounded-lg mb-4"
+                        className="w-full h-36 sm:h-44 md:h-40 lg:h-48 object-contain bg-black/20 rounded-lg p-2"
                         src={ev.image}
                         alt={ev.name}
                         loading="eager"
                       />
-                      <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
-                        {ev.name}
-                      </h3>
-                      <div className="flex flex-col gap-2">
-                        <p className="text-gray-200 text-sm font-medium">
-                          <span className="font-semibold text-fuchsia-300">
-                            Time:
-                          </span>{" "}
-                          {ev.start_time} - {ev.end_time}
-                        </p>
-                        <p className="text-gray-200 text-sm font-medium">
-                          <span className="font-semibold text-fuchsia-300">
-                            Venue:
-                          </span>{" "}
-                          {ev.venue}
-                        </p>
+                    </div>
+
+                    {/* Details column */}
+                    <div className="flex-1 pl-0 md:pl-6 mt-3 md:mt-0 md:pl-6 flex flex-col justify-between text-left gap-2">
+                      <div>
+                        <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
+                          {ev.name}
+                        </h3>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-gray-200 text-sm font-medium">
+                            <span className="font-semibold text-fuchsia-300">Time:</span> {ev.start_time} - {ev.end_time}
+                          </p>
+                          <p className="text-gray-200 text-sm font-medium">
+                            <span className="font-semibold text-fuchsia-300">Venue:</span> {ev.venue}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 md:mt-6">
+                        <button
+                          onClick={() => navigate(`/techfusion25/events/${ev.id}`)}
+                          className="inline-block w-full md:w-auto px-4 py-2 text-center rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200"
+                        >
+                          View Details
+                        </button>
                       </div>
                     </div>
-                    <button
-                      onClick={() => navigate(`/techfusion25/events/${ev.id}`)}
-                      className="inline-block w-full mt-4 px-4 py-2 text-center rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200"
-                    >
-                      View Details
-                    </button>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
