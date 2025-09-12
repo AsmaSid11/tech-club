@@ -6,13 +6,13 @@
     "day": 1,
     "date": "12th September",
     "start_time": "5:00 PM",
-    "end_time": "6:00 AM",
-    "venue": "L6",
+    "end_time": "6:00 PM",
+    "venue": "Lecture Hall 6",
     "event_type": "Competition",
     "lead": "Nitin",
     "co_leads": ["Aditya"],
     "google_link": "https://forms.gle/uuCfsjv6B6dqKzrk6",
-  "image": "../images/posters/PromptCraft.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 2,
@@ -22,12 +22,12 @@
     "date": "12th September",
     "start_time": "5:00 PM",
     "end_time": "6:00 PM",
-    "venue": "L4",
+    "venue": "Lecture Hall 4",
     "event_type": "Quiz",
     "lead": "Mehak",
     "co_leads": [],
     "google_link": "https://forms.gle/oiKB8UTNY8Pok7ZH9",
-    "image": "../images/posters/Who am i_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 3,
@@ -37,12 +37,12 @@
     "date": "12th September",
     "start_time": "6:00 PM",
     "end_time": "7:00 PM",
-    "venue": "L7",
+    "venue": "Lecture Hall 7",
     "event_type": "Competition",
     "lead": "Asma",
     "co_leads": ["Aqsa"],
     "google_link": "https://forms.gle/bJrxbWPVtXMCWqSK8",
-    "image": "../images/posters/TypingContest_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 4,
@@ -52,12 +52,12 @@
     "date": "12th September",
     "start_time": "6:00 PM",
     "end_time": "7:00 PM",
-    "venue": "L5",
+    "venue": "Lecture Hall 5",
     "event_type": "Competition",
     "lead": "Divyanshu",
     "co_leads": [],
     "google_link": "https://forms.gle/WZs5J95VM9a1apfU7",
-  "image": "../images/posters/photopedia.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 5,
@@ -67,12 +67,12 @@
     "date": "13th September",
     "start_time": "9:00 AM",
     "end_time": "10:00 AM",
-    "venue": "L5",
+    "venue": "Lecture Hall 5",
     "event_type": "Quiz",
     "lead": "Tehseen",
     "co_leads": ["Asma"],
     "google_link": "https://forms.gle/UUjZo6cnj9dhvkXo7",
-  "image": "../images/posters/guesstheProgLang.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 6,
@@ -82,12 +82,12 @@
     "date": "13th September",
     "start_time": "9:00 AM",
     "end_time": "10:00 AM",
-    "venue": "L6",
+    "venue": "Lecture Hall 6",
     "event_type": "Workshop",
     "lead": "Ashvick",
     "co_leads": [],
     "google_link": "https://forms.gle/heKTJ6zD3KrtcKAR6",
-    "image": "../images/posters/Drone(workshop)_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 7,
@@ -97,12 +97,12 @@
     "date": "13th September",
     "start_time": "10:00 AM",
     "end_time": "3:00 PM",
-    "venue": "L4",
+    "venue": "Lecture Hall 4",
     "event_type": "Hackathon",
     "lead": "Riza",
     "co_leads": ["Muizz", "Asma"],
     "google_link": "https://forms.gle/4x1zzjwXL3Z196V36",
-    "image": "../images/posters/5hourforge.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 8,
@@ -112,12 +112,12 @@
     "date": "13th September",
     "start_time": "10:00 AM",
     "end_time": "12:00 PM",
-    "venue": "L6",
+    "venue": "Lecture Hall 6",
     "event_type": "Competition",
     "lead": "Jatin",
     "co_leads": ["Hriday Raj"],
     "google_link": "https://forms.gle/vAsCJHVCuynP47zq9",
-  "image": "../images/posters/CadAThon.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 9,
@@ -132,22 +132,22 @@
     "lead": "Aman Kumar",
     "co_leads": [],
     "google_link": "https://forms.gle/Gpg56uHvzo3SBRT99",
-    "image": "../images/posters/ObjAvoidance_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 10,
-    "name": "Graphic Design",
+    "name": "Graphic Design Competition",
     "description": "A graphic design competition to create visually appealing and effective designs using various tools and techniques.",
     "day": 2,
     "date": "13th September",
     "start_time": "12:00 PM",
     "end_time": "1:00 PM",
-    "venue": "L6",
+    "venue": "Lecture Hall 6",
     "event_type": "Competition",
     "lead": "Tejal",
     "co_leads": ["Ankita"],
     "google_link": "https://forms.gle/9h2z8VhFZxx1hjwk8",
-  "image": "../images/techfusion25/Techfusionposter-main.jpg"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 11,
@@ -162,7 +162,7 @@
     "lead": "Aman Kumar",
     "co_leads": ["Harshita"],
     "google_link": "https://forms.gle/g186e923xUpeRVvv6",
-  "image": "../images/posters/LineRobo.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 12,
@@ -177,7 +177,7 @@
     "lead": "Ashutosh",
     "co_leads": [],
     "google_link": "https://forms.gle/dsMW27BrVz1pZoiV7",
-    "image": "../images/posters/BridgeBuild_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 13,
@@ -192,7 +192,7 @@
     "lead": "Tushar Kumar",
     "co_leads": [],
     "google_link": "https://forms.gle/eQgpqYSq9BvCD4m6A",
-  "image": "../images/posters/robowar.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 14,
@@ -202,12 +202,12 @@
     "date": "13th September",
     "start_time": "3:30 PM",
     "end_time": "5:00 PM",
-    "venue": "L6",
+    "venue": "Lecture Hall 6",
     "event_type": "Competition",
     "lead": "Ashutosh",
     "co_leads": ["Harshita"],
     "google_link": "https://forms.gle/6CW5yArpHbKEGw7u5",
-    "image": "../images/posters/CODECLash_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 15,
@@ -217,12 +217,12 @@
     "date": "13th September",
     "start_time": "4:00 PM",
     "end_time": "5:30 PM",
-    "venue": "L6",
+    "venue": "Lecture Hall 6",
     "event_type": "Competition",
     "lead": "Teja",
     "co_leads": ["Abhay"],
     "google_link": "https://forms.gle/QU9s5MUXqkye7k197",
-    "image": "../images/posters/CodeMania_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   },
   {
     "id": 16,
@@ -232,11 +232,11 @@
     "date": "13th September",
     "start_time": "5:30 PM",
     "end_time": "7:00 PM",
-    "venue": "L7",
+    "venue": "Lecture Hall 7",
     "event_type": "Competition",
     "lead": "Tushar Kumar",
     "co_leads": ["Ashvick"],
     "google_link": "https://forms.gle/4eZrhc4LCTCU9A2dA",
-    "image": "../images/posters/Drone-Sim_page-0001.webp"
+    "image": "../images/techfusion25/Techfusionposter-main.jpg"
   }
 ]
