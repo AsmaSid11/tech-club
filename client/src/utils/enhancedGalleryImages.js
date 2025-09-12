@@ -30,7 +30,7 @@ export const getAllGalleryImages = async () => {
   // Check each pattern with each extension
   for (const pattern of imagePatterns) {
     for (const ext of extensions) {
-      const imagePath = `/images/gallery/${pattern}.${ext}`;
+    const imagePath = `/images/gallery/${pattern}.${ext}`;
       const isValid = await validateImage(imagePath);
       if (isValid) {
         const imageId = pattern.toString().match(/^\d+$/) ? parseInt(pattern) : pattern;
@@ -38,7 +38,7 @@ export const getAllGalleryImages = async () => {
           src: imagePath,
           alt: `Tech Club Gallery - ${pattern}`,
           id: imageId,
-          filename: `${pattern}.${ext}`
+      filename: `${pattern}.${ext}`
         });
         break; // Found a valid extension for this pattern, move to next
       }
@@ -65,4 +65,32 @@ export const getAllGalleryImages = async () => {
 };
 
 // Keep the original function for backward compatibility
+// Helper to get images specifically from /images/gallery2/ (keeps same pattern logic)
+export const getGallery2Images = async () => {
+  const images = [];
+  const extensions = ['png', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG', 'JPEG', 'WEBP'];
+  // Only check the actual gallery2 numeric range (1-14) to avoid duplicate entries
+  const patterns = Array.from({ length: 14 }, (_, i) => `${i + 1}`);
+
+  for (const pattern of patterns) {
+    for (const ext of extensions) {
+      const imagePath = `/images/gallery2/${pattern}.${ext}`;
+      const isValid = await validateImage(imagePath);
+      if (isValid) {
+        const imageId = pattern.toString().match(/^\d+$/) ? parseInt(pattern) : pattern;
+        images.push({
+          src: imagePath,
+          alt: `Tech Club Gallery2 - ${pattern}`,
+          id: imageId,
+          filename: `${pattern}.${ext}`,
+          origin: 'gallery2'
+        });
+        break;
+      }
+    }
+  }
+
+  return images.sort((a, b) => (a.id || '').toString().localeCompare((b.id || '').toString()));
+};
+
 export const getValidGalleryImages = getAllGalleryImages;

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from 'framer-motion';
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import data from "../../public/json/events.json";
 
 
@@ -18,6 +18,7 @@ const icons = {
 const TechEvent = () => {
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const event = data[parseInt(id) - 1] || {};
 
   // Normalize image path coming from public/json/events.json
@@ -27,6 +28,17 @@ const TechEvent = () => {
   return (
   <div className="flex flex-col min-h-screen bg-gray-950 text-white font-sans antialiased overflow-hidden">
       <main className="flex-1 max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12">
+        {/* Back button - navigates to previous page */}
+        <div className="mb-6">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/5 hover:bg-white/10 text-fuchsia-300 text-sm font-medium transition"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+        </div>
         <div className="flex flex-col lg:flex-row lg:gap-12 items-start">
           <div className="lg:w-2/3 w-full mb-8 lg:mb-0">
             {/* Event Header - responsive for portrait posters */}
