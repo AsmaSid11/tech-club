@@ -1,44 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import data from "../../public/json/events.json";
-
-// Simple FlipDigit for calendar-style flip
-  const FlipDigit = ({ value }) => {
-    const [prev, setPrev] = useState(value);
-    const [flipping, setFlipping] = useState(false);
-    useEffect(() => {
-      if (value !== prev) {
-        setFlipping(true);
-        const timeout = setTimeout(() => {
-          setFlipping(false);
-          setPrev(value);
-        }, 700);
-        return () => clearTimeout(timeout);
-      }
-    }, [value, prev]);
-    return (
-      <span className="inline-block relative w-[2em] h-[1.4em] align-middle select-none" style={{ perspective: 1800 }}>
-        <motion.span
-          key={value}
-          initial={{ rotateX: 180, opacity: 0.15, scale: 0.88, boxShadow: '0 16px 40px #fff', background: '#fff8' }}
-          animate={{ rotateX: 0, opacity: 1, scale: 1.08, boxShadow: '0 2px 16px #fff6', background: 'transparent' }}
-          transition={{ duration: 0.7, type: 'spring', stiffness: 120, damping: 14 }}
-          className="absolute inset-0 flex items-center justify-center w-full h-full text-inherit rounded shadow-2xl"
-          style={{ willChange: 'transform,opacity,box-shadow' }}
-        >
-          {value}
-        </motion.span>
-        {!flipping && (
-          <span className="opacity-0 absolute inset-0 flex items-center justify-center w-full h-full">{prev}</span>
-        )}
-      </span>
-    );
-  };
-
-
-const EVENT_DATE = new Date("2025-09-12T09:00:00");
 
 const eventsJson = data;
 
@@ -52,16 +16,14 @@ const events = Array.from({ length: 2 }, (_, i) => ({
 }));
 const TechFusion25 = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [highlightImages, setHighlightImages] = useState([]);
   const [highlightsLoading, setHighlightsLoading] = useState(true);
+  // custom button background color (default deep plum) and hover shade
+  const [viewHighlightsBg, setViewHighlightsBg] = useState('#3b1033');
 
   // carousel helpers removed — events are displayed in a responsive grid
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // no countdown needed anymore; event completed
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: (i) => ({
@@ -70,23 +32,7 @@ const TechFusion25 = () => {
       transition: { delay: i * 0.2, type: "spring", stiffness: 60 },
     }),
   };
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date();
-      const diff = EVENT_DATE - now;
-      if (diff > 0) {
-        setTimeLeft({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((diff / (1000 * 60)) % 60),
-          seconds: Math.floor((diff / 1000) % 60),
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  // removed countdown timer effect
 
   useEffect(() => {
     setHighlightsLoading(true);
@@ -210,56 +156,94 @@ const TechFusion25 = () => {
         {/* --- End Animated Starlight --- */}
     {/* Background video removed as requested */}
 
-        <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-8 animate-fade-in-up w-full">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white font-tech drop-shadow mb-4">
+  <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-8 animate-fade-in-up w-full max-w-6xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white font-tech drop-shadow mb-4 leading-tight">
             {scrambled}
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white opacity-70 mt-2">
             The Festival Of Next Generation Thinkers
           </p>
 
-          {/* Countdown placed inside hero and made responsive */}
-          <div className="mt-8 flex flex-wrap gap-4 justify-center items-center text-base sm:text-lg font-bold text-white w-full px-4">
-            <div className="flex items-center justify-center">
-              <div className="flex gap-4 md:gap-6 text-white font-bold text-3xl md:text-5xl">
-                {/* Days */}
-                <div className="flex flex-col items-center">
-                  <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    <FlipDigit value={String(timeLeft.days).padStart(2, '0')} />
-                  </div>
-                  <span className="mt-2 text-xs md:text-sm tracking-widest">
-                    DAYS
-                  </span>
-                </div>
+          {/* Event completed banner */}
+          <div className="mt-8 w-full px-4">
+              <div className="relative max-w-5xl mx-auto rounded-2xl p-4 sm:p-6 overflow-hidden">
+              <div aria-hidden className="pointer-events-none absolute -left-20 -top-16 w-64 h-64  rounded-full filter blur-3xl opacity-35" />
+              <div aria-hidden className="pointer-events-none absolute -right-24 bottom-[-20px] w-56 h-56 bg-gradient-to-tr from-indigo-500/18 via-fuchsia-500/10 to-transparent rounded-full filter blur-2xl opacity-30" />
 
-                {/* Hours */}
-                <div className="flex flex-col items-center">
-                  <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    <FlipDigit value={String(timeLeft.hours).padStart(2, '0')} />
-                  </div>
-                  <span className="mt-2 text-xs md:text-sm tracking-widest">
-                    HRS
-                  </span>
-                </div>
+              <div className="relative z-10 bg-white/40 rounded-2xl backdrop-blur-md shadow-sm p-6 md:p-8 border-0">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">TechFusion'25 — Successfully Completed</h2>
+                    <p className="mt-2 text-gray-700 max-w-xl text-sm md:text-base">Thanks to everyone who participated — it was a great two-day festival of ideas, workshops, competitions, and collaboration. Relive the moments and explore the outcomes below.</p>
 
-                {/* Minutes */}
-                <div className="flex flex-col items-center">
-                  <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    <FlipDigit value={String(timeLeft.minutes).padStart(2, '0')} />
-                  </div>
-                  <span className="mt-2 text-xs md:text-sm tracking-widest">
-                    MIN
-                  </span>
-                </div>
+                    <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:gap-3 md:hidden">
+                      <button
+                        onClick={() => {
+                          if (location.pathname === '/techfusion25') {
+                            const el = document.getElementById('highlights');
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                          } else {
+                            navigate('/techfusion25#highlights');
+                          }
+                        }}
+                        onMouseEnter={() => setViewHighlightsBg('#5a1f55')}
+                        onMouseLeave={() => setViewHighlightsBg('#521046ff')}
+                        style={{ backgroundColor: viewHighlightsBg }}
+                        className="w-full sm:w-auto inline-flex items-center gap-2 px-6 py-2 rounded-lg text-white font-semibold shadow-md transform transition"
+                      >
+                        View Highlights
+                      </button>
 
-                {/* Seconds */}
-                <div className="flex flex-col items-center">
-                  <div className="bg-white/30 text-white px-4 py-3 md:px-6 md:py-4 rounded-lg shadow-lg">
-                    <FlipDigit value={String(timeLeft.seconds).padStart(2, '0')} />
+                      <button
+                        onClick={() => navigate('/techfusion25/events')}
+                        className="w-full sm:w-auto inline-flex items-center gap-2 px-6 py-2 rounded-lg border border-gray-300 text-gray-900 font-medium bg-white/60 hover:bg-white/80 transition mt-3 sm:mt-0"
+                      >
+                        Events Archive
+                      </button>
+                    </div>
+                    {/* Centered buttons for md+ screens */}
+                    <div className="hidden md:flex md:justify-center md:gap-3 mt-6">
+                      <button
+                        onClick={() => {
+                          if (location.pathname === '/techfusion25') {
+                            const el = document.getElementById('highlights');
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                          } else {
+                            navigate('/techfusion25#highlights');
+                          }
+                        }}
+                        onMouseEnter={() => setViewHighlightsBg('#5a1f55')}
+                        onMouseLeave={() => setViewHighlightsBg('#521046ff')}
+                        style={{ backgroundColor: viewHighlightsBg }}
+                        className="inline-flex items-center gap-2 px-6 py-2 rounded-lg text-white font-semibold shadow-md transform transition"
+                      >
+                        View Highlights
+                      </button>
+
+                      <button
+                        onClick={() => navigate('/techfusion25/events')}
+                        className="inline-flex items-center gap-2 px-6 py-2 rounded-lg border border-gray-300 text-gray-900 font-medium bg-white/60 hover:bg-white/80 transition"
+                      >
+                        Events Archive
+                      </button>
+                    </div>
                   </div>
-                  <span className="mt-2 text-xs md:text-sm tracking-widest">
-                    SEC
-                  </span>
+
+                  {/* Stats */}
+                  <div className="flex-shrink-0 grid grid-cols-2 gap-4 text-center md:text-right">
+                    <div className="px-3 py-2">
+                      <div className="text-2xl sm:text-3xl font-extrabold text-gray-900">1K+</div>
+                      <div className="text-xs text-gray-600 tracking-wider mt-1">Attendees</div>
+                    </div>
+                    <div className="px-3 py-2">
+                      <div className="text-2xl sm:text-3xl font-extrabold text-gray-900">16</div>
+                      <div className="text-xs text-gray-600 tracking-wider mt-1">Events</div>
+                    </div>
+                    {/* <div className="px-3 py-2">
+                      <div className="text-2xl sm:text-3xl font-extrabold text-gray-900">150+</div>
+                      <div className="text-xs text-gray-600 tracking-wider mt-1">Projects</div>
+                    </div> */}
+                  </div>
                 </div>
               </div>
             </div>
@@ -268,7 +252,7 @@ const TechFusion25 = () => {
       </div>
 
       <div className="py-16 sm:py-24 px-6 sm:px-12 lg:px-32">
-        <div className="py-20 text-5xl text-center font-semibold text-white/70">
+        <div className="py-20 text-4xl sm:text-5xl text-center font-semibold text-white/70">
           About
         </div>
 
@@ -280,7 +264,7 @@ const TechFusion25 = () => {
             whileInView={{ x: 0, opacity: 1 }}
             exit={{ x: -200, opacity: 0 }}
             transition={{ type: "spring", stiffness: 70, damping: 20 }}
-            viewport={{ once: true, amount: 0.35 }} // <-- change here
+            viewport={{ once: true, amount: 0.35 }} 
           >
             <div className="text-lg font-lg text-white/70 ">
               Our flagship two-day intra-college tech fest brought together a
@@ -296,7 +280,7 @@ const TechFusion25 = () => {
           </motion.div>
 
           {/* Right Side - Images */}
-          <motion.div
+            <motion.div
             className="relative w-full md:w-2/5 h-[300px] md:h-[400px] rounded-2xl"
             initial={{ x: 200, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -317,7 +301,7 @@ const TechFusion25 = () => {
               src="./images/gallery/2.webp"
               alt="Overlay"
               loading="eager"
-              className="absolute md:bottom-[-40px] md:left-[-40px] bottom-[-20px] left-4 w-[120px] md:w-[150px] h-[120px] md:h-[150px] object-cover rounded-lg shadow-xl border-4 border-white"
+              className="md:absolute md:bottom-[-40px] md:left-[-40px] bottom-0 left-4 w-[100px] sm:w-[120px] md:w-[150px] h-[100px] sm:h-[120px] md:h-[150px] object-cover rounded-lg shadow-xl border-4 border-white"
             />
           </motion.div>
         </div>
@@ -404,7 +388,7 @@ const TechFusion25 = () => {
         </div>
       </div>
       {/* highlights */}
-      <div className="py-20">
+  <div id="highlights" className="py-20">
         <div className="text-center py-10 text-5xl font-bold text-white/70">
           Highlights
         </div>
@@ -432,7 +416,7 @@ const TechFusion25 = () => {
                     src={image.src}
                     alt={image.alt}
                     loading="eager"
-                    className="h-72 w-96 object-cover rounded-lg shadow-lg"
+                    className="h-56 sm:h-64 md:h-72 w-64 sm:w-80 md:w-96 object-cover rounded-lg shadow-lg"
                     onError={(e) => {
                       e.target.style.display = "none";
                     }}
