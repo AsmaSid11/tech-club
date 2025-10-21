@@ -3,45 +3,15 @@ import { motion } from 'framer-motion';
 
 const events = [
   {
-    date: 'MAY 09',
-    title: 'BUG HUNT',
-    desc: 'Find and fix bugs in provided code challenges to win exciting prizes.',
-    link: '#',
+    date: 'OCT 28',
+    title: 'TECH-N-CHAI',
+    desc: 'Grab your chai, pull up a chair, and dive into conversations about AI, innovation, research, and tech journeys.',
+    link: 'https://forms.gle/vzHtdcHK58Kqfvrh6',
   },
   {
-    date: 'MAY 09',
-    title: 'EV DEBATE',
-    desc: 'Participate in an engaging debate on the future of electric vehicles.',
-    link: '#',
-  },
-  {
-    date: 'MAY 16',
-    title: 'THE MYSTERY TECH BOX',
-    desc: 'Create innovative solutions with mystery components revealed on the day.',
-    link: '#',
-  },
-  {
-    date: 'MAY 23',
-    title: 'ALUMNI TECH TALKS',
-    desc: 'Connect with NIT Srinagar alumni working in leading tech companies.',
-    link: '#',
-  },
-  {
-    date: 'MAY 30',
-    title: 'CODE BLACKOUT',
-    desc: 'Code against the clock with periodic challenges and handicaps.',
-    link: '#',
-  },
-  {
-    date: 'JUNE 06',
-    title: 'BOT FIGHTS',
-    desc: 'Design and program bots to compete in exciting challenge arenas.',
-    link: '#',
-  },
-  {
-    date: 'JUNE 13',
-    title: 'SHARK TANK NIT SRINAGAR',
-    desc: 'Pitch your tech startup ideas to a panel of investors and mentors.',
+    date: 'OCT 31',
+    title: 'GAME NIGHT',
+    desc: 'Unwind with fellow tech enthusiasts over classic and fun games.',
     link: '#',
   },
 ];
@@ -109,7 +79,7 @@ export default function Events() {
                 href={event.link}
                 className="event-link inline-block mt-auto px-4 py-2 rounded-lg border border-fuchsia-500 text-fuchsia-300 font-medium bg-fuchsia-900/10 hover:bg-fuchsia-600/20 hover:text-fuchsia-100 transition-all duration-200 shadow-fuchsia-900/20 shadow-sm"
               >
-                Learn More
+                Register
               </a>
             </motion.div>
           ))}
