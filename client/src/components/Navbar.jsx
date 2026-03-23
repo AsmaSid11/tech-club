@@ -4,9 +4,9 @@ import { useState } from 'react'
 const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/#about', label: 'About' },
-  { to: '/techfusion25', label: "TechFusion '25" },
-  { to: '/gallery', label: 'Gallery' },
   { to: '/events', label: 'Events' },
+  { to: '/archives', label: 'Archives' },
+  { to: '/gallery', label: 'Gallery' },
   { to: '/projects', label: 'Projects' },
   { to: '/past-members', label: 'Past Members' },
   { to: '/team', label: 'Team' },

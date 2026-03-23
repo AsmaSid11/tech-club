@@ -2,13 +2,11 @@ import Navbar from './components/Navbar'
 import { useEffect } from 'react'
 import Home from './pages/Home'
 import Events from './pages/Events'
+import Archives from './pages/Archives'
 import Projects from './pages/Projects'
 import PastMembers from './pages/PastMembers'
 import Team from './pages/Team'
 import Gallery from './pages/Gallery'
-import TechFusion25 from './pages/TechFusion25';
-import TechEvent from './pages/TechEvent'
-import TechFusionEvents from './pages/TechFusionEvents';
 import Footer from './components/Footer';
 import { Routes, Route, useLocation } from 'react-router-dom'
 
@@ -53,21 +51,16 @@ export default function App() {
         <Navbar />
 <main
   className={`flex-1 pt-24 transition-all duration-300 ${
-    location.pathname.startsWith("/techfusion25")
-      ? "w-full"
-      : "px-2 sm:px-6 md:px-10 max-w-7xl mx-auto"
+    "px-2 sm:px-6 md:px-10 max-w-7xl mx-auto"
   }`}
 >          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/archives" element={<Archives />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/past-members" element={<PastMembers />} />
             <Route path="/team" element={<Team />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/techfusion25" element={<TechFusion25 />} />
-            <Route path="/techfusion25/events" element={<TechFusionEvents />}
-             />
-             <Route path="/techfusion25/events/:id" element={<TechEvent/>}></Route>
           </Routes>
         </main>
         <Footer />

@@ -67,7 +67,7 @@ export default function Home() {
             <span className="mb-5 text-5xl text-violet-300 group-hover:text-violet-200 transition-colors group-hover:animate-bounce">📅</span>
             <div className="w-12 h-1 bg-gradient-to-r from-violet-300 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
             <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Events</h3>
-            <p className="text-violet-200 text-center text-base">Check out our upcoming and past events, workshops, and hackathons.</p>
+            <p className="text-violet-200 text-center text-base">Check upcoming events and archived editions from TechVaganza, TechFusion, and more.</p>
             <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-violet-300 group-hover:shadow-[0_0_40px_0_rgba(106,30,85,0.3)] transition-all duration-300"></div>
           </Link>
           {/* Gallery */}
