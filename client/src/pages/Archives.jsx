@@ -30,6 +30,19 @@ const pastEditions = [
     ],
   },
   {
+    title: 'Cursor Hackathon Kashmir',
+    type: 'Collaborative Hackathon',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    ),
+    description: 'Kashmir\'s largest hackathon, hosted at NIT Srinagar on 28–29 March 2026 with Cursor Ambassador Mohtasham Madani and the Technology Club. Themed "Build for the Next Billion," 125+ teams used Cursor, OpenAI, Convex, and v0 by Vercel to ship solutions in healthcare, education, and agriculture. Judges from NVIDIA, Oracle, LinkedIn, and Dell EMC evaluated the finals.',
+    editions: [
+      { year: 'Cursor Hackathon Kashmir 2026' },
+    ],
+  },
+  {
     title: 'CodeDay Kashmir',
     type: 'Collaborative Event',
     icon: (
@@ -37,9 +50,23 @@ const pastEditions = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20v-6h4v6m0-11V3m0 0h-3m3 0h3m-6 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    description: 'A landmark event that brings together passionate students from across the valley for a full day of coding, creativity, and collaboration. Participants engage in workshops, brainstorming sessions, and hands-on coding to build innovative projects, share ideas, and celebrate the spirit of technology and community.',
+    description: 'A free 24-hour student hackathon run with Team CodeDay, aimed at school and first-year undergrad students across the valley. Workshops cover Scratch, GitHub, and LLMs, then teams stay overnight to build apps and games. The 2025 inaugural edition (12–13 July) was the first of its kind in Kashmir; 2026 (23–24 May) sold out weeks in advance with 150+ participants.',
     editions: [
+      { year: 'CodeDay Kashmir 2026' },
       { year: 'CodeDay Kashmir 2025' },
+    ],
+  },
+  {
+    title: 'Buildify Kashmir',
+    type: 'Collaborative Hackathon',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+      </svg>
+    ),
+    description: 'A two-day, execution-first hackathon held on 9–10 May 2026, organised by Buildify and the Technology Club under the theme "Making Business Future-Proof." Over 48 hours, teams shipped working products rather than pitch decks. Highlights included Curtain AI (Best Technical Team) and Hunarmand, a platform for Kashmiri arts and crafts (Best Idea & Presentation).',
+    editions: [
+      { year: 'Buildify Kashmir 2026' },
     ],
   },
   {
@@ -50,7 +77,7 @@ const pastEditions = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
     ),
-    description: 'Consistent coding challenges, brainstorming sessions, and interactive meetups held every week. These events create a culture of continuous learning, where members sharpen their skills, share knowledge, and stay connected with the latest in technology.',
+    description: 'Coding challenges, brainstorming sessions, and interactive meetups that run through the semester. A new weekly series is returning soon — past sessions lived here as a culture of continuous learning, skill-sharing, and staying current with tech.',
     editions: [
       { year: 'Weekly Tech Sessions' },
     ],
@@ -163,7 +190,7 @@ export default function Archives() {
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-200 mb-3">More Coming Soon</h3>
             <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
-              Robonox and additional collaborative event archives are being documented. We'll add full galleries, competition results, and participant highlights as they become available.
+              Full galleries, Drive albums, competition results, and participant highlights will land here as we document each edition. Robonox and other collaborative events are next.
             </p>
           </div>
         </motion.div>

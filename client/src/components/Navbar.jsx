@@ -7,7 +7,6 @@ const navLinks = [
   { to: '/events', label: 'Events' },
   { to: '/archives', label: 'Archives' },
   { to: '/gallery', label: 'Gallery' },
-  { to: '/projects', label: 'Projects' },
   { to: '/past-members', label: 'Past Members' },
   { to: '/team', label: 'Team' },
 ];

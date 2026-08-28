@@ -81,15 +81,36 @@ let hard_coded_data = [
     role:'Core Member',
     year:'2022',
     src: syed
+  },
+  {
+    initials:'FM',
+    name:'FAHAD MAKDOOMI',
+    role:'Core Member',
+    year:'2021',
+    src: '/images/team/Fahad.webp'
+  },
+  {
+    initials:'TK',
+    name:'TEJAL KUMARI',
+    role:'Core Member',
+    year:'2022',
+    src: null
+  },
+  {
+    initials:'A',
+    name:'ASHVICK',
+    role:'Core Member',
+    year:'2022',
+    src: '/images/team/ashvick.webp'
   }
 ];
 
-const pastMembers = Array.from({ length: 10 }, (_, i) => ({
-  initials: hard_coded_data[i].initials,
-  name: hard_coded_data[i].name,
-  role: hard_coded_data[i].role ,
-  year: hard_coded_data[i].year,
-  src:hard_coded_data[i].src,
+const pastMembers = hard_coded_data.map((member) => ({
+  initials: member.initials,
+  name: member.name,
+  role: member.role,
+  year: member.year,
+  src: member.src,
 }));
 
 const cardVariants = {

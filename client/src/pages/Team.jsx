@@ -4,39 +4,6 @@ import { motion } from "framer-motion";
 
 const teamMembers = [
   { 
-    initials: 'FM', 
-    name: 'Fahad Makdoomi', 
-    role: '2021 | Core Member', 
-    image: '/images/team/Fahad.webp',
-    socialLinks: {
-      linkedin: 'https://www.linkedin.com/in/fahad-makhdoomi/',
-      // github: '',
-      // twitter: ''
-    }
-  },
-  { 
-    initials: 'TK', 
-    name: 'Tejal Kumari', 
-    role: '2022 | Core Member', 
-    image: '/images/team/tejal.webp',
-    socialLinks: {
-      linkedin: 'https://www.linkedin.com/in/tejal-kumari-3b652725b/',
-      // github: '',
-      // twitter: ''
-    }
-  },
-  { 
-    initials: 'A', 
-    name: 'Ashvick', 
-    role: '2022 | Core Member', 
-    image: '/images/team/ashvick.webp',
-    socialLinks: {
-      linkedin: 'https://www.linkedin.com/in/ashvick-bandral-7605872a8/',
-      // github: '',
-      // twitter: ''
-    }
-  },
-  { 
     initials: 'AS', 
     name: 'Asma Siddiqui', 
     role: '2023 | Core Member', 
@@ -206,7 +173,7 @@ export default function Team() {
         animate="visible"
         transition={{ delay: 0.15 }}
       >
-        Academic Year 2024-2025
+        Academic Year 2026-2027
       </motion.p>
 
       {/* Faculty Coordinator Section */}
@@ -273,7 +240,7 @@ export default function Team() {
         >
           Core Team
         </motion.h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto px-2 sm:px-4 md:px-6">
           {coreTeam.map((member, idx) => (
             <motion.div
               key={idx}

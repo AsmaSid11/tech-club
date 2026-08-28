@@ -61,13 +61,13 @@ export default function Home() {
         <div className="flex justify-center mb-10">
           <div className="h-1 w-20 bg-gradient-to-r from-violet-300 to-purple-400 rounded-full animate-pulse"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 w-full max-w-4xl">
           {/* Events */}
           <Link to="/events" className="group bg-white/5 backdrop-blur-md bg-gradient-to-br from-gray-900/80 via-violet-deep/80 to-violet-dark/80 rounded-2xl shadow-2xl p-10 flex flex-col items-center border border-violet-dark/30 hover:border-transparent hover:bg-gradient-to-tr hover:from-violet-dark/60 hover:to-violet-deep/60 hover:shadow-violet-dark/40 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-violet-dark/30 relative overflow-hidden">
             <span className="mb-5 text-5xl text-violet-300 group-hover:text-violet-200 transition-colors group-hover:animate-bounce">📅</span>
             <div className="w-12 h-1 bg-gradient-to-r from-violet-300 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
             <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Events</h3>
-            <p className="text-violet-200 text-center text-base">Check upcoming events and archived editions from TechVaganza, TechFusion, and more.</p>
+            <p className="text-violet-200 text-center text-base">See what's coming next, including weekly sessions, and browse archived editions from Cursor Hackathon, Buildify, CodeDay Kashmir, and more.</p>
             <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-violet-300 group-hover:shadow-[0_0_40px_0_rgba(106,30,85,0.3)] transition-all duration-300"></div>
           </Link>
           {/* Gallery */}
@@ -76,14 +76,6 @@ export default function Home() {
             <div className="w-12 h-1 bg-gradient-to-r from-violet-300 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
             <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Gallery</h3>
             <p className="text-violet-200 text-center text-base">See memorable moments and highlights from our club activities.</p>
-            <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-violet-300 group-hover:shadow-[0_0_40px_0_rgba(106,30,85,0.3)] transition-all duration-300"></div>
-          </Link>
-          {/* Projects */}
-          <Link to="/projects" className="group bg-white/5 backdrop-blur-md bg-gradient-to-br from-gray-900/80 via-violet-deep/80 to-violet-dark/80 rounded-2xl shadow-2xl p-10 flex flex-col items-center border border-violet-dark/30 hover:border-transparent hover:bg-gradient-to-tr hover:from-violet-dark/60 hover:to-violet-deep/60 hover:shadow-violet-dark/40 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-violet-dark/30 relative overflow-hidden">
-            <span className="mb-5 text-5xl text-violet-300 group-hover:text-violet-200 transition-colors group-hover:animate-spin">💡</span>
-            <div className="w-12 h-1 bg-gradient-to-r from-violet-300 to-purple-400 rounded-full mb-5 opacity-70 group-hover:opacity-100 transition-all"></div>
-            <h3 className="text-2xl font-semibold text-white mb-3 font-tech drop-shadow">Projects</h3>
-            <p className="text-violet-200 text-center text-base">Explore innovative projects and collaborations by our members.</p>
             <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-violet-300 group-hover:shadow-[0_0_40px_0_rgba(106,30,85,0.3)] transition-all duration-300"></div>
           </Link>
         </div>

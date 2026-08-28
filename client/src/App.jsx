@@ -3,12 +3,11 @@ import { useEffect } from 'react'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import Archives from './pages/Archives'
-import Projects from './pages/Projects'
 import PastMembers from './pages/PastMembers'
 import Team from './pages/Team'
 import Gallery from './pages/Gallery'
 import Footer from './components/Footer';
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 
 export default function App() {
   const location = useLocation(); 
@@ -57,7 +56,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
             <Route path="/archives" element={<Archives />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects" element={<Navigate to="/" replace />} />
             <Route path="/past-members" element={<PastMembers />} />
             <Route path="/team" element={<Team />} />
             <Route path="/gallery" element={<Gallery />} />
