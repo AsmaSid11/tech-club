@@ -1,243 +1,243 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiX, FiChevronLeft, FiChevronRight, FiExternalLink } from 'react-icons/fi';
+import { DRIVE_LINKS, carouselImages, galleryImages, galleryEvents } from '../data/gallery';
 
 export default function Gallery() {
-  const [allImages, setAllImages] = useState([]);
-  const [images, setImages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const featured = carouselImages;
+  const [filter, setFilter] = useState('All');
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const [carouselImages, setCarouselImages] = useState([]);
-  const [expanded, setExpanded] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [paused, setPaused] = useState(false);
 
-  const INITIAL_LOAD = 6;
+  const [lightboxPool, setLightboxPool] = useState(galleryImages);
+
+  const gridImages = (() => {
+    if (filter === 'All') {
+      const take = (event) =>
+        galleryImages.filter((img) => img.event === event).slice(0, 3);
+      const recent = take('Orientation 2026');
+      const fusion = take('TechFusion 2025');
+      const club = take('Club moments');
+      const mixed = [];
+      for (let i = 0; i < 3; i += 1) {
+        if (recent[i]) mixed.push(recent[i]);
+        if (fusion[i]) mixed.push(fusion[i]);
+        if (club[i]) mixed.push(club[i]);
+      }
+      return mixed;
+    }
+    return galleryImages.filter((img) => img.event === filter).slice(0, 6);
+  })();
 
   useEffect(() => {
-    setLoading(true);
-
-    try {
-      const gallery2 = Array.from({ length: 14 }, (_, i) => ({
-        src: `/images/gallery2/${i + 1}.webp`,
-        alt: `Gallery2 Image ${i + 1}`,
-      }));
-
-      const techFusion = Array.from({ length: 16 }, (_, i) => ({
-        src: `/images/techfusion25/highlights/${i + 1}.webp`,
-        alt: `TechFusion25 Image ${i + 1}`,
-      }));
-
-      // First 4 → carousel
-      const carouselImgs = gallery2.slice(0, 4);
-      setCarouselImages(carouselImgs);
-
-      // Remaining gallery2 + techfusion → grid
-      const gridImgs = [...gallery2.slice(4), ...techFusion];
-      setAllImages([...gallery2, ...techFusion]);
-      setImages(gridImgs);
-    } catch (error) {
-      console.error('Error loading gallery images:', error);
-      setAllImages([]);
-      setImages([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    if (paused || featured.length === 0) return undefined;
+    const timer = setTimeout(() => {
+      setCarouselIndex((prev) => (prev === featured.length - 1 ? 0 : prev + 1));
+    }, 5200);
+    return () => clearTimeout(timer);
+  }, [carouselIndex, paused, featured.length]);
 
   useEffect(() => {
-    if (carouselImages.length > 0) {
-      const maxIdx = Math.max(0, carouselImages.length - 1);
-      const timer = setTimeout(() => {
-        setCarouselIndex((prevIndex) =>
-          prevIndex === maxIdx ? 0 : prevIndex + 1
-        );
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [carouselIndex, carouselImages.length]);
+    if (selectedIndex === null) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setSelectedIndex(null);
+      if (e.key === 'ArrowRight') {
+        setSelectedIndex((prev) => (prev === lightboxPool.length - 1 ? 0 : prev + 1));
+      }
+      if (e.key === 'ArrowLeft') {
+        setSelectedIndex((prev) => (prev === 0 ? lightboxPool.length - 1 : prev - 1));
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedIndex, lightboxPool.length]);
 
-  const openLightbox = (index, sourceArray) => {
-    const globalIndex = allImages.findIndex(
-      (img) => img.src === sourceArray[index].src
-    );
-    setSelectedImage(globalIndex);
+  const goCarousel = (next) => {
+    const max = featured.length - 1;
+    if (next < 0) setCarouselIndex(max);
+    else if (next > max) setCarouselIndex(0);
+    else setCarouselIndex(next);
   };
 
-  const closeLightbox = () => setSelectedImage(null);
-  const goToNext = () =>
-    setSelectedImage((prev) =>
-      prev === allImages.length - 1 ? 0 : prev + 1
-    );
-  const goToPrev = () =>
-    setSelectedImage((prev) =>
-      prev === 0 ? allImages.length - 1 : prev - 1
-    );
+  const current = featured[carouselIndex];
 
-  const handleCarouselNav = (newIndex) => {
-    const maxIndex = Math.max(0, carouselImages.length - 1);
-    if (newIndex < 0) newIndex = maxIndex;
-    else if (newIndex > maxIndex) newIndex = 0;
-    setCarouselIndex(newIndex);
+  const openLightbox = (src, pool = gridImages) => {
+    const idx = pool.findIndex((img) => img.src === src);
+    if (idx >= 0) {
+      setLightboxPool(pool);
+      setSelectedIndex(idx);
+    }
   };
 
   return (
-    <section className="py-16 text-white font-tech min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-4xl sm:text-5xl font-bold text-center text-violet-300 mb-4 drop-shadow-lg"
-          initial={{ opacity: 0, y: -30 }}
+    <section className="py-16 sm:py-20 text-white font-tech min-h-screen">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.h1
+          className="text-4xl sm:text-5xl font-bold text-center text-violet-300 mb-10 drop-shadow-lg"
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, type: 'spring' }}
+          transition={{ duration: 0.6, type: 'spring' }}
         >
-          Gallery
-        </motion.h2>
-        <motion.p
-          className="text-lg sm:text-xl text-center text-violet-200 mb-12 font-medium"
-          initial={{ opacity: 0, y: -30 }}
+          Event Gallery
+        </motion.h1>
+
+        <motion.div
+          className="relative h-[22rem] sm:h-[28rem] md:h-[34rem] w-full mb-5 rounded-3xl overflow-hidden border border-violet-dark/40 shadow-[0_0_40px_rgba(106,30,85,0.25)]"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.7, type: 'spring' }}
+          transition={{ delay: 0.12 }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          Featured Moments
-        </motion.p>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.img
+              key={current?.src}
+              src={current?.src}
+              alt={current?.alt}
+              className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.55 }}
+              onClick={() => openLightbox(current.src, featured)}
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
 
-        {/* Carousel */}
-        {loading ? (
-          <div className="flex justify-center items-center h-64 sm:h-80 md:h-96 w-full mb-16 rounded-2xl bg-gray-800/50">
-            <div className="text-violet-300 text-xl">Loading gallery...</div>
-          </div>
-        ) : allImages.length > 0 ? (
-          <div className="relative h-80 sm:h-[24rem] md:h-[28rem] w-full mb-16 rounded-2xl overflow-hidden shadow-2xl shadow-violet-dark/20">
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={carouselIndex}
-                src={carouselImages[carouselIndex]?.src}
-                alt={carouselImages[carouselIndex]?.alt}
-                loading="eager"
-                className="absolute w-full h-full object-cover object-center cursor-pointer"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-                onClick={() => openLightbox(carouselIndex, carouselImages)}
-              />
-            </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <button
-              onClick={() => handleCarouselNav(carouselIndex - 1)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl hover:text-violet-300 transition-colors z-10 p-2 bg-black/30 rounded-full"
-            >
-              <FiChevronLeft />
-            </button>
-            <button
-              onClick={() => handleCarouselNav(carouselIndex + 1)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl hover:text-violet-300 transition-colors z-10 p-2 bg-black/30 rounded-full"
-            >
-              <FiChevronRight />
-            </button>
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {carouselImages.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCarouselIndex(i)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    i === carouselIndex
-                      ? 'bg-violet-300'
-                      : 'bg-white/50 hover:bg-white'
-                  }`}
-                ></button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="flex justify-center items-center h-64 sm:h-80 md:h-96 w-full mb-16 rounded-2xl bg-gray-800/50">
-            <div className="text-violet-300 text-xl">
-              No images found in gallery
-            </div>
-          </div>
-        )}
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={() => goCarousel(carouselIndex - 1)}
+            className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white text-2xl hover:bg-violet-dark/80 hover:text-violet-200 transition-colors"
+          >
+            <FiChevronLeft />
+          </button>
+          <button
+            type="button"
+            aria-label="Next slide"
+            onClick={() => goCarousel(carouselIndex + 1)}
+            className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white text-2xl hover:bg-violet-dark/80 hover:text-violet-200 transition-colors"
+          >
+            <FiChevronRight />
+          </button>
+        </motion.div>
 
-        <motion.h3
-          className="text-3xl sm:text-4xl font-bold text-center text-violet-300 mt-20 mb-4 drop-shadow-lg"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          Explore Our Moments
-        </motion.h3>
-        <div className="flex justify-center mb-12">
-          <div className="h-1 w-24 bg-gradient-to-r from-violet-300 to-purple-400 rounded-full"></div>
+        <div className="flex justify-center gap-2 mb-16">
+          {featured.map((img, i) => (
+            <button
+              key={img.src}
+              type="button"
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => setCarouselIndex(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === carouselIndex ? 'w-8 bg-violet-300' : 'w-3 bg-white/30 hover:bg-white/60'
+              }`}
+            />
+          ))}
         </div>
 
-        {/* Image Grid */}
-        <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
-          {(expanded ? images : images.slice(0, 6)).map((image, idx) => (
-            <motion.div
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+          <div className="flex flex-wrap gap-2">
+            {galleryEvents.map((event) => (
+              <button
+                key={event}
+                type="button"
+                onClick={() => {
+                  setFilter(event);
+                  setSelectedIndex(null);
+                }}
+                className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
+                  filter === event
+                    ? 'bg-white text-violet-deep'
+                    : 'bg-white/5 text-violet-200 hover:bg-white/10 border border-white/10'
+                }`}
+              >
+                {event}
+              </button>
+            ))}
+          </div>
+          <a
+            href={DRIVE_LINKS[filter]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-violet-dark to-violet-deep text-white text-xs font-semibold uppercase tracking-wider hover:scale-105 transition-transform w-fit"
+          >
+            {filter === 'All' ? 'All albums' : `${filter} album`}
+            <FiExternalLink />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          {gridImages.map((image) => (
+            <button
               key={image.src}
-              className="overflow-hidden rounded-lg shadow-lg cursor-pointer group"
-              onClick={() => openLightbox(idx, images)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: (idx % INITIAL_LOAD) * 0.15 }}
+              type="button"
+              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 group bg-black/20"
+              onClick={() => openLightbox(image.src)}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                loading="eager"
-                className="w-full h-80 sm:h-96 md:h-[28rem] object-cover object-top transition-transform duration-300 ease-in-out group-hover:scale-105"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-            </motion.div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
+            </button>
           ))}
         </div>
-
-        {images.length > 6 && (
-          <div className="text-center mt-8">
-            <motion.button
-              onClick={() => setExpanded((prev) => !prev)}
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-violet-dark to-violet-deep text-white font-semibold shadow-md hover:scale-105 transition-transform"
-            >
-              {expanded ? 'View Less' : 'View More'}
-            </motion.button>
-          </div>
-        )}
       </div>
 
       <AnimatePresence>
-        {selectedImage !== null && (
+        {selectedIndex !== null && lightboxPool[selectedIndex] && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setSelectedIndex(null)}
           >
             <button
-              className="absolute top-4 right-4 text-white text-4xl hover:text-violet-300 transition-colors"
-              onClick={closeLightbox}
+              type="button"
+              className="absolute top-4 right-4 text-white text-4xl hover:text-violet-300"
+              onClick={() => setSelectedIndex(null)}
+              aria-label="Close"
             >
               <FiX />
             </button>
             <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-violet-300 transition-colors"
-              onClick={goToPrev}
+              type="button"
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-violet-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex((prev) => (prev === 0 ? lightboxPool.length - 1 : prev - 1));
+              }}
+              aria-label="Previous"
             >
               <FiChevronLeft />
             </button>
             <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-violet-300 transition-colors"
-              onClick={goToNext}
+              type="button"
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-violet-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex((prev) =>
+                  prev === lightboxPool.length - 1 ? 0 : prev + 1
+                );
+              }}
+              aria-label="Next"
             >
               <FiChevronRight />
             </button>
             <motion.img
-              key={selectedImage}
-              src={allImages[selectedImage].src}
-              alt={allImages[selectedImage].alt}
-              loading="eager"
+              key={lightboxPool[selectedIndex].src}
+              src={lightboxPool[selectedIndex].src}
+              alt={lightboxPool[selectedIndex].alt}
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 25 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
         )}
