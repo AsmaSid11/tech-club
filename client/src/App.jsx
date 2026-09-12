@@ -8,6 +8,7 @@ import PastMembers from './pages/PastMembers';
 import Team from './pages/Team';
 import Gallery from './pages/Gallery';
 import Footer from './components/Footer';
+import ByteTheBot from './components/ByteTheBot';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <ByteTheBot />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Linkedin, Mail, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, ShieldCheck, Bot, Cpu, Sparkles, Layers } from 'lucide-react';
 
-const teamMembers = [
+const coreTeamMembers = [
   {
     initials: 'AS',
     name: 'Asma Siddiqui',
@@ -24,10 +24,13 @@ const teamMembers = [
       github: 'https://github.com/abdulmuizz0903',
     },
   },
+];
+
+const launchCodeMembers = [
   {
-    initials: 'Ak',
+    initials: 'AK',
     name: 'Animesh Kumar [IT]',
-    role: 'Core Member · Batch of 2025-29',
+    role: 'Launch Code Team · Batch of 2025-29',
     image: '/images/team/Animesh.webp',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/animesh-kumar-771b60228/',
@@ -37,13 +40,13 @@ const teamMembers = [
   {
     initials: 'VC',
     name: 'Vansh Chandana [IT]',
-    role: 'Core Member · Batch of 2025-29',
+    role: 'Launch Code Team · Batch of 2025-29',
     image: '/images/team/Vansh.webp',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/vansh-chandna-8ab11136a/',
       github: 'https://github.com/vansh100101102-debug',
     },
-  }
+  },
 ];
 
 const facultyCoordinator = {
@@ -124,19 +127,23 @@ export default function Team() {
         </div>
       </motion.div>
 
-      {/* Core Team Roster */}
-      <div style={{ marginBottom: '24px' }}>
-        <div className="section-kicker">CORE TEAM LEADERSHIP</div>
+      {/* 1. Core Members */}
+      <div className="team-wing-header simple-header">
+        <div className="team-wing-title-group">
+          <div className="section-kicker">01 — LEADERSHIP</div>
+          <h2>Core Members</h2>
+        </div>
       </div>
 
-      <div className="editorial-grid-2" style={{ maxWidth: '900px', margin: '0 auto 70px' }}>
-        {teamMembers.map((member, i) => (
+      <div className="editorial-grid-2" style={{ maxWidth: '900px', margin: '0 auto 60px' }}>
+        {coreTeamMembers.map((member, i) => (
           <motion.div
             key={member.name}
             className="member-card"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.1, duration: 0.6 }}
+            whileHover={{ y: -5 }}
           >
             <MemberAvatar src={member.image} initials={member.initials} name={member.name} />
             <h3 className="member-name">{member.name}</h3>
@@ -169,11 +176,94 @@ export default function Team() {
         ))}
       </div>
 
+      {/* 2. Launch Code Team */}
+      <div className="team-wing-header simple-header">
+        <div className="team-wing-title-group">
+          <div className="section-kicker">02 — SOFTWARE INITIATIVE</div>
+          <h2>Launch Code Team</h2>
+        </div>
+      </div>
+
+      <div className="editorial-grid-2" style={{ maxWidth: '900px', margin: '0 auto 60px' }}>
+        {launchCodeMembers.map((member, i) => (
+          <motion.div
+            key={member.name}
+            className="member-card"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 + i * 0.1, duration: 0.6 }}
+            whileHover={{ y: -5 }}
+          >
+            <MemberAvatar src={member.image} initials={member.initials} name={member.name} />
+            <h3 className="member-name">{member.name}</h3>
+            <div className="member-role">{member.role}</div>
+            <div className="social-row">
+              {member.socialLinks?.github && (
+                <a
+                  href={member.socialLinks.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-btn"
+                  aria-label={`${member.name} GitHub`}
+                >
+                  <Github size={15} />
+                </a>
+              )}
+              {member.socialLinks?.linkedin && (
+                <a
+                  href={member.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-btn"
+                  aria-label={`${member.name} LinkedIn`}
+                >
+                  <Linkedin size={15} />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* 3. Robonox Team */}
+      <div className="team-wing-header simple-header">
+        <div className="team-wing-title-group">
+          <div className="section-kicker">03 — ROBOTICS & HARDWARE</div>
+          <h2>Robonox Team</h2>
+        </div>
+      </div>
+
+      <motion.div
+        className="robonox-preview-card"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        <div className="robonox-preview-inner">
+          <div className="robonox-icon-orb">
+            <Bot size={30} />
+          </div>
+          <div className="robonox-preview-text">
+            <div className="robonox-status-pill">
+              <span className="pulse-indicator" /> ROSTER UPDATING · COMING SOON
+            </div>
+            <h3>Robotics & Hardware Team</h3>
+            <div className="robonox-tags">
+              <span><Cpu size={12} /> ESP32 & Embedded</span>
+              <span><Bot size={12} /> Autonomous Bots</span>
+              <span><Layers size={12} /> Drones & UAVs</span>
+              <span><Sparkles size={12} /> RoboWars</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Bottom CTA to Past Members */}
       <div
         style={{
           borderTop: '1px solid rgba(255,255,255,0.1)',
           paddingTop: '50px',
+          marginTop: '65px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',

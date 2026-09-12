@@ -85,20 +85,40 @@ export default function Archives() {
                     </span>
                   ))}
                 </div>
-                <Link
-                  to="/gallery"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontFamily: 'DM Mono',
-                    fontSize: '11px',
-                    color: '#ddd',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Visuals <ArrowUpRight size={14} />
-                </Link>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  {item.driveLink && (
+                    <a
+                      href={item.driveLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        fontFamily: 'DM Mono',
+                        fontSize: '11px',
+                        color: '#38bdf8',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      Drive <ArrowUpRight size={13} />
+                    </a>
+                  )}
+                  <Link
+                    to="/gallery"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontFamily: 'DM Mono',
+                      fontSize: '11px',
+                      color: '#ddd',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Visuals <ArrowUpRight size={14} />
+                  </Link>
+                </div>
               </div>
             </motion.article>
           );
