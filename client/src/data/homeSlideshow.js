@@ -1,5 +1,12 @@
 // Complete list of all images from /images/gallery/ and /images/gallery2/
 export const homeSlideshowImages = [
+  // Latest / Featured: Launch Code
+  { src: '/images/gallery/IMG_20260905_142230.webp', title: 'Launch Code Contest', tag: 'Launch Code' },
+  { src: '/images/gallery/IMG_20260829_142534.webp', title: 'Launch Code Problem Solving', tag: 'Launch Code' },
+  { src: '/images/gallery/IMG_20260829_141921.webp', title: 'Launch Code Coding Session', tag: 'Launch Code' },
+  { src: '/images/gallery/IMG-20260829-WA0011.webp', title: 'Launch Code Participants', tag: 'Launch Code' },
+  { src: '/images/gallery/IMG-20260829-WA0012.webp', title: 'Launch Code Live Arena', tag: 'Launch Code' },
+
   // Gallery 1 (29 images)
   { src: '/images/gallery/1.webp', title: 'Orientation & Welcome', tag: 'Orientation' },
   { src: '/images/gallery/2.webp', title: 'Hands-on Workshop', tag: 'Workshop' },
@@ -30,11 +37,6 @@ export const homeSlideshowImages = [
   { src: '/images/gallery/IMG_0725.webp', title: 'Project Exhibition', tag: 'Exhibition' },
   { src: '/images/gallery/IMG_0729.webp', title: 'Closing Ceremonies', tag: 'Awards' },
   { src: '/images/gallery/IMG_0730.webp', title: 'Group Victory Celebration', tag: 'Celebration' },
-  { src: '/images/gallery/IMG_20260905_142230.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG_20260829_142534.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG_20260829_141921.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG-20260829-WA0011.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG-20260829-WA0012.webp', title: 'Launch Code', tag: '' },
 
   // Gallery 2 (13 images)
   { src: '/images/gallery2/1.webp', title: 'Club Core Moments', tag: 'Culture' },
@@ -50,9 +52,9 @@ export const homeSlideshowImages = [
   { src: '/images/gallery2/11.webp', title: 'Hackathon Final Review', tag: 'Review' },
   { src: '/images/gallery2/13.webp', title: 'Community Celebrations', tag: 'Moments' },
   { src: '/images/gallery2/14.webp', title: 'The Next Generation of Builders', tag: 'NIT Srinagar' },
-  { src: '/images/gallery/IMG_20260905_142230.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG_20260829_142534.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG_20260829_141921.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG-20260829-WA0011.webp', title: 'Launch Code', tag: '' },
-  { src: '/images/gallery/IMG-20260829-WA0012.webp', title: 'Launch Code', tag: '' },
+  { src: '/images/gallery2/IMG_20260905_142230.webp', title: 'Launch Code Contest', tag: 'Launch Code' },
+  { src: '/images/gallery2/IMG_20260829_142534.webp', title: 'Launch Code Problem Solving', tag: 'Launch Code' },
+  { src: '/images/gallery2/IMG_20260829_141921.webp', title: 'Launch Code Coding Session', tag: 'Launch Code' },
+  { src: '/images/gallery2/IMG-20260829-WA0011.webp', title: 'Launch Code Participants', tag: 'Launch Code' },
+  { src: '/images/gallery2/IMG-20260829-WA0012.webp', title: 'Launch Code Live Arena', tag: 'Launch Code' },
 ];
