@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import Ayush from '../assets/PastPhotos/PastPhotos/Ayush.webp';
@@ -6,182 +7,125 @@ import Md from '../assets/PastPhotos/PastPhotos/MD.webp';
 import Tushar from '../assets/PastPhotos/PastPhotos/Tushar.webp';
 import Samarvir from '../assets/PastPhotos/PastPhotos/Samarvir.webp';
 import Hafsa from '../assets/PastPhotos/PastPhotos/Hafsa.webp';
-import pinak from '../assets/PastPhotos/PastPhotos/Pinak.webp'
-import syed from '../assets/PastPhotos/PastPhotos/Syed.webp'
+import pinak from '../assets/PastPhotos/PastPhotos/Pinak.webp';
+import syed from '../assets/PastPhotos/PastPhotos/Syed.webp';
 
-let hard_coded_data = [
-  {
-    initials:'PP',
-    name:'PINAK PANI DIXIT',
-    role:'Core Member',
-    year:'2020',
-    // 2. Use the imported variables as the src value
-    src: pinak
-  },
-  {
-    initials:'AK',
-    name:'AYUSH KUMAR DUBEY',
-    role:'Core Member',
-    year:'2020',
-    src: Ayush
-  },
-  {
-    initials:'HK',
-    name:'HURMAT KHAILD',
-    role:'Core Member',
-    year:'2020',
-    src: Hurmat
-  },
-  {
-    initials:'MS',
-    name:'MD SAIF',
-    role:'Core Member',
-    year:'2021',
-    src: Md
-  },
-  {
-    initials:'TK',
-    name:'TUSHAR KUMAR MEHRA',
-    role:'Core Member',
-    year:'2022',
-    src: Tushar
-  },
-  {
-    initials:'AM',
-    name:'AYMAN MAKROO',
-    role:'Core Member',
-    year:'2022',
-    src: null
-  },
-  {
-    initials:'SS',
-    name:'SAMARVIR SINGH',
-    role:'Core Member',
-    year:'2023',
-    src: Samarvir
-  },
-  {
-    initials:'HA',
-    name:'HAFSHA AYOUB SIDQI',
-    role:'Core Member',
-    year:'2023',
-    src: Hafsa
-  },
-  
-  {
-    initials:'UF',
-    name:'UROOJ FAYAZ',
-    role:'Core Member',
-    year:'20223',
-    src: null
-  },
-  {
-    initials:'SK',
-    name:'SYED KASHIF JEELANI ALVI',
-    role:'Core Member',
-    year:'2022',
-    src: syed
-  },
-  {
-    initials:'FM',
-    name:'FAHAD MAKDOOMI',
-    role:'Core Member',
-    year:'2021',
-    src: '/images/team/Fahad.webp'
-  },
-  {
-    initials:'TK',
-    name:'TEJAL KUMARI',
-    role:'Core Member',
-    year:'2022',
-    src: null
-  },
-  {
-    initials:'A',
-    name:'ASHVICK',
-    role:'Core Member',
-    year:'2022',
-    src: '/images/team/ashvick.webp'
-  }
+const rawMembers = [
+  { initials: 'PP', name: 'Pinak Pani Dixit', role: 'Core Member', year: '2020', src: pinak },
+  { initials: 'AK', name: 'Ayush Kumar Dubey', role: 'Core Member', year: '2020', src: Ayush },
+  { initials: 'HK', name: 'Hurmat Khalid', role: 'Core Member', year: '2020', src: Hurmat },
+  { initials: 'MS', name: 'Md Saif', role: 'Core Member', year: '2021', src: Md },
+  { initials: 'FM', name: 'Fahad Makdoomi', role: 'Core Member', year: '2021', src: '/images/team/Fahad.webp' },
+  { initials: 'TK', name: 'Tushar Kumar Mehra', role: 'Core Member', year: '2022', src: Tushar },
+  { initials: 'AM', name: 'Ayman Makroo', role: 'Core Member', year: '2022', src: null },
+  { initials: 'SK', name: 'Syed Kashif Jeelani Alvi', role: 'Core Member', year: '2022', src: syed },
+  { initials: 'TK', name: 'Tejal Kumari', role: 'Core Member', year: '2022', src: null },
+  { initials: 'AS', name: 'Ashvick', role: 'Core Member', year: '2022', src: '/images/team/ashvick.webp' },
+  { initials: 'SS', name: 'Samarvir Singh', role: 'Core Member', year: '2023', src: Samarvir },
+  { initials: 'HA', name: 'Hafsha Ayoub Sidqi', role: 'Core Member', year: '2023', src: Hafsa },
+  { initials: 'UF', name: 'Urooj Fayaz', role: 'Core Member', year: '2023', src: null },
 ];
 
-const pastMembers = hard_coded_data.map((member) => ({
-  initials: member.initials,
-  name: member.name,
-  role: member.role,
-  year: member.year,
-  src: member.src,
-}));
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.07, type: 'spring', stiffness: 60 },
-  }),
-};
-
-const headingVariants = {
-  hidden: { opacity: 0, y: -30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, type: 'spring' } },
-};
+function AlumniAvatarItem({ src, name, initials }) {
+  const [err, setErr] = useState(false);
+  return (
+    <div className="alumni-avatar">
+      {src && !err ? (
+        <img src={src} alt={name} onError={() => setErr(true)} />
+      ) : (
+        <div className="alumni-avatar-text">{initials}</div>
+      )}
+    </div>
+  );
+}
 
 export default function PastMembers() {
+  const [activeYear, setActiveYear] = useState('All');
+
+  const years = ['All', '2020', '2021', '2022', '2023'];
+
+  const filteredMembers =
+    activeYear === 'All'
+      ? rawMembers
+      : rawMembers.filter((m) => m.year === activeYear);
+
   return (
-    <section className="py-16 min-h-[80vh] font-tech">
-      <motion.h2
-        className="text-4xl sm:text-5xl font-bold text-center text-fuchsia-700 mb-3 drop-shadow-lg"
-        variants={headingVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        Past Members
-      </motion.h2>
-      <motion.p
-        className="text-lg sm:text-xl text-center text-gray-600 mb-10 font-medium"
-        variants={headingVariants}
-        initial="hidden"
-        animate="visible"
-        transition={{ delay: 0.16 }}
-      >
-        Honoring our alumni and contributors
-      </motion.p>
-      <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-2 sm:px-4 md:px-6">
-        {pastMembers.map((member, idx) => (
-          <motion.div
-            key={idx}
-            className="relative flex flex-col items-center text-center bg-slate-900 border border-slate-800 rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-1 transition-shadow duration-300 hover:shadow-purple-neon min-w-0 group overflow-hidden"
-            custom={idx}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <div
-              className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-lg font-bold text-purple-400 shadow mb-3 border border-purple-900/20"
+    <div className="subpage-section">
+      <div className="subpage-header">
+        <div className="subpage-eyebrow">
+          <span /> 04 — ALUMNI NETWORK
+        </div>
+        <div className="subpage-header-split">
+          <div>
+            <motion.h1
+              className="subpage-title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              {member.src ? (
-                <motion.img
-                  src={member.src}
-                  alt={member.name}
-                  className="w-full h-full object-cover rounded-full"
-                  initial={{ scale: 0.8, opacity: 0 }} 
-                  animate={{ scale: 1, opacity: 1 }} 
-                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  whileHover={{ scale: 1.1 }} 
-                  whileTap={{ scale: 0.9 }}
-                />
-              ) : (
-                member.initials
-              )}
+              Past <span className="brand-word">members.</span>
+            </motion.h1>
+          </div>
+          <div>
+            <p className="subpage-desc">
+              Honoring our alumni and foundational contributors who built the bedrock of Technology Club NIT Srinagar. Their contributions continue to inspire new cohorts of student builders.
+            </p>
+            <div className="subpage-stats">
+              <div className="subpage-stat-item">
+                <span className="subpage-stat-num">{rawMembers.length}</span>
+                <span className="subpage-stat-label">Recognized Alumni</span>
+              </div>
+              <div className="subpage-stat-item">
+                <span className="subpage-stat-num">4+</span>
+                <span className="subpage-stat-label">Graduating Batches</span>
+              </div>
             </div>
-            <h3 className="text-base font-semibold text-gray-100 mb-1 truncate group-hover:text-purple-400 transition-colors">{member.name}</h3>
-            <p className="text-xs text-gray-300 mb-1">{member.role}</p>
-            <p className="text-xs text-gray-500">{member.year}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter Tabs */}
+      <div className="gallery-filters">
+        {years.map((y) => (
+          <button
+            key={y}
+            className={`gallery-filter-btn ${activeYear === y ? 'active' : ''}`}
+            onClick={() => setActiveYear(y)}
+          >
+            {y === 'All' ? 'All Batches' : `Class of ${y}`}
+          </button>
+        ))}
+      </div>
+
+      {/* Alumni Grid */}
+      <div className="editorial-grid-3">
+        {filteredMembers.map((member, i) => (
+          <motion.div
+            key={`${member.name}-${member.year}`}
+            className="alumni-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 + (i % 6) * 0.05, duration: 0.5 }}
+          >
+            <AlumniAvatarItem src={member.src} name={member.name} initials={member.initials} />
+            <div className="alumni-info">
+              <div className="alumni-name">{member.name}</div>
+              <div className="alumni-meta">
+                <span>{member.role}</span>
+                <span>·</span>
+                <span style={{ color: '#aaa' }}>{member.year}</span>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
-    </section>
+
+      {/* Manifesto callout */}
+      <div className="manifesto" style={{ marginTop: '90px' }}>
+        <div className="manifesto-mark">✦</div>
+        <p>“Once a builder in the club, always a part of the network.”</p>
+        <span>HONOR ROLL · NIT SRINAGAR</span>
+      </div>
+    </div>
   );
 }

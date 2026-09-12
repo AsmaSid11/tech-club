@@ -1,355 +1,196 @@
-import React, { useState } from "react";
-import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Github, Linkedin, Mail, ShieldCheck } from 'lucide-react';
 
 const teamMembers = [
-  { 
-    initials: 'AS', 
-    name: 'Asma Siddiqui', 
-    role: '2023 | Core Member', 
+  {
+    initials: 'AS',
+    name: 'Asma Siddiqui',
+    role: 'Core Member · Batch of 2023',
     image: '/images/team/asma.webp',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/asmasid11',
       github: 'https://github.com/AsmaSid11',
-      // twitter: ''
-    }
+    },
   },
-  { 
-    initials: 'SM', 
-    name: 'Saeed Abdul Muizz', 
-    role: '2024 | Core Member', 
+  {
+    initials: 'SM',
+    name: 'Saeed Abdul Muizz',
+    role: 'Core Member · Batch of 2024',
     image: '/images/team/Muizz.webp',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/abdulmuizz0903',
       github: 'https://github.com/abdulmuizz0903',
-      // twitter: ''
-    }
+    },
+  },
+  {
+    initials: 'Ak',
+    name: 'Animesh Kumar [IT]',
+    role: 'Core Member · Batch of 2025-29',
+    image: '/images/team/Animesh.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/animesh-kumar-771b60228/',
+      github: 'https://github.com/animeshx45',
+    },
+  },
+  {
+    initials: 'VC',
+    name: 'Vansh Chandana [IT]',
+    role: 'Core Member · Batch of 2025-29',
+    image: '/images/team/Vansh.webp',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/vansh-chandna-8ab11136a/',
+      github: 'https://github.com/vansh100101102-debug',
+    },
   }
 ];
-
-const coreTeam = teamMembers.filter((member) =>
-  member.role.includes("Core Member")
-);
-const supportTeam = teamMembers.filter(
-  (member) => !member.role.includes("Core Member")
-);
 
 const facultyCoordinator = {
   initials: 'IA',
   name: 'Dr. Iqra Altaf Gillani',
-  role: 'Faculty Coordinator',
+  role: 'Faculty Coordinator · NIT Srinagar',
   image: '/images/team/Iqra.webp',
-  socialLinks: {
-    // linkedin: '',
-    // github: '',
-    // twitter: ''
-  }
+  description:
+    'Guiding the Technology Club’s vision, academic alignment, and institutional outreach. Supporting students in spearheading valley-wide hackathons and high-impact industry partnerships.',
 };
 
-// Helper function to render social media icons
-function SocialMediaLinks({ socialLinks, member }) {
+function MemberAvatar({ src, initials, name }) {
+  const [error, setError] = useState(false);
   return (
-    <div className="flex gap-4 text-violet-300 text-lg">
-      {socialLinks?.linkedin ? (
-        <a
-          href={socialLinks.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${member?.name || 'Member'} LinkedIn`}
-          className="hover:text-violet-200 transition-colors"
-        >
-          <FaLinkedinIn />
-        </a>
+    <div className="member-avatar-box">
+      {src && !error ? (
+        <img src={src} alt={name} onError={() => setError(true)} />
       ) : (
-        /* <a
-          href="#"
-          aria-label="LinkedIn"
-          className="hover:text-violet-200 transition-colors opacity-30 cursor-not-allowed"
-        >
-          <FaLinkedinIn />
-        </a> */
-        null
-      )}
-      
-      {socialLinks?.github ? (
-        <a
-          href={socialLinks.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${member?.name || 'Member'} GitHub`}
-          className="hover:text-violet-200 transition-colors"
-        >
-          <FaGithub />
-        </a>
-      ) : (
-        /* <a
-          href="#"
-          aria-label="GitHub"
-          className="hover:text-violet-200 transition-colors opacity-30 cursor-not-allowed"
-        >
-          <FaGithub />
-        </a> */
-        null
-      )}
-      
-      {socialLinks?.twitter ? (
-        <a
-          href={socialLinks.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${member?.name || 'Member'} Twitter`}
-          className="hover:text-violet-200 transition-colors"
-        >
-          <FaTwitter />
-        </a>
-      ) : (
-        /* <a
-          href="#"
-          aria-label="Twitter"
-          className="hover:text-violet-200 transition-colors opacity-30 cursor-not-allowed"
-        >
-          <FaTwitter />
-        </a> */
-        null
+        <div className="member-fallback">{initials}</div>
       )}
     </div>
   );
 }
-
-function Avatar({ src, initials, alt, textSize = "text-2xl" }) {
-  const [imgError, setImgError] = useState(false);
-  const hasSrc = src && src.length > 0;
-
-  if (hasSrc && !imgError) {
-    return (
-      <img
-        src={src}
-        alt={alt || initials}
-        onError={() => setImgError(true)}
-        className="w-full h-full object-cover rounded-full"
-      />
-    );
-  }
-
-  return (
-    <div
-      className={`w-full h-full flex items-center justify-center font-bold text-white ${textSize}`}
-    >
-      {initials}
-    </div>
-  );
-}
-
-// Animation variants
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, type: "spring", stiffness: 60 },
-  }),
-};
-
-const headingVariants = {
-  hidden: { opacity: 0, y: -30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, type: "spring" } },
-};
 
 export default function Team() {
+  const [facError, setFacError] = useState(false);
+
   return (
-    <section className="py-16 text-white font-tech min-h-[80vh]">
-      <motion.h2
-        className="text-4xl sm:text-5xl font-bold text-center text-violet-300 mb-4 drop-shadow-lg"
-        variants={headingVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        Our Tech Team
-      </motion.h2>
-      <motion.p
-        className="text-lg sm:text-xl text-center text-violet-200 mb-10 font-medium"
-        variants={headingVariants}
-        initial="hidden"
-        animate="visible"
-        transition={{ delay: 0.15 }}
-      >
-        Academic Year 2026-2027
-      </motion.p>
-
-      {/* Faculty Coordinator Section */}
-      <div className="mb-16">
-        <motion.h3
-          className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
-          variants={headingVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.7 }}
-        >
-          Faculty Coordinator
-        </motion.h3>
-        <motion.div
-          className="max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-violet-dark/40"
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
-        >
-          <motion.div
-
-            className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-3xl font-bold text-white shadow-xl mb-5 overflow-hidden"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          >
-            {facultyCoordinator.image ? (
-              <img 
-                src={facultyCoordinator.image} 
-                alt={facultyCoordinator.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-            ) : null}
-            <div 
-              className={`w-full h-full flex items-center justify-center text-3xl font-bold ${facultyCoordinator.image ? 'hidden' : 'flex'}`}
-              style={{ display: facultyCoordinator.image ? 'none' : 'flex' }}
-            >
-              {facultyCoordinator.initials}
-            </div>
-          </motion.div>
-          <h3 className="text-xl sm:text-2xl font-bold text-violet-100 mb-1">
-            {facultyCoordinator.name}
-          </h3>
-          <p className="text-sm sm:text-base text-gray-200 mb-4">
-            {facultyCoordinator.role}
-          </p>
-          <SocialMediaLinks 
-            socialLinks={facultyCoordinator.socialLinks} 
-            member={facultyCoordinator} 
-          />
-        </motion.div>
-      </div>
-
-      <div className="mb-12">
-        <motion.h3
-          className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
-          variants={headingVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.7 }}
-        >
-          Core Team
-        </motion.h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto px-2 sm:px-4 md:px-6">
-          {coreTeam.map((member, idx) => (
-            <motion.div
-              key={idx}
-              className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-violet-dark/40 hover:scale-[1.04]"
-              custom={idx}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <motion.div
-
-                className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 overflow-hidden"
-                whileHover={{ scale: 1.13, rotate: 8 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                {member.image ? (
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                ) : null}
-                <div 
-                  className={`w-full h-full flex items-center justify-center text-2xl font-bold ${member.image ? 'hidden' : 'flex'}`}
-                  style={{ display: member.image ? 'none' : 'flex' }}
-                >
-                  {member.initials}
-                </div>
-              </motion.div>
-              <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
-                {member.name}
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
-                {member.role}
-              </p>
-              <SocialMediaLinks 
-                socialLinks={member.socialLinks} 
-                member={member} 
-              />
-            </motion.div>
-          ))}
+    <div className="subpage-section">
+      <div className="subpage-header">
+        <div className="subpage-eyebrow">
+          <span /> 03 — PEOPLE & LEADERSHIP
         </div>
-      </div>
-      {supportTeam.length > 0 && (
-        <div>
-          <motion.h3
-            className="text-2xl sm:text-3xl font-semibold text-center text-violet-300 mb-8"
-            variants={headingVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.7 }}
-          >
-            Creative Team
-          </motion.h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
-            {supportTeam.map((member, idx) => (
-              <motion.div
-                key={idx}
-                className="flex flex-col items-center text-center group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-2 min-w-0 cursor-pointer hover:shadow-violet-dark/40 hover:scale-[1.04]"
-                custom={idx}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <motion.div
-                  className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-deep via-violet-dark to-purple-800 flex items-center justify-center text-2xl font-bold text-white shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 overflow-hidden"
-
-                  whileHover={{ scale: 1.13, rotate: 8 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  {member.image ? (
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'flex';
-                      }}
-                    />
-                  ) : null}
-                  <div 
-                    className={`w-full h-full flex items-center justify-center text-2xl font-bold ${member.image ? 'hidden' : 'flex'}`}
-                    style={{ display: member.image ? 'none' : 'flex' }}
-                  >
-                    {member.initials}
-                  </div>
-                </motion.div>
-                <h3 className="text-lg sm:text-xl font-semibold text-violet-100 mb-1 truncate">
-                  {member.name}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-200 whitespace-pre-line mb-3">
-                  {member.role}
-                </p>
-                <SocialMediaLinks 
-                  socialLinks={member.socialLinks} 
-                  member={member} 
-                />
-              </motion.div>
-            ))}
+        <div className="subpage-header-split">
+          <div>
+            <motion.h1
+              className="subpage-title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              The <em>team.</em>
+            </motion.h1>
+          </div>
+          <div>
+            <p className="subpage-desc">
+              Meet the student organizers, contributors, and faculty advisor shaping the technical ecosystem at National Institute of Technology Srinagar.
+            </p>
           </div>
         </div>
-      )}
-    </section>
+      </div>
+
+      {/* Faculty Coordinator Feature */}
+      <motion.div
+        className="faculty-feature"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65 }}
+      >
+        <div className="faculty-portrait">
+          {facultyCoordinator.image && !facError ? (
+            <img
+              src={facultyCoordinator.image}
+              alt={facultyCoordinator.name}
+              onError={() => setFacError(true)}
+            />
+          ) : (
+            <div className="faculty-portrait-fallback">{facultyCoordinator.initials}</div>
+          )}
+        </div>
+        <div className="faculty-info">
+          <span className="card-tag highlight" style={{ marginBottom: '14px', width: 'fit-content' }}>
+            <ShieldCheck size={12} /> FACULTY ADVISOR
+          </span>
+          <h3>{facultyCoordinator.name}</h3>
+          <div className="faculty-role">{facultyCoordinator.role}</div>
+          <p className="faculty-desc">{facultyCoordinator.description}</p>
+        </div>
+      </motion.div>
+
+      {/* Core Team Roster */}
+      <div style={{ marginBottom: '24px' }}>
+        <div className="section-kicker">CORE TEAM LEADERSHIP</div>
+      </div>
+
+      <div className="editorial-grid-2" style={{ maxWidth: '900px', margin: '0 auto 70px' }}>
+        {teamMembers.map((member, i) => (
+          <motion.div
+            key={member.name}
+            className="member-card"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 + i * 0.1, duration: 0.6 }}
+          >
+            <MemberAvatar src={member.image} initials={member.initials} name={member.name} />
+            <h3 className="member-name">{member.name}</h3>
+            <div className="member-role">{member.role}</div>
+            <div className="social-row">
+              {member.socialLinks?.github && (
+                <a
+                  href={member.socialLinks.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-btn"
+                  aria-label={`${member.name} GitHub`}
+                >
+                  <Github size={15} />
+                </a>
+              )}
+              {member.socialLinks?.linkedin && (
+                <a
+                  href={member.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-btn"
+                  aria-label={`${member.name} LinkedIn`}
+                >
+                  <Linkedin size={15} />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Bottom CTA to Past Members */}
+      <div
+        style={{
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          paddingTop: '50px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '20px',
+        }}
+      >
+        <div>
+          <div className="section-kicker">ALUMNI LEGACY</div>
+          <h3 style={{ fontSize: '28px', margin: '8px 0 0', letterSpacing: '-0.03em' }}>
+            Looking for previous core members?
+          </h3>
+        </div>
+        <Link to="/past-members" className="button button-ghost">
+          Honor roll & alumni <ArrowUpRight size={16} />
+        </Link>
+      </div>
+    </div>
   );
 }
