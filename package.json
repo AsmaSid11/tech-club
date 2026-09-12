@@ -11,6 +11,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build --prefix client",
+    "dev": "npm run dev --prefix client",
+    "preview": "npm run preview --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
