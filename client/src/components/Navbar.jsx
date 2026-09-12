@@ -24,7 +24,7 @@ export default function Navbar() {
             <span className="brand-mark" title="Technology Club"><img src="/images/logo.webp" alt="Technology Club NIT Srinagar" /></span>
             <span className="brand-mark nit-mark" title="NIT Srinagar"><img src="/images/nit-logo.png" alt="National Institute of Technology Srinagar" /></span>
           </div>
-          <span className="brand-copy"><b>TECHNOLOGY</b><span>CLUB · NIT SRINAGAR</span></span>
+          <span className="brand-copy"><b>TECHNOLOGY CLUB</b><span>NIT SRINAGAR</span></span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
