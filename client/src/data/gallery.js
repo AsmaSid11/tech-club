@@ -5,7 +5,9 @@ export const DRIVE_LINKS = {
   'Orientation 2026':
     'https://drive.google.com/drive/folders/1oACctYp5rEj5WXfbZEXErT-h7eCSB7JM?usp=drive_link',
   'TechFusion 2025':
-    'https://drive.google.com/drive/folders/1q5qyraJgf67VUn8nhPkbw-JSD08wkrO1?usp=drive_link',
+    'https://photos.google.com/share/AF1QipNrnHkhi1wB7iyqLRAavlGvPnbUNOMPVrDYtTl20Xb_a0yeh0cd9xMuyQ0NPkvEog?key=VEZmYUFiMUoydjlvVjVwR2szRC1rMHJOdk5PLVZ3&pli=1',
+  'Cursor Hackathon':
+    'https://drive.google.com/drive/folders/10mLsRjXnt4HztnDDmu8Be8HRJ0tuJ6lx',
   'Club moments':
     'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49?usp=sharing',
 };

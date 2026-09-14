@@ -9,7 +9,6 @@ export default function Footer() {
           <div className="footer-brand">
             <div className="brand-marks">
               <span className="brand-mark"><img src="/images/logo.webp" alt="Technology Club" /></span>
-              <span className="brand-mark nit-mark"><img src="/images/nit-logo.png" alt="NIT Srinagar" /></span>
             </div>
             <span style={{ fontWeight: 700, letterSpacing: '0.1em' }}>TECHNOLOGY CLUB · NIT SRINAGAR</span>
           </div>

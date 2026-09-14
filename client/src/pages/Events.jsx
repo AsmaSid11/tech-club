@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Calendar, Clock, Code2, Cpu, MapPin, Sparkles, Users } from 'lucide-react';
+import { ArrowUpRight, Calendar, Clock, Code2, Cpu, MapPin, Sparkles, Users, FolderArchive } from 'lucide-react';
 import { upcomingEvents, weeklySeries } from '../data/eventsData';
 
 const iconMap = {
@@ -59,11 +59,18 @@ export default function Events() {
                   {evt.venue && <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><MapPin size={13} /> {evt.venue}</div>}
                 </div>
                 <p>{evt.description}</p>
-                {evt.registrationLink && (
-                  <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                    <a href={evt.registrationLink} target="_blank" rel="noreferrer" className="button button-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                      Register Now <ArrowUpRight size={15} />
-                    </a>
+                {(evt.registrationLink || evt.driveLink) && (
+                  <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {evt.registrationLink && (
+                      <a href={evt.registrationLink} target="_blank" rel="noreferrer" className="button button-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                        Register Now <ArrowUpRight size={15} />
+                      </a>
+                    )}
+                    {evt.driveLink && (
+                      <a href={evt.driveLink} target="_blank" rel="noreferrer" className="event-drive-btn">
+                        <FolderArchive size={14} /> Drive Photos & Media <ArrowUpRight size={13} />
+                      </a>
+                    )}
                   </div>
                 )}
               </div>
@@ -95,41 +102,7 @@ export default function Events() {
         </motion.div>
       )}
 
-      {/* Weekly Series */}
-      <div style={{ marginBottom: '24px' }}>
-        <div className="section-kicker">RECURRING INITIATIVES</div>
-      </div>
 
-      <div className="editorial-grid-3">
-        {weeklySeries.map((item, i) => {
-          const Icon = iconMap[item.num] || Sparkles;
-          return (
-            <motion.article
-              key={item.title}
-              className="editorial-card"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 + i * 0.1, duration: 0.6 }}
-            >
-              <div className="editorial-card-top">
-                <span className="card-number">{item.num}</span>
-                <span className="card-tag">{item.tag}</span>
-              </div>
-              <div style={{ marginBottom: '18px', color: '#f5f5f0' }}>
-                <Icon size={24} strokeWidth={1.75} />
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.blurb}</p>
-              <div className="editorial-card-bottom">
-                <span style={{ fontFamily: 'DM Mono', fontSize: '10px', color: '#777', letterSpacing: '0.12em' }}>
-                  {item.schedule}
-                </span>
-                <Sparkles size={14} color="#666" />
-              </div>
-            </motion.article>
-          );
-        })}
-      </div>
 
       {/* Bottom manifesto note */}
       <div className="manifesto" style={{ marginTop: '90px' }}>

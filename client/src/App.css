@@ -166,3 +166,164 @@
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pillar,.editorial-card,.member-card,.alumni-card{transition:none}}
 
+/* --- HackMIT & IIT Bombay Techfest Inspired Chill & Fun Vibe Styles --- */
+
+/* Hero stickers */
+.hero-stickers-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 24px}
+.hero-sticker{display:inline-flex;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:#eee;transition:all .25s ease;cursor:default}
+.hero-sticker:hover{transform:translateY(-2px) scale(1.03)}
+.sticker-launch{border-color:rgba(6,182,212,.4);background:rgba(6,182,212,.08);color:#38bdf8}
+.sticker-launch:hover{box-shadow:0 0 15px rgba(6,182,212,.3)}
+.sticker-robonox{border-color:rgba(244,63,94,.4);background:rgba(244,63,94,.08);color:#fb7185}
+.sticker-robonox:hover{box-shadow:0 0 15px rgba(244,63,94,.3)}
+.sticker-fun{border-color:rgba(168,85,247,.4);background:rgba(168,85,247,.08);color:#c084fc}
+.sticker-fun:hover{box-shadow:0 0 15px rgba(168,85,247,.3)}
+
+/* Continuous Marquee Ticker */
+.marquee-ticker-wrap{width:100%;overflow:hidden;background:#0c0c0e;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 0;position:relative;z-index:3}
+.marquee-track{display:flex;align-items:center;gap:24px;width:max-content;animation:marqueeScroll 30s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{display:inline-flex;align-items:center;gap:9px;white-space:nowrap;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:#aaa}
+.marquee-icon{font-size:13px}
+.marquee-text{color:#e2e8f0;font-weight:500}
+.marquee-sep{color:#f43f5e;margin-left:14px;opacity:.6;font-size:9px}
+
+@keyframes marqueeScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* Interactive Club Terminal Widget */
+.club-terminal-widget{margin-top:40px;border:1px solid rgba(255,255,255,.12);background:rgba(13,13,16,.9);border-radius:10px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);backdrop-filter:blur(14px)}
+.terminal-bar-top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07)}
+.terminal-dots{display:flex;gap:6px}
+.t-dot{width:9px;height:9px;border-radius:50%}
+.t-dot.red{background:#ef4444}
+.t-dot.yellow{background:#eab308}
+.t-dot.green{background:#22c55e}
+.terminal-bar-title{font-family:'DM Mono',monospace;font-size:11px;color:#888;display:flex;align-items:center;gap:7px}
+.terminal-shuffle-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:6px;color:#ddd;padding:4px 10px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s}
+.terminal-shuffle-btn:hover{background:#f43f5e;border-color:#f43f5e;color:#fff}
+.terminal-body{padding:20px 24px}
+.terminal-prompt-line{font-family:'DM Mono',monospace;font-size:12px;margin-bottom:12px;color:#aaa}
+.t-green{color:#10b981;font-weight:600}
+.t-blue{color:#38bdf8}
+.terminal-quote-output{font-family:'DM Mono',monospace;font-size:13.5px;color:#f3f4f6;line-height:1.6;padding:12px 16px;background:rgba(255,255,255,.03);border-left:3px solid #f43f5e;margin-bottom:16px;border-radius:0 6px 6px 0}
+.terminal-status-chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-family:'DM Mono',monospace;font-size:10px;color:#999;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.03);padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08)}
+.chip-led{width:6px;height:6px;border-radius:50%}
+.led-green{background:#22c55e;box-shadow:0 0 8px #22c55e}
+.led-cyan{background:#06b6d4;box-shadow:0 0 8px #06b6d4}
+.led-purple{background:#a855f7;box-shadow:0 0 8px #a855f7}
+
+/* Team Page Wings */
+.team-wing-header{display:flex;justify-content:space-between;align-items:flex-end;margin:45px auto 25px;max-width:960px;flex-wrap:wrap;gap:16px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:16px}
+.team-wing-title-group h2{font-size:clamp(22px,2.8vw,34px);margin:6px 0 6px;letter-spacing:-.03em;color:#f5f5f0}
+.team-wing-title-group p{color:#888;font-size:13.5px;max-width:620px;margin:0;line-height:1.6}
+.team-badge{font-family:'DM Mono',monospace;font-size:10px;padding:6px 14px;border-radius:999px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:7px;font-weight:600}
+.gymkhana-badge{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.35);color:#c084fc}
+.launchcode-badge{background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.35);color:#38bdf8}
+.robonox-badge{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.35);color:#fb7185}
+.member-card-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#bbb;margin-bottom:14px}
+.member-card-badge.launch-badge{background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.3);color:#38bdf8}
+.member-skills-list{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 16px}
+.member-skill-tag{font-family:'DM Mono',monospace;font-size:8.5px;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:#999}
+.team-card-launchcode{border-color:rgba(6,182,212,.25)}
+.team-card-launchcode:hover{border-color:rgba(6,182,212,.5);box-shadow:0 12px 35px rgba(6,182,212,.08)}
+.team-card-gymkhana{border-color:rgba(124,58,237,.25)}
+.team-card-gymkhana:hover{border-color:rgba(124,58,237,.5);box-shadow:0 12px 35px rgba(124,58,237,.08)}
+
+/* Robonox preview card */
+.robonox-preview-card{max-width:960px;margin:0 auto 70px;border:1px solid rgba(244,63,94,.25);background:linear-gradient(135deg,rgba(244,63,94,.06) 0%,rgba(14,14,18,.8) 100%);border-radius:12px;padding:36px 40px;position:relative;overflow:hidden;transition:all .3s ease}
+.robonox-preview-card:hover{border-color:rgba(244,63,94,.45);box-shadow:0 15px 45px rgba(244,63,94,.1)}
+.robonox-preview-inner{display:flex;align-items:center;gap:30px}
+.robonox-icon-orb{width:76px;height:76px;border-radius:50%;background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.3);display:grid;place-items:center;color:#fb7185;flex-shrink:0}
+.robonox-status-pill{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.16em;color:#fb7185;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;background:rgba(244,63,94,.1);padding:4px 12px;border-radius:999px;border:1px solid rgba(244,63,94,.25)}
+.pulse-indicator{width:7px;height:7px;border-radius:50%;background:#fb7185;box-shadow:0 0 10px #fb7185;animation:pulseDot 1.5s infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(0.8)}}
+.robonox-preview-text h3{font-size:22px;margin:0 0 8px;letter-spacing:-.02em;color:#f5f5f0}
+.robonox-preview-text p{color:#888;font-size:14px;line-height:1.65;margin:0 0 18px;max-width:640px}
+.robonox-tags{display:flex;flex-wrap:wrap;gap:10px}
+.robonox-tags span{font-family:'DM Mono',monospace;font-size:9px;color:#ccc;display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+
+@media(max-width:800px){
+  .robonox-preview-inner{flex-direction:column;text-align:center}
+  .robonox-tags{justify-content:center}
+  .robonox-preview-card{padding:28px 20px}
+  .team-wing-header{flex-direction:column;align-items:flex-start}
+}
+
+/* Hide footer completely on desktop as requested (navbar provides full navigation) */
+@media(min-width: 801px){
+  .site-footer{
+    display: none !important;
+  }
+}
+
+/* Simplified team headers */
+.team-wing-header.simple-header{
+  margin: 35px auto 20px;
+  padding-bottom: 12px;
+}
+.team-wing-header.simple-header h2{
+  font-size: clamp(24px, 3.2vw, 36px);
+  margin: 4px 0 0;
+  letter-spacing: -0.03em;
+  color: #f5f5f0;
+}
+
+/* Campus Feedback & Idea Section */
+.feedback-section{max-width:1400px;margin:50px auto 60px;padding:0 6vw;position:relative;z-index:2}
+.feedback-inner{border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(124,58,237,.08) 0%,rgba(6,182,212,.05) 50%,rgba(14,14,18,.85) 100%);border-radius:14px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;box-shadow:0 20px 50px rgba(0,0,0,.5);backdrop-filter:blur(12px)}
+.feedback-left{display:flex;align-items:center;gap:22px;max-width:760px}
+.feedback-icon-orb{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#38bdf8;flex-shrink:0}
+.feedback-copy h3{font-size:clamp(20px,2.4vw,28px);margin:4px 0 6px;letter-spacing:-.03em;color:#f5f5f0}
+.feedback-copy p{color:#999;font-size:13.5px;line-height:1.6;margin:0}
+.feedback-action{display:flex;align-items:center}
+@media(max-width:800px){
+  .feedback-inner{flex-direction:column;align-items:flex-start;padding:26px 20px}
+  .feedback-left{flex-direction:column;align-items:flex-start}
+}
+
+/* Event Drive folder link button */
+.event-drive-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:8px;padding:10px 16px;border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:#ccc;transition:all .25s ease;text-decoration:none;width:100%}
+.event-drive-btn:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff}
+
+/* --- Informal & Fun Vibe Interactive Styles (HackMIT inspired) --- */
+
+/* Dopamine clicker sticker */
+.sticker-dopamine{background:linear-gradient(135deg,rgba(244,63,94,.18) 0%,rgba(168,85,247,.22) 100%);border-color:rgba(244,63,94,.45);color:#fb7185;cursor:pointer;user-select:none}
+.sticker-dopamine:hover{box-shadow:0 0 18px rgba(244,63,94,.4);color:#fff}
+
+/* Fun Pillars */
+.fun-pillar{cursor:default;border-radius:6px;transition:all .3s cubic-bezier(0.16,1,0.3,1)}
+.fun-pillar:hover{border-color:rgba(168,85,247,.5);box-shadow:0 15px 40px rgba(168,85,247,.12)}
+.pillar-tags-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 10px;flex-wrap:wrap}
+.pillar-fun-tag{font-family:'DM Mono',monospace;font-size:9px;color:#c084fc;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);padding:2px 7px;border-radius:4px}
+
+/* Interactive Mascot Widget: Byte the Bot */
+.byte-bot-container{position:fixed;bottom:24px;right:24px;z-index:999}
+.byte-avatar-btn{width:54px;height:54px;border-radius:50%;background:rgba(15,15,20,.94);border:2px solid #38bdf8;box-shadow:0 6px 25px rgba(56,189,248,.35),inset 0 0 12px rgba(56,189,248,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;backdrop-filter:blur(10px);outline:none}
+.byte-avatar-btn:hover{border-color:#f43f5e;box-shadow:0 8px 30px rgba(244,63,94,.45)}
+.byte-face{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:#38bdf8;letter-spacing:-.04em}
+.byte-badge-label{position:absolute;top:-7px;right:-7px;background:#f43f5e;color:#fff;font-family:'DM Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.08em;padding:1px 6px;border-radius:999px;display:flex;align-items:center;gap:3px;box-shadow:0 2px 8px rgba(244,63,94,.6)}
+.byte-floating-emoji{position:absolute;bottom:45px;right:20px;font-size:20px;pointer-events:none;z-index:1001}
+.byte-speech-bubble{position:absolute;bottom:70px;right:0;width:min(88vw,300px);background:rgba(16,16,22,.96);border:1px solid rgba(56,189,248,.35);border-radius:12px;padding:14px 16px;box-shadow:0 20px 50px rgba(0,0,0,.85),0 0 25px rgba(56,189,248,.15);backdrop-filter:blur(16px);z-index:1000}
+.bubble-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.bubble-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:#38bdf8;text-transform:uppercase;display:flex;align-items:center;gap:5px;font-weight:600}
+.bubble-close{background:none;border:none;color:#888;cursor:pointer;display:flex;align-items:center;padding:2px;border-radius:4px;transition:color .2s}
+.bubble-close:hover{color:#fff}
+.bubble-text{font-family:'DM Mono',monospace;font-size:12px;color:#f1f5f9;line-height:1.55;margin:0 0 10px}
+.bubble-footer{display:flex;justify-content:flex-end}
+.bubble-next-btn{font-family:'DM Mono',monospace;font-size:9.5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#cbd5e1;padding:3px 10px;cursor:pointer;transition:all .2s}
+.bubble-next-btn:hover{background:#f43f5e;color:#fff;border-color:#f43f5e}
+.bubble-pointer{position:absolute;bottom:-6px;right:22px;width:12px;height:12px;background:rgba(16,16,22,.96);border-right:1px solid rgba(56,189,248,.35);border-bottom:1px solid rgba(56,189,248,.35);transform:rotate(45deg)}
+
+@media(max-width:800px){
+  .byte-bot-container{bottom:18px;right:18px}
+  .byte-speech-bubble{right:-6px;width:86vw}
+}
+
+
+
+

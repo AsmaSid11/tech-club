@@ -53,6 +53,7 @@ export const upcomingEvents = [
     poster: '/images/posters/LaunchCode.webp',
     description: 'The Technology Club is conducting a beginner-friendly coding mini contest on HackerRank as part of Launch Code. This contest aims to provide a fun and competitive platform for students to enhance their problem-solving skills.',
     registrationLink: 'https://www.hackerrank.com/launch-codecodesprint',
+    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
   }
 ];
 
@@ -89,6 +90,7 @@ export const pastEditions = [
     description:
       'The premier two-day inter-college technology festival uniting students across Jammu & Kashmir. Features high-intensity hackathons, robotics challenges, guest technical keynotes, and cross-discipline competitive tracks.',
     editions: ['TechVaganza 2024'],
+    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
   },
   {
     num: '02',
@@ -98,6 +100,7 @@ export const pastEditions = [
     description:
       'NIT Srinagar’s flagship internal festival celebrating hands-on engineering, creative software, and embedded hardware. Brings together departments for collaborative project exhibits and peer-reviewed competitions.',
     editions: ['TechFusion 2025', 'TechFusion 2024'],
+    driveLink: 'https://photos.google.com/share/AF1QipNrnHkhi1wB7iyqLRAavlGvPnbUNOMPVrDYtTl20Xb_a0yeh0cd9xMuyQ0NPkvEog?key=VEZmYUFiMUoydjlvVjVwR2szRC1rMHJOdk5PLVZ3&pli=1',
   },
   {
     num: '03',
@@ -107,6 +110,7 @@ export const pastEditions = [
     description:
       'Kashmir’s premier AI hackathon hosted at NIT Srinagar in collaboration with Cursor Ambassador Mohtasham Madani. Over 125+ teams engineered real-world solutions across healthcare, education, and agriculture evaluated by tech leaders from NVIDIA, Oracle, and LinkedIn.',
     editions: ['Cursor Hackathon 2026'],
+    driveLink: 'https://drive.google.com/drive/folders/10mLsRjXnt4HztnDDmu8Be8HRJ0tuJ6lx',
   },
   {
     num: '04',
@@ -116,6 +120,7 @@ export const pastEditions = [
     description:
       'A non-stop 24-hour hackathon organized with Team CodeDay targeting school and early undergrad developers. From introductory workshops in Git and modern models to overnight prototyping, creating an on-ramp for emerging builders.',
     editions: ['CodeDay 2026', 'CodeDay 2025'],
+    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
   },
   {
     num: '05',
@@ -125,6 +130,7 @@ export const pastEditions = [
     description:
       'A 48-hour execution sprint organized by Buildify and Technology Club centered around "Making Business Future-Proof." Teams prioritized production-ready software over slides, delivering tangible applications like Curtain AI and Hunarmand.',
     editions: ['Buildify 2026'],
+    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
   },
   {
     num: '06',
@@ -134,5 +140,6 @@ export const pastEditions = [
     description:
       'The weekly heartbeat of the club: algorithmic problem-solving, open-source sprints, and peer-to-peer workshops. The foundation through which members build technical confidence and cross-domain teams.',
     editions: ['Weekly Cycles · 2024–2026'],
+    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
   },
 ];
