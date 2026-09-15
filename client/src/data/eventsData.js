@@ -45,14 +45,14 @@ export const upcomingEvents = [
   */
   {
     id: 'Launch Code',
-    title: 'Launch Code — Mini Coding Contest',
+    title: 'Launch Code —  MASTER ARRAY WITH PROBLEM SOLVING',
     status: 'Registration Open',
-    date: '13th September 2026',
+    date: '19th September 2026',
     time: '2:00 PM - 4:00 PM IST',
     venue: 'PF4 Classroom, NIT Srinagar',
-    poster: '/images/posters/LaunchCode.webp',
-    description: 'The Technology Club is conducting a beginner-friendly coding mini contest on HackerRank as part of Launch Code. This contest aims to provide a fun and competitive platform for students to enhance their problem-solving skills.',
-    registrationLink: 'https://www.hackerrank.com/launch-codecodesprint',
+    poster: '/images/posters/ChatGPT Image Sep 15, 2026, 06_41_01 PM.webp',
+    description: 'Join us for an exciting coding session focused on Arrays and Problem Solving This event is designed to help students strengthen their programming skills through practical challenges and guided problem-solving.',
+    registrationLink: 'https://forms.gle/k9ZNLPtdpMaBCBjx6',
     driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
   }
 ];
