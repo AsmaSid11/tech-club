@@ -50,7 +50,7 @@ export const upcomingEvents = [
     date: '19th September 2026',
     time: '2:00 PM - 4:00 PM IST',
     venue: 'PF4 Classroom, NIT Srinagar',
-    poster: '/images/posters/ChatGPT Image Sep 15, 2026, 06_41_01 PM.webp',
+    poster: '/images/posters/ChatGPT Image Sep 15, 2026, 07_12_29 PM.png',
     description: 'Join us for an exciting coding session focused on Arrays and Problem Solving This event is designed to help students strengthen their programming skills through practical challenges and guided problem-solving.',
     registrationLink: 'https://forms.gle/k9ZNLPtdpMaBCBjx6',
     driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
