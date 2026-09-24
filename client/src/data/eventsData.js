@@ -44,17 +44,18 @@ export const upcomingEvents = [
   }
   */
   {
-    id: 'Launch Code',
-    title: 'Launch Code —  MASTER ARRAY WITH PROBLEM SOLVING',
+    id: 'Tech n Chai',
+    title: 'Tech n Chai 2.0 — Bigger Conversations, More Fun',
     status: 'Registration Open',
-    date: '19th September 2026',
-    time: '2:00 PM - 4:00 PM IST',
-    venue: 'PF4 Classroom, NIT Srinagar',
-    poster: '/images/posters/ChatGPT Image Sep 15, 2026, 07_12_29 PM.png',
-    description: 'Join us for an exciting coding session focused on Arrays and Problem Solving This event is designed to help students strengthen their programming skills through practical challenges and guided problem-solving.',
-    registrationLink: 'https://forms.gle/k9ZNLPtdpMaBCBjx6',
-    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
-  }
+    date: '25th September 2026',
+    time: '4:00 PM - 6:00 PM IST',
+    venue: '1st Floor, Conference Room, New Guest House',
+    poster: '',
+    description: 'Tech n Chai is back! After an amazing first edition, we’re bringing it back — bigger conversations, more tech, more fun, and of course, more chai. Join us for an evening where ideas meet conversations and the tech community comes together.',
+    registrationLink: 'https://technchai.hellofaizan.site/',
+    driveLink: ''
+}
+
 ];
 
 export const weeklySeries = [
