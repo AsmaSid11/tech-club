@@ -49,7 +49,6 @@ export const galleryImages = [
 
   // Club moments
   { src: '/images/gallery2/1.webp', alt: 'Club moments', event: 'Club moments' },
-  { src: '/images/gallery2/2.webp', alt: 'Club moments', event: 'Club moments' },
   { src: '/images/gallery2/3.webp', alt: 'Club moments', event: 'Club moments' },
   { src: '/images/gallery2/4.webp', alt: 'Club moments', event: 'Club moments' },
   { src: '/images/gallery2/5.webp', alt: 'Club moments', event: 'Club moments' },

@@ -28,33 +28,84 @@
  */
 
 export const upcomingEvents = [
-  // When an event is scheduled, uncomment and add details below:
-  /*
   {
-    id: 'tech-sprint-2026',
-    title: 'Semester Coding Sprint',
-    status: 'Upcoming',
-    date: 'To be announced',
-    time: '2:00 PM IST',
-    venue: 'Computer Center, NIT Srinagar',
-    poster: '/images/posters/CODECLash_page-0001.webp',
-    description: 'Algorithmic problem-solving sprint and live peer debugging session for 1st, 2nd, and 3rd year students.',
-    registrationLink: 'https://forms.gle/techclub',
-    tags: ['Algorithms', 'Hands-on', 'Campus']
-  }
-  */
-  {
-    id: 'Launch Code',
-    title: 'Launch Code —  MASTER ARRAY WITH PROBLEM SOLVING',
+    id: 'Tech n Chai',
+    title: 'Tech n Chai 2.0 – Bigger Conversations, More Fun',
     status: 'Registration Open',
-    date: '19th September 2026',
-    time: '2:00 PM - 4:00 PM IST',
-    venue: 'PF4 Classroom, NIT Srinagar',
-    poster: '/images/posters/ChatGPT Image Sep 15, 2026, 07_12_29 PM.png',
-    description: 'Join us for an exciting coding session focused on Arrays and Problem Solving This event is designed to help students strengthen their programming skills through practical challenges and guided problem-solving.',
-    registrationLink: 'https://forms.gle/k9ZNLPtdpMaBCBjx6',
-    driveLink: 'https://drive.google.com/drive/folders/1CiJmBmCJD0b_Ns36vb2VOCT4JkfkHW49',
+    date: '25th September 2026',
+    time: '4:00 PM – 6:00 PM IST',
+    venue: '1st Floor, Conference Room, New Guest House',
+    poster: '/images/posters/TechandChai Poster.png',
+    description: 'Tech n Chai is back! After an amazing first edition, we’re bringing it back – bigger conversations, more tech, more fun, and of course, more chai!',
+    registrationLink: 'https://technchai.hellofaizan.site/',
+    driveLink: ''
+  },
+  {
+    id: 'TechSharkTank',
+    title: 'Tech Shark Tank',
+    status: 'Coming Soon',
+    date: '9th October 2026',
+    time: 'TBA',
+    venue: 'NIT Srinagar',
+    poster: '/images/posters/coming-soon-banner-design-template-vector.jpg',
+    description: 'A fun pitching event where participants present creative, unusual, or humorous technology-based ideas to judges. The more innovative and entertaining the idea, the better.',
+    registrationLink: '',
+    driveLink: '',
+    organizer: 'Technology Club'
+  },
+  {
+    id: 'PromptWars',
+    title: 'Prompt Wars',
+    status: 'Coming Soon',
+    date: '23rd October 2026',
+    time: 'TBA',
+    venue: 'NIT Srinagar',
+    poster: '/images/posters/coming-soon-banner-design-template-vector.jpg',
+    description: 'A competitive prompt engineering event where participants craft creative and effective prompts to generate outputs and solve challenges.',
+    registrationLink: '',
+    driveLink: '',
+    organizer: 'Technology Club'
+  },
+  {
+    id: 'FundamentalsAI',
+    title: 'Fundamentals of AI: From Scratch to AI Agents',
+    status: 'Coming Soon',
+    date: '24–25th October 2026',
+    time: 'TBA',
+    venue: 'NIT Srinagar',
+    poster: '/images/posters/coming-soon-banner-design-template-vector.jpg',
+    description: 'A beginner-friendly workshop introducing Artificial Intelligence, covering fundamentals of AI and ML, progressing to Deep Learning, Generative AI, LLMs, RAG, and AI Agents.',
+    registrationLink: '',
+    driveLink: '',
+    organizer: 'Robonox Student Chapter'
+  },
+  {
+    id: 'BreakTheCode',
+    title: 'Break the Code',
+    status: 'Coming Soon',
+    date: '6th November 2026',
+    time: 'TBA',
+    venue: 'NIT Srinagar',
+    poster: '/images/posters/coming-soon-banner-design-template-vector.jpg',
+    description: 'A hands-on coding challenge where participants debug and solve broken code snippets under time pressure.',
+    registrationLink: '',
+    driveLink: '',
+    organizer: 'Technology Club'
+  },
+  {
+    id: 'CloudComputingAzure',
+    title: 'Fundamentals of Cloud Computing with Microsoft Azure',
+    status: 'Coming Soon',
+    date: 'TBA',
+    time: 'TBA',
+    venue: 'NIT Srinagar',
+    poster: '/images/posters/coming-soon-banner-design-template-vector.jpg',
+    description: 'A workshop introducing cloud computing concepts with hands-on experience using Microsoft Azure services.',
+    registrationLink: '',
+    driveLink: '',
+    organizer: 'Robonox Student Chapter'
   }
+
 ];
 
 export const weeklySeries = [
