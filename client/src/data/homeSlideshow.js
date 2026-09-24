@@ -9,7 +9,6 @@ export const homeSlideshowImages = [
 
   // Gallery 1 (29 images)
   { src: '/images/gallery/1.webp', title: 'Orientation & Welcome', tag: 'Orientation' },
-  { src: '/images/gallery/2.webp', title: 'Hands-on Workshop', tag: 'Workshop' },
   { src: '/images/gallery/3.webp', title: 'Team Collaboration', tag: 'Community' },
   { src: '/images/gallery/4.webp', title: 'Live Coding Session', tag: 'Build' },
   { src: '/images/gallery/5.webp', title: 'Auditorium Keynote', tag: 'Sessions' },
@@ -40,7 +39,6 @@ export const homeSlideshowImages = [
 
   // Gallery 2 (13 images)
   { src: '/images/gallery2/1.webp', title: 'Club Core Moments', tag: 'Culture' },
-  { src: '/images/gallery2/2.webp', title: 'Coding Competition Arena', tag: 'Contest' },
   { src: '/images/gallery2/3.webp', title: 'Late Night Prototyping', tag: 'Build' },
   { src: '/images/gallery2/4.webp', title: 'Hardware Circuit Testing', tag: 'Hardware' },
   { src: '/images/gallery2/5.webp', title: 'Faculty & Student Interaction', tag: 'Interaction' },
