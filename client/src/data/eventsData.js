@@ -50,7 +50,7 @@ export const upcomingEvents = [
     date: '25th September 2026',
     time: '4:00 PM - 6:00 PM IST',
     venue: '1st Floor, Conference Room, New Guest House',
-    poster: '/images/posters/Tech and Chai.jpg',
+    poster: '/images/posters/Tech and Chai Poster.jpeg',
     description: 'Tech n Chai is back! After an amazing first edition, we’re bringing it back — bigger conversations, more tech, more fun, and of course, more chai. Join us for an evening where ideas meet conversations and the tech community comes together.',
     registrationLink: 'https://technchai.hellofaizan.site/',
     driveLink: ''
