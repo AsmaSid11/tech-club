@@ -35,7 +35,7 @@ export const upcomingEvents = [
     date: '03rd October 2026',
     time: '2:00 PM – 4:00 PM IST',
     venue: 'PF4 Classroom, NIT Srinagar',
-    poster: '/images/posters/TECHNOLOGY CLUB PRESENTS.png',
+    poster: '/images/posters/ChatGPT Image Sep 28, 2026, 10_59_39 PM.png',
     description: 'An introductory session on Competitive Programming & Data Structures and Algorithms (DSA). Join us to learn, practice, and compete while strengthening your problem-solving skills.',
     registrationLink: 'https://forms.gle/8TRbM17XpvhuAqkn8',
     driveLink: ''
