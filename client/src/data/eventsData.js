@@ -29,15 +29,15 @@
 
 export const upcomingEvents = [
   {
-    id: 'Tech n Chai',
-    title: 'Tech n Chai 2.0 – Bigger Conversations, More Fun',
+    id: 'Launch Code',
+    title: 'Launch Code – Introductory Session on Competitive Programming & DSA',
     status: 'Registration Open',
-    date: '25th September 2026',
-    time: '4:00 PM – 6:00 PM IST',
-    venue: '1st Floor, Conference Room, New Guest House',
-    poster: '/images/posters/TechandChai Poster.png',
-    description: 'Tech n Chai is back! After an amazing first edition, we’re bringing it back – bigger conversations, more tech, more fun, and of course, more chai!',
-    registrationLink: 'https://technchai.hellofaizan.site/',
+    date: '03rd October 2026',
+    time: '2:00 PM – 4:00 PM IST',
+    venue: 'PF4 Classroom, NIT Srinagar',
+    poster: '/images/posters/ChatGPT Image Sep 28, 2026, 10_59_39 PM.png',
+    description: 'An introductory session on Competitive Programming & Data Structures and Algorithms (DSA). Join us to learn, practice, and compete while strengthening your problem-solving skills.',
+    registrationLink: 'https://forms.gle/8TRbM17XpvhuAqkn8',
     driveLink: ''
   },
   {
